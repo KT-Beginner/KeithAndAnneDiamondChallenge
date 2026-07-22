@@ -372,7 +372,7 @@ imageModal.addEventListener("click", (e) => {
 // Start Quiz
 // ==========================================
 
-loadQuestion();
+
 // Final photo slideshow
 
 const slideshowImages = [
@@ -406,6 +406,8 @@ function startSlideshow() {
             slideshowIndex = (slideshowIndex + 1) % slideshowImages.length;
             slideshowImage.src = slideshowImages[slideshowIndex];
             slideshowImage.classList.remove("fade-out");
-        }, 1000);
-    }, 5000);
+        }, 1800);
+    }, 6500;
 }
+// Start the quiz only after everything above has loaded
+loadQuestion();
