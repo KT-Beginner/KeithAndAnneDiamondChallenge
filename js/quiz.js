@@ -329,13 +329,27 @@ function showFinalScreen() {
     <strong>The Family ❤️</strong><br><br>
     Diamond Wedding Anniversary • 2026
 </p>
+<div class="finish-buttons">
+    <button id="viewSlideshow" class="start-btn">
+        📸 View Slideshow
+    </button>
 
+    <button id="playAgain" class="start-btn">
+        🔄 Play Again
+    </button>
+</div>
         </div>
     `;
+const viewSlideshowButton = document.getElementById("viewSlideshow");
+const playAgainButton = document.getElementById("playAgain");
 
-    setTimeout(() => {
-        startSlideshow();
-    }, 5000);
+viewSlideshowButton.addEventListener("click", () => {
+    startSlideshow();
+});
+
+playAgainButton.addEventListener("click", () => {
+    window.location.href = "index.html";
+});
 }
 // ==========================================
 // Image Popup

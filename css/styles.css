@@ -1114,3 +1114,14 @@ img {
 .slideshow img.fade-out {
     opacity: 0;
 }
+.finish-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.finish-buttons .start-btn {
+    min-width: 160px;
+}
