@@ -402,32 +402,76 @@ let slideshowIndex = 0;
 let slideshowTimer;
 
 function startSlideshow() {
-    const slideshow = document.getElementById("slideshow");
-    const slideshowImage = document.getElementById("slideshow-image");
+    const slideshow =
+        document.getElementById("slideshow");
 
-    if (!slideshow || !slideshowImage || slideshowImages.length === 0) {
+    const slideshowImage =
+        document.getElementById("slideshow-image");
+
+    const slideshowEnding =
+        document.getElementById("slideshow-ending");
+
+    if (
+        !slideshow ||
+        !slideshowImage ||
+        !slideshowEnding ||
+        slideshowImages.length === 0
+    ) {
         return;
     }
 
+    clearInterval(slideshowTimer);
+
     slideshowIndex = 0;
-    slideshowImage.src = slideshowImages[slideshowIndex];
+
+    slideshowEnding.classList.add("hidden");
+    slideshowImage.classList.remove("hidden");
+    slideshowImage.classList.remove("fade-out");
+
+    slideshowImage.src =
+        slideshowImages[slideshowIndex];
+
     slideshow.classList.remove("hidden");
 
     slideshowTimer = setInterval(() => {
+
         slideshowImage.classList.add("fade-out");
 
         setTimeout(() => {
-            slideshowIndex =
-                (slideshowIndex + 1) % slideshowImages.length;
+
+            slideshowIndex++;
+
+            if (slideshowIndex >= slideshowImages.length) {
+
+                clearInterval(slideshowTimer);
+
+                slideshowImage.classList.add("hidden");
+                slideshowEnding.classList.remove("hidden");
+
+                return;
+            }
 
             slideshowImage.src =
                 slideshowImages[slideshowIndex];
 
             slideshowImage.classList.remove("fade-out");
+
         }, 1800);
 
     }, 6500);
 }
+const slideshowHomeButton =
+    document.getElementById("slideshowHome");
 
+const slideshowPlayAgainButton =
+    document.getElementById("slideshowPlayAgain");
+
+slideshowHomeButton.addEventListener("click", () => {
+    window.location.href = "index.html";
+});
+
+slideshowPlayAgainButton.addEventListener("click", () => {
+    window.location.href = "quiz.html";
+});
 // Start the quiz
 loadQuestion();
