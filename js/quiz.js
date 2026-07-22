@@ -417,11 +417,17 @@ function startSlideshow() {
         slideshowImage.classList.add("fade-out");
 
         setTimeout(() => {
-            slideshowIndex = (slideshowIndex + 1) % slideshowImages.length;
-            slideshowImage.src = slideshowImages[slideshowIndex];
+            slideshowIndex =
+                (slideshowIndex + 1) % slideshowImages.length;
+
+            slideshowImage.src =
+                slideshowImages[slideshowIndex];
+
             slideshowImage.classList.remove("fade-out");
         }, 1800);
+
     }, 6500);
 }
-// Start the quiz only after everything above has loaded
+
+// Start the quiz
 loadQuestion();
