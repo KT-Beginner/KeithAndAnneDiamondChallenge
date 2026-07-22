@@ -1,0 +1,563 @@
+/* ==========================================
+   Keith & Anne's Diamond Challenge
+   Version 2
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #fdf8ef, #efe6d1);
+    color: #333;
+}
+
+/* ======================
+   Start Screen
+====================== */
+
+.container {
+    max-width: 550px;
+    margin: 40px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    border: 4px solid #d4af37;
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
+}
+
+.hero-photo {
+    width: 240px;
+    display: block;
+    margin: 0 auto 25px;
+    border-radius: 18px;
+    border: 4px solid #d4af37;
+    box-shadow: 0 8px 25px rgba(0,0,0,.25);
+}
+
+.title{
+    text-align:center;
+    color:#7a1838;
+    font-size:2rem;
+    margin-bottom:15px;
+     animation: glow 3s ease-in-out infinite;
+}
+.subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.dates {
+    text-align: center;
+    color: #b08d57;
+    font-size: 1.4rem;
+    margin: 20px 0 30px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.start-btn {
+    width: 100%;
+    padding: 15px;
+    background: #7a1838;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.start-btn:hover {
+    background: #9b2148;
+    transform: scale(1.03);
+}
+
+/* ======================
+   Quiz Card
+====================== */
+
+.card {
+    max-width: 500px;
+    margin: 35px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 4px solid #d4af37;
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
+}
+/* ======================
+   Score Panel
+====================== */
+
+.score-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f3e6;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#score {
+    color: #7a1838;
+}
+
+/* ======================
+   Progress Bar
+====================== */
+
+.progress-bar {
+    width: 100%;
+    height: 18px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+#progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #d4af37);
+    transition: width .5s ease;
+    border-radius: 10px;
+}
+
+/* ======================
+   Question
+====================== */
+
+#questionNumber {
+    text-align: center;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+#question {
+    text-align: center;
+    color: #7a1838;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin: 25px 0;
+}
+
+/* ======================
+   Answer Buttons
+====================== */
+
+.answer {
+    width: 100%;
+    padding: 16px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 12px;
+    background: #7a1838;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.answer:hover {
+    background: #9b2148;
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+
+/* ======================
+   Feedback
+====================== */
+
+#feedback {
+    min-height: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #7a1838;
+    text-align: center;
+    margin: 15px 0;
+}
+/* ======================
+   Question Images
+====================== */
+
+.question-image {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: 220px;
+    object-fit: cover;
+    margin: 20px auto;
+    border-radius: 12px;
+    border: 3px solid #d4af37;
+    cursor: pointer;
+   box-shadow: 0 5px 15px rgba(0,0,0,.25);
+}
+#imageCaption {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+/* Question transitions */
+.card {
+    transition: opacity .35s ease, transform .35s ease;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* ======================
+   Image Popup
+====================== */
+
+.image-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.image-modal.show {
+    display: flex;
+}
+
+.modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 25px black;
+}
+
+#closeModal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    font-size: 42px;
+    color: white;
+    cursor: pointer;
+}
+.finish-photo{
+    display:block;
+    width:220px;
+    max-width:100%;
+    margin:20px auto;
+    border-radius:15px;
+    border:4px solid #d4af37;
+    box-shadow:0 6px 15px rgba(0,0,0,.25);
+}
+
+.card h1{
+    text-align:center;
+    color:#7a1838;
+}
+
+.card h2{
+    text-align:center;
+    margin:15px 0;
+}
+
+.card p{
+    text-align:center;
+    color:#555;
+    margin:20px 0;
+}
+
+.card button{
+    display:block;
+    margin:25px auto 0;
+    width:220px;
+    padding:15px;
+    background:#7a1838;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+/* ======================
+   Congratulations Screen
+====================== */
+
+.finish-photo{
+    width:220px;
+    display:block;
+    margin:0 auto 25px;
+    border-radius:18px;
+    border:4px solid #d4af37;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.finish-title{
+    text-align:center;
+    color:#7a1838;
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.finish-score{
+    text-align:center;
+    font-size:3rem;
+    font-weight:bold;
+    color:#d4af37;
+    margin:20px 0;
+}
+
+.finish-heading{
+    text-align:center;
+    color:#7a1838;
+    margin-bottom:20px;
+}
+
+.finish-message{
+    text-align:center;
+    font-size:1.15rem;
+    color:#555;
+    line-height:1.6;
+    margin-bottom:30px;
+}
+
+.card{
+    animation:fadeIn .6s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+.finish-photo{
+    animation:floatPhoto 3s ease-in-out infinite;
+}
+
+@keyframes floatPhoto{
+
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-6px);}
+    100%{transform:translateY(0);}
+
+}
+/* ======================
+   Confetti
+====================== */
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -20px;
+    z-index: 9999;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+
+}
+/* ======================
+   Diamond Title Effects
+====================== */
+
+@keyframes glow {
+
+    0%,100%{
+        text-shadow:
+            0 0 6px rgba(212,175,55,.3);
+    }
+
+    50%{
+        text-shadow:
+            0 0 18px rgba(212,175,55,.9),
+            0 0 28px rgba(255,255,255,.6);
+    }
+
+}
+@keyframes diamondTwinkle{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.03);
+    }
+
+}
+.title::before,
+.title::after{
+
+    content:"✨";
+    position:absolute;
+    font-size:1.2rem;
+    animation:sparkle 3s infinite;
+}
+
+.title::before{
+
+    left:-18px;
+    top:8px;
+
+}
+
+.title::after{
+
+    right:-18px;
+    top:8px;
+    animation-delay:1.5s;
+
+}
+
+@keyframes sparkle{
+
+    0%,100%{
+        opacity:0;
+        transform:scale(.5) rotate(0deg);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3) rotate(180deg);
+    }
+
+}
+.diamond{
+    position:relative;
+    display:inline-block;
+    animation:diamondGlow 3s ease-in-out infinite;
+}
+
+.diamond:last-child{
+    animation-delay:1.5s;
+}
+
+@keyframes diamondGlow{
+
+    0%,100%{
+        transform:scale(1);
+        filter:brightness(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+        filter:
+            brightness(1.8)
+            drop-shadow(0 0 6px white)
+            drop-shadow(0 0 12px gold);
+    }
+
+}
+/* ======================
+   Round Introduction
+====================== */
+
+.round-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10000;
+}
+
+.round-card {
+    width: 100%;
+    max-width: 460px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 4px solid #d4af37;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+.round-card h1 {
+    color: #7a1838;
+    margin-bottom: 20px;
+}
+
+.round-photo {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    max-height: 360px;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border-radius: 15px;
+    border: 3px solid #d4af37;
+}
+
+.round-card p {
+    color: #555;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.round-card .start-btn {
+    margin: 0 auto;
+}
+.answer:disabled {
+    cursor: default;
+    opacity: 0.9;
+}
+.round-card {
+    animation: roundPop .5s ease;
+}
+
+@keyframes roundPop {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.finish-photo {
+    animation: floatPhoto 4s ease-in-out infinite;
+}
+.finish-footer {
+    margin-top: 25px;
+    color: #999;
+    font-size: 0.9rem;
+    text-align: center;
+}

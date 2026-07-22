@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Keith & Anne's Diamond Challenge</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <h1 class="title">
+    <span class="diamond">💎</span>
+    Keith & Anne's Diamond Challenge
+    <span class="diamond">💎</span>
+</h1>
+    <div class="card">
+
+        <div class="score-panel">
+
+            <span id="playerName"></span>
+
+            <span id="score">⭐ Score: 0</span>
+
+        </div>
+
+        <div class="progress-bar">
+            <div id="progress"></div>
+        </div>
+
+        <h2 id="questionNumber"></h2>
+
+        <img id="questionImage"
+     class="question-image"
+     style="display:none;"
+     alt="Question image">
+
+        <p
+            id="imageCaption"
+            class="image-caption">
+        </p>
+
+        <h1 id="question"></h1>
+
+        <p id="feedback"></p>
+
+        <button class="answer"></button>
+        <button class="answer"></button>
+        <button class="answer"></button>
+        <button class="answer"></button>
+
+    </div>
+
+    <!-- Image popup -->
+
+    <div id="imageModal" class="image-modal">
+
+        <span id="closeModal">&times;</span>
+
+        <img
+            id="modalImage"
+            class="modal-image">
+
+    </div>
+<div id="roundOverlay" class="round-overlay">
+
+    <div class="round-card">
+
+        <h1 id="roundTitle"></h1>
+
+        <img id="roundPhoto" class="round-photo">
+
+        <p id="roundMessage"></p>
+
+        <button id="continueRound" class="start-btn">
+            ▶ Continue
+        </button>
+
+    </div>
+
+</div>
+    <script src="js/questions.js"></script>
+    <script src="js/quiz.js"></script>
+
+</body>
+
+</html>

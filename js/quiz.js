@@ -1,0 +1,376 @@
+// ==========================================
+// Keith & Anne's Diamond Challenge
+// Quiz Version 2
+// ==========================================
+
+// Player name
+const playerName = localStorage.getItem("playerName") || "Guest";
+
+// Quiz state
+let currentQuestion = 0;
+let score = 0;
+let currentRound = "";
+
+// Page elements
+const player = document.getElementById("playerName");
+const scoreText = document.getElementById("score");
+const questionNumber = document.getElementById("questionNumber");
+const question = document.getElementById("question");
+const questionImage = document.getElementById("questionImage");
+const imageCaption = document.getElementById("imageCaption");
+const feedback = document.getElementById("feedback");
+const progress = document.getElementById("progress");
+
+const buttons = document.querySelectorAll(".answer");
+
+const card = document.querySelector(".card");
+
+const imageModal = document.getElementById("imageModal");
+const modalImage = document.getElementById("modalImage");
+const closeModal = document.getElementById("closeModal");
+const roundOverlay = document.getElementById("roundOverlay");
+const roundTitle = document.getElementById("roundTitle");
+const roundPhoto = document.getElementById("roundPhoto");
+const roundMessage = document.getElementById("roundMessage");
+const continueRound = document.getElementById("continueRound");
+const roundInfo = {
+
+    "💍 Wedding Day": {
+        title: "💍 Round 1 – Wedding Day",
+        photo: "images/rounds/wedding.jpg",
+        message: "Every great love story has a beginning. Let's travel back to where Keith and Anne's wonderful journey together first began."
+    },
+
+    "👨‍👩‍👧 Family": {
+        title: "👨‍👩‍👧 Round 2 – Family",
+        photo: "images/rounds/family.jpg",
+        message: "From two became many. Time to see how well you know the children, grandchildren and the memories they've created together."
+    },
+
+    "🏖️ Holidays": {
+        title: "🏖️ Round 3 – Holidays",
+        photo: "images/rounds/holidays.jpg",
+        message: "Suitcases packed! Let's revisit some of Keith and Anne's favourite holidays and adventures over the years."
+    },
+
+    "📅 Guess the Year": {
+        title: "📅 Round 4 – Guess the Year",
+        photo: "images/rounds/year.jpg",
+        message: "Can you remember when these special moments happened? Let's put your memory to the test!"
+    },
+
+    "❤️ Keith & Anne": {
+        title: "❤️ Final Round – Keith & Anne",
+        photo: "images/rounds/diamond.jpg",
+        message: "One last celebration of an incredible 60 years of love, laughter and memories. Good luck!"
+    }
+
+};
+function showRound(round) {
+    const info = roundInfo[round];
+
+    if (!info) {
+        displayQuestion();
+        return;
+    }
+
+    roundTitle.textContent = info.title;
+    roundPhoto.src = info.photo;
+    roundMessage.textContent = info.message;
+
+    roundOverlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+continueRound.addEventListener("click", () => {
+    roundOverlay.style.display = "none";
+    document.body.style.overflow = "auto";
+    displayQuestion();
+});
+// ==========================================
+// Load Question
+// ==========================================
+
+function loadQuestion() {
+    const q = questions[currentQuestion];
+
+    if (q.round !== currentRound) {
+        currentRound = q.round;
+        showRound(currentRound);
+        return;
+    }
+
+    displayQuestion();
+}
+function displayQuestion() {
+    const q = questions[currentQuestion];
+
+    player.textContent = `👤 ${playerName}`;
+    scoreText.textContent = `⭐ Score: ${score}`;
+
+    questionNumber.textContent =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+
+    question.textContent = q.question;
+    feedback.textContent = "";
+
+    progress.style.width =
+        (currentQuestion / questions.length) * 100 + "%";
+
+    if (q.image) {
+        questionImage.src = q.image;
+        questionImage.className = "question-image";
+        questionImage.style.display = "block";
+
+        imageCaption.textContent = q.caption || "";
+        imageCaption.style.display =
+            q.caption ? "block" : "none";
+    } else {
+        questionImage.removeAttribute("src");
+        questionImage.style.display = "none";
+
+        imageCaption.textContent = "";
+        imageCaption.style.display = "none";
+    }
+
+    buttons.forEach((button, index) => {
+        button.textContent = q.answers[index];
+        button.disabled = false;
+        button.style.background = "#7a1838";
+    });
+}
+
+// ==========================================
+// Check Answer
+// ==========================================
+
+buttons.forEach((button, index) => {
+
+    button.addEventListener("click", () => {
+
+        // Disable all buttons
+        buttons.forEach(btn => btn.disabled = true);
+
+        const correct = questions[currentQuestion].correct;
+
+        if (index === correct) {
+
+            score++;
+            button.style.background = "green";
+            feedback.textContent = "✅ Correct!";
+
+        } else {
+
+            button.style.background = "red";
+            buttons[correct].style.background = "green";
+            feedback.textContent = "❌ Not quite!";
+
+        }
+
+        scoreText.textContent = `⭐ Score: ${score}`;
+
+        // Pause before next question
+
+        setTimeout(() => {
+
+            card.classList.add("fade-out");
+
+            setTimeout(() => {
+
+                currentQuestion++;
+
+                if (currentQuestion < questions.length) {
+
+                    loadQuestion();
+
+                    card.classList.remove("fade-out");
+                    card.classList.add("fade-in");
+
+                    setTimeout(() => {
+                        card.classList.remove("fade-in");
+                    }, 300);
+
+                } else {
+
+    card.classList.remove("fade-out");
+    card.classList.remove("fade-in");
+
+    showFinalScreen();
+
+}
+
+            }, 300);
+
+        }, 1000);
+
+    });
+
+});
+
+// ==========================================
+// Final Screen
+// ==========================================
+
+// ==========================================
+// Confetti
+// ==========================================
+
+function launchConfetti() {
+
+    const colours = [
+        "#d4af37",
+        "#ffd700",
+        "#7a1838",
+        "#ffffff",
+        "#ff69b4",
+        "#4CAF50"
+    ];
+
+    for (let i = 0; i < 120; i++) {
+
+        const piece = document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.style.left = Math.random() * 100 + "vw";
+
+        piece.style.background =
+            colours[Math.floor(Math.random() * colours.length)];
+
+        piece.style.width = (6 + Math.random() * 8) + "px";
+        piece.style.height = piece.style.width;
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        piece.style.transform =
+            `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => piece.remove(), 5000);
+
+    }
+
+}
+function showFinalScreen() {
+
+    progress.style.width = "100%";
+
+    let heading = "";
+    let message = "";
+
+    if (score === questions.length) {
+
+        heading = "🌟 PERFECT SCORE! 🌟";
+        message = "You really know Keith & Anne!";
+
+    } else if (score >= 4) {
+
+        heading = "🎉 Excellent! 🎉";
+        message = "What a fantastic score!";
+
+    } else if (score >= 3) {
+
+        heading = "😊 Well Done! 😊";
+        message = "You know Keith & Anne pretty well!";
+
+    } else if (score >= 2) {
+
+        heading = "👏 Thanks for Playing!";
+        message = "Every memory is special.";
+
+    } else {
+
+        heading = "❤️ Thanks for Celebrating!";
+        message = "We hope you enjoyed the Diamond Challenge.";
+
+    }
+launchConfetti();
+    card.innerHTML = `
+        <img
+            src="images/keith-anne-now.jpg"
+            class="finish-photo"
+            alt="Keith & Anne">
+
+        <h1 class="finish-title">
+            🏆 Congratulations ${playerName}! 🏆
+        </h1>
+
+        <div class="finish-score">
+    ⭐ ${score} / ${questions.length} ⭐
+</div>
+
+        <h2 class="finish-heading">
+            ${heading}
+        </h2>
+
+        <p class="finish-message">
+    ${message}
+    <br><br>
+
+    Thank you for helping us celebrate
+
+    <br><br>
+
+    <strong>Keith & Anne's Diamond Wedding Anniversary</strong>
+
+    <br><br>
+
+    ❤️ With love from all the family ❤️
+</p>
+
+        <button
+            class="start-btn"
+            onclick="location.href='index.html'">
+            🔄 Play Again
+        </button>
+        
+        <p style="
+    margin-top:25px;
+    color:#999;
+    font-size:.9rem;
+">
+    Created especially for Keith & Anne's
+    Diamond Wedding Anniversary • 2026
+</p>
+    `;
+}
+
+// ==========================================
+// Image Popup
+// ==========================================
+
+questionImage.addEventListener("click", () => {
+
+    if (questionImage.style.display !== "none") {
+
+        modalImage.src = questionImage.src;
+        imageModal.classList.add("show");
+
+    }
+
+});
+
+closeModal.addEventListener("click", () => {
+
+    imageModal.classList.remove("show");
+
+});
+
+imageModal.addEventListener("click", (e) => {
+
+    if (e.target === imageModal) {
+
+        imageModal.classList.remove("show");
+
+    }
+
+});
+
+// ==========================================
+// Start Quiz
+// ==========================================
+
+loadQuestion();
+
