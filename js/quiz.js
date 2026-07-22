@@ -408,13 +408,9 @@ function startSlideshow() {
     const slideshowImage =
         document.getElementById("slideshow-image");
 
-    const slideshowEnding =
-        document.getElementById("slideshow-ending");
-
     if (
         !slideshow ||
         !slideshowImage ||
-        !slideshowEnding ||
         slideshowImages.length === 0
     ) {
         return;
@@ -424,7 +420,6 @@ function startSlideshow() {
 
     slideshowIndex = 0;
 
-    slideshowEnding.classList.add("hidden");
     slideshowImage.classList.remove("hidden");
     slideshowImage.classList.remove("fade-out");
 
@@ -445,8 +440,9 @@ function startSlideshow() {
 
                 clearInterval(slideshowTimer);
 
-                slideshowImage.classList.add("hidden");
-                slideshowEnding.classList.remove("hidden");
+                slideshow.classList.add("hidden");
+
+                showSlideshowEnding();
 
                 return;
             }
@@ -460,18 +456,60 @@ function startSlideshow() {
 
     }, 6500);
 }
-const slideshowHomeButton =
-    document.getElementById("slideshowHome");
 
-const slideshowPlayAgainButton =
-    document.getElementById("slideshowPlayAgain");
+function showSlideshowEnding() {
 
-slideshowHomeButton.addEventListener("click", () => {
-    window.location.href = "index.html";
-});
+    card.innerHTML = `
+        <div class="finish-screen">
 
-slideshowPlayAgainButton.addEventListener("click", () => {
-    window.location.href = "quiz.html";
-});
+            <h1 class="finish-title">
+                ❤️ Thank You ❤️
+            </h1>
+
+            <p class="finish-message">
+                Thank you for celebrating
+                <strong>
+                    Keith & Anne's Diamond Wedding Anniversary
+                </strong>.
+            </p>
+
+            <p class="finish-message">
+                We hope you've enjoyed looking back over
+                <strong>60 wonderful years</strong>
+                of love, laughter and family memories.
+            </p>
+
+            <p class="finish-footer">
+                With all our love,<br>
+                <strong>The Family ❤️</strong>
+            </p>
+
+            <div class="finish-buttons">
+
+                <button id="slideshowHome" class="start-btn">
+                    🏠 Home
+                </button>
+
+                <button id="slideshowPlayAgain" class="start-btn">
+                    🔄 Play Again
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    document
+        .getElementById("slideshowHome")
+        .addEventListener("click", () => {
+            window.location.href = "index.html";
+        });
+
+    document
+        .getElementById("slideshowPlayAgain")
+        .addEventListener("click", () => {
+            window.location.href = "quiz.html";
+        });
+}
 // Start the quiz
 loadQuestion();
