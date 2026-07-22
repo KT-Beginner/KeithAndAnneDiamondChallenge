@@ -874,3 +874,152 @@ img {
         font-size: 1rem;
     }
 }
+/* ==============================
+   Compact mobile finish screen
+   ============================== */
+
+@media (max-width: 600px) {
+
+    .finish-photo {
+        width: 70%;
+        max-width: 220px;
+        max-height: 32svh;
+        object-fit: cover;
+        margin: 0 auto 10px;
+        border-radius: 16px;
+    }
+
+    .finish-title {
+        font-size: 1.55rem;
+        line-height: 1.15;
+        margin: 8px 0;
+    }
+
+    .finish-score {
+        font-size: 2rem;
+        line-height: 1;
+        margin: 12px 0;
+    }
+
+    .finish-heading {
+        font-size: 1.25rem;
+        line-height: 1.15;
+        margin: 10px 0;
+    }
+
+    .finish-message {
+        font-size: 0.92rem;
+        line-height: 1.3;
+        margin: 8px 0 14px;
+    }
+
+    .finish-message br {
+        display: none;
+    }
+
+    .finish-message strong {
+        display: block;
+        margin: 8px 0;
+    }
+
+    .finish-title,
+    .finish-heading,
+    .finish-message,
+    .finish-score {
+        text-align: center;
+    }
+
+    .card .start-btn {
+        margin-top: 8px;
+    }
+
+    .card > p:last-child {
+        margin-top: 12px !important;
+        font-size: 0.75rem !important;
+        line-height: 1.2;
+    }
+}
+.finish-footer {
+    margin-top: 25px;
+    color: #999;
+    font-size: 0.9rem;
+    text-align: center;
+}
+/* ==============================
+   Final screen layout
+   ============================== */
+
+.finish-screen {
+    text-align: center;
+}
+
+.finish-thanks {
+    line-height: 1.45;
+    margin: 14px 0 18px;
+    color: #555;
+}
+
+.finish-footer {
+    margin-top: 16px;
+    color: #999;
+    font-size: 0.85rem;
+    line-height: 1.3;
+}
+
+@media (max-width: 600px) {
+
+    .finish-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .finish-photo {
+        width: 160px;
+        max-height: 24svh;
+        object-fit: cover;
+        margin: 0 auto 8px;
+    }
+
+    .finish-title {
+        font-size: 1.35rem;
+        line-height: 1.15;
+        margin: 6px 0;
+    }
+
+    .finish-score {
+        font-size: 1.8rem;
+        margin: 8px 0;
+    }
+
+    .finish-heading {
+        font-size: 1.1rem;
+        margin: 6px 0;
+    }
+
+    .finish-message {
+        font-size: 0.9rem;
+        line-height: 1.25;
+        margin: 4px 0;
+    }
+
+    .finish-thanks {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        margin: 8px 0 12px;
+    }
+
+    .finish-thanks strong {
+        display: inline-block;
+        margin: 3px 0;
+    }
+
+    .finish-screen .start-btn {
+        margin-top: 4px;
+    }
+
+    .finish-footer {
+        margin-top: 10px;
+        font-size: 0.7rem;
+    }
+}

@@ -286,54 +286,51 @@ function showFinalScreen() {
         message = "We hope you enjoyed the Diamond Challenge.";
 
     }
-launchConfetti();
+
+    launchConfetti();
+
     card.innerHTML = `
-        <img
-            src="images/keith-anne-now.jpg"
-            class="finish-photo"
-            alt="Keith & Anne">
+        <div class="finish-screen">
 
-        <h1 class="finish-title">
-            🏆 Congratulations ${playerName}! 🏆
-        </h1>
+            <img
+                src="images/keith-anne-now.jpg"
+                class="finish-photo"
+                alt="Keith & Anne">
 
-        <div class="finish-score">
-    ⭐ ${score} / ${questions.length} ⭐
-</div>
+            <h1 class="finish-title">
+                🏆 Congratulations ${playerName}! 🏆
+            </h1>
 
-        <h2 class="finish-heading">
-            ${heading}
-        </h2>
+            <div class="finish-score">
+                ⭐ ${score} / ${questions.length} ⭐
+            </div>
 
-        <p class="finish-message">
-    ${message}
-    <br><br>
+            <h2 class="finish-heading">
+                ${heading}
+            </h2>
 
-    Thank you for helping us celebrate
+            <p class="finish-message">
+                ${message}
+            </p>
 
-    <br><br>
+            <p class="finish-thanks">
+                ❤️ Thank you for celebrating<br>
+                <strong>Keith & Anne's Diamond Wedding Anniversary</strong><br>
+                with all the family ❤️
+            </p>
 
-    <strong>Keith & Anne's Diamond Wedding Anniversary</strong>
+            <button
+                class="start-btn"
+                onclick="location.href='index.html'">
+                🔄 Play Again
+            </button>
 
-    <br><br>
+            <p class="finish-footer">
+                Created especially for Keith & Anne's<br>
+                Diamond Wedding Anniversary • 2026
+            </p>
 
-    ❤️ With love from all the family ❤️
-</p>
-
-        <button
-            class="start-btn"
-            onclick="location.href='index.html'">
-            🔄 Play Again
-        </button>
-        
-        <p style="
-    margin-top:25px;
-    color:#999;
-    font-size:.9rem;
-">
-    Created especially for Keith & Anne's
-    Diamond Wedding Anniversary • 2026
-</p>
+        </div>
     `;
 }
 
