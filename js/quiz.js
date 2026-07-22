@@ -421,7 +421,7 @@ function startSlideshow() {
             slideshowImage.src = slideshowImages[slideshowIndex];
             slideshowImage.classList.remove("fade-out");
         }, 1800);
-    }, 6500;
+    }, 6500);
 }
 // Start the quiz only after everything above has loaded
 loadQuestion();
