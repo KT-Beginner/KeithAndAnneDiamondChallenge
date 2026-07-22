@@ -314,25 +314,30 @@ function showFinalScreen() {
             </p>
 
             <p class="finish-thanks">
-                ❤️ Thank you for celebrating<br>
-                <strong>Keith & Anne's Diamond Wedding Anniversary</strong><br>
-                with all the family ❤️
-            </p>
+    ❤️ Thank you for taking part in
+    <strong>Keith & Anne's Diamond Challenge</strong>
+    and helping us celebrate
+    <strong>60 wonderful years of marriage.</strong>
+</p>
 
-            <button
-                class="start-btn"
-                onclick="location.href='index.html'">
-                🔄 Play Again
-            </button>
+<p class="finish-message">
+    We hope this quiz brought back happy memories and a few smiles.
+</p>
 
-            <p class="finish-footer">
-                Created especially for Keith & Anne's<br>
-                Diamond Wedding Anniversary • 2026
-            </p>
+<p class="finish-footer">
+    With all our love,<br>
+    <strong>The Family ❤️</strong><br><br>
+    Diamond Wedding Anniversary • 2026
+</p>
 
         </div>
     `;
+
+    setTimeout(() => {
+        startSlideshow();
+    }, 5000);
 }
+
 
 // ==========================================
 // Image Popup
@@ -370,4 +375,39 @@ imageModal.addEventListener("click", (e) => {
 // ==========================================
 
 loadQuestion();
+// Final photo slideshow
 
+const slideshowImages = [
+    "images/slideshow/slide1.jpg",
+    "images/slideshow/slide2.jpg",
+    "images/slideshow/slide3.jpg",
+    "images/slideshow/slide4.jpg",
+    "images/slideshow/slide5.jpg",
+    "images/slideshow/slide6.jpg"
+];
+
+let slideshowIndex = 0;
+let slideshowTimer;
+
+function startSlideshow() {
+    const slideshow = document.getElementById("slideshow");
+    const slideshowImage = document.getElementById("slideshow-image");
+
+    if (!slideshow || !slideshowImage || slideshowImages.length === 0) {
+        return;
+    }
+
+    slideshowIndex = 0;
+    slideshowImage.src = slideshowImages[slideshowIndex];
+    slideshow.classList.remove("hidden");
+
+    slideshowTimer = setInterval(() => {
+        slideshowImage.classList.add("fade-out");
+
+        setTimeout(() => {
+            slideshowIndex = (slideshowIndex + 1) % slideshowImages.length;
+            slideshowImage.src = slideshowImages[slideshowIndex];
+            slideshowImage.classList.remove("fade-out");
+        }, 1000);
+    }, 5000);
+}
