@@ -686,3 +686,68 @@ img {
         scroll-behavior: auto !important;
     }
 }
+/* Compact phone layout */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 4px 8px 90px;
+        min-height: 100svh;
+    }
+
+    .title {
+        font-size: 1.45rem;
+        line-height: 1.15;
+        margin: 4px 0 8px;
+    }
+
+    .diamond {
+        font-size: 1.25rem;
+    }
+
+    .card {
+        padding: 12px 14px 24px;
+        border-width: 3px;
+        border-radius: 18px;
+    }
+
+    .score-panel {
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+
+    .progress-bar {
+        margin: 10px 0 14px;
+    }
+
+    #questionNumber {
+        font-size: 1.15rem;
+        margin: 8px 0;
+    }
+
+    #question {
+        font-size: 1.55rem;
+        line-height: 1.18;
+        margin: 14px 0;
+    }
+
+    .question-image {
+        max-height: 22vh;
+        margin: 8px auto;
+    }
+
+    .answer {
+        min-height: 44px;
+        padding: 10px;
+        margin: 6px 0;
+    }
+
+    #feedback {
+        margin: 8px 0;
+    }
+}
+@media (max-width: 600px) {
+    body > .title {
+        font-size: 1.3rem;
+    }
+}
