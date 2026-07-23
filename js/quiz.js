@@ -131,14 +131,14 @@ function displayQuestion() {
         imageCaption.style.display =
             q.caption ? "block" : "none";
     }
-}
-    } else {
-        questionImage.removeAttribute("src");
-        questionImage.style.display = "none";
 
-        imageCaption.textContent = "";
-        imageCaption.style.display = "none";
-    }
+} else {
+    questionImage.removeAttribute("src");
+    questionImage.style.display = "none";
+
+    imageCaption.textContent = "";
+    imageCaption.style.display = "none";
+}
 
     buttons.forEach((button, index) => {
         button.textContent = q.answers[index];
