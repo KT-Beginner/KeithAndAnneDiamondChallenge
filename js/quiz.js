@@ -183,10 +183,14 @@ if (q.revealImageAfterAnswer && q.image) {
     void questionImage.offsetWidth;
     questionImage.classList.add("fade-in");
 
-    if (q.caption) {
-        imageCaption.textContent = q.caption;
-        imageCaption.style.display = "block";
-    }
+   if (q.caption) {
+    imageCaption.textContent = q.caption;
+    imageCaption.style.display = "block";
+
+    imageCaption.classList.remove("reveal-caption");
+    void imageCaption.offsetWidth;
+    imageCaption.classList.add("reveal-caption");
+}
 }
         scoreText.textContent = `⭐ Score: ${score}`;
         
