@@ -183,6 +183,7 @@ input {
 ====================== */
 
 #feedback {
+    position: relative;
     min-height: 30px;
     font-size: 1.2rem;
     font-weight: bold;
@@ -1450,5 +1451,51 @@ img {
             )
             scale(1.3)
             rotate(180deg);
+    }
+}
+.diamond-shimmer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 220px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.diamond-shimmer::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -40%;
+    width: 40%;
+    height: 140%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.9),
+        rgba(255,215,0,0.9),
+        rgba(255,255,255,0.9),
+        transparent
+    );
+
+    transform: skewX(-25deg);
+    animation: shimmerSweep 1.2s ease-out forwards;
+}
+
+@keyframes shimmerSweep {
+    from {
+        left: -40%;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    to {
+        left: 120%;
+        opacity: 0;
     }
 }

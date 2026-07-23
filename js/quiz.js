@@ -152,15 +152,17 @@ function displayQuestion() {
     });
 }
 function showCorrectSparkles() {
-    const sparkleBurst = document.createElement("div");
-    sparkleBurst.className = "correct-sparkles";
-    sparkleBurst.innerHTML = "✨ 💎 ✨";
 
-    feedback.appendChild(sparkleBurst);
+    const shimmer = document.createElement("div");
+    shimmer.className = "diamond-shimmer";
+
+    feedback.appendChild(shimmer);
 
     setTimeout(() => {
-        sparkleBurst.remove();
-    }, 1000);
+        shimmer.remove();
+    }, 1200);
+
+}
 }
 // ==========================================
 // Check Answer
@@ -175,36 +177,13 @@ buttons.forEach((button, index) => {
 
         const correct = questions[currentQuestion].correct;
 
-       if (index === correct) {
+      if (index === correct) {
 
     score++;
     button.style.background = "green";
     feedback.textContent = "✅ Correct!";
-    function showCorrectSparkles() {
 
-    for (let i = 0; i < 12; i++) {
-
-        const sparkle = document.createElement("span");
-        sparkle.className = "diamond-sparkle";
-
-        sparkle.textContent =
-            Math.random() > 0.5 ? "✨" : "💎";
-
-        sparkle.style.left =
-            (45 + Math.random() * 10) + "%";
-            sparkle.style.setProperty(
-    "--drift",
-    (Math.random() * 40 - 20) + "px"
-);
-
-        sparkle.style.animationDelay =
-            (Math.random() * 0.2) + "s";
-
-        feedback.appendChild(sparkle);
-
-        setTimeout(() => sparkle.remove(), 1200);
-    }
-}
+    showCorrectSparkles();
 
     correctSound.currentTime = 0;
     correctSound.play();
