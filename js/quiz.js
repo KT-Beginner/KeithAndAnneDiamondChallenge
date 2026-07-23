@@ -23,7 +23,8 @@ const feedback = document.getElementById("feedback");
 const progress = document.getElementById("progress");
 
 const buttons = document.querySelectorAll(".answer");
-
+const correctSound = new Audio("sounds/correct.mp3");
+const wrongSound = new Audio("sounds/wrong.mp3");
 const card = document.querySelector(".card");
 
 const imageModal = document.getElementById("imageModal");
@@ -164,19 +165,24 @@ buttons.forEach((button, index) => {
 
         const correct = questions[currentQuestion].correct;
 
-        if (index === correct) {
+       if (index === correct) {
 
-            score++;
-            button.style.background = "green";
-            feedback.textContent = "✅ Correct!";
+    score++;
+    button.style.background = "green";
+    feedback.textContent = "✅ Correct!";
 
-        } else {
+    correctSound.currentTime = 0;
+    correctSound.play();
 
-            button.style.background = "red";
-            buttons[correct].style.background = "green";
-            feedback.textContent = "❌ Not quite!";
+} else {
 
-        }
+    button.style.background = "red";
+    buttons[correct].style.background = "green";
+    feedback.textContent = "❌ Not quite!";
+
+    wrongSound.currentTime = 0;
+    wrongSound.play();
+}
 const q = questions[currentQuestion];
 
 if (q.revealImageAfterAnswer && q.image) {
