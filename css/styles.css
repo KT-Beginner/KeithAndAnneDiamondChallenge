@@ -1309,3 +1309,88 @@ img {
 .photo-note-text {
     font-family: Georgia, serif;
 }
+.question-image {
+    display: block;
+    max-width: 100%;
+    margin: 20px auto;
+
+    background: white;
+
+    padding: 12px 12px 28px 12px;
+
+    border: 1px solid #ddd;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.20);
+
+    border-radius: 3px;
+
+    transform: rotate(-1deg);
+
+    transition: transform 0.3s ease;
+}
+.question-image:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+.photo-frame {
+    display: none;
+    position: relative;
+
+    width: min(520px, 92%);
+    margin: 20px auto;
+    padding: 12px 12px 18px;
+
+    background: #fffdf7;
+    border: 1px solid #ddd4c4;
+    border-radius: 3px;
+
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+
+    transform: rotate(-0.7deg);
+    transition: transform 0.3s ease;
+}
+
+.photo-frame:hover {
+    transform: rotate(0deg) scale(1.015);
+}
+
+.photo-frame .question-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    border-radius: 1px;
+    box-shadow: none;
+    transform: none;
+}
+
+.photo-frame .question-image:hover {
+    transform: none;
+}
+
+.photo-frame .image-caption {
+    position: relative;
+    margin: 0;
+    padding: 14px 16px 6px;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+
+    text-align: center;
+}
+
+.photo-frame .image-caption::before {
+    content: "💎";
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    font-size: 0.9rem;
+}

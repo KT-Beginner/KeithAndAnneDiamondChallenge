@@ -18,6 +18,7 @@ const questionNumber = document.getElementById("questionNumber");
 const question = document.getElementById("question");
 const questionImage = document.getElementById("questionImage");
 const imageCaption = document.getElementById("imageCaption");
+const photoFrame = document.getElementById("photoFrame");
 const feedback = document.getElementById("feedback");
 const progress = document.getElementById("progress");
 
@@ -117,29 +118,32 @@ function displayQuestion() {
     progress.style.width =
         (currentQuestion / questions.length) * 100 + "%";
 
-   if (q.image) {
+  if (q.image) {
     questionImage.src = q.image;
     questionImage.className = "question-image";
 
     imageCaption.textContent = q.caption || "";
 
     if (q.revealImageAfterAnswer) {
+        photoFrame.style.display = "none";
         questionImage.style.display = "none";
         imageCaption.style.display = "none";
     } else {
+        photoFrame.style.display = "block";
         questionImage.style.display = "block";
         imageCaption.style.display =
             q.caption ? "block" : "none";
     }
 
 } else {
+    photoFrame.style.display = "none";
+
     questionImage.removeAttribute("src");
     questionImage.style.display = "none";
 
     imageCaption.textContent = "";
     imageCaption.style.display = "none";
 }
-
     buttons.forEach((button, index) => {
         button.textContent = q.answers[index];
         button.disabled = false;
@@ -176,6 +180,8 @@ buttons.forEach((button, index) => {
 const q = questions[currentQuestion];
 
 if (q.revealImageAfterAnswer && q.image) {
+
+    photoFrame.style.display = "block";
     questionImage.style.display = "block";
 
     // Restart the fade-in animation
