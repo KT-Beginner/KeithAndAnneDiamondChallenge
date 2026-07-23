@@ -10,8 +10,6 @@ const questions = [
         ],
         correct: 1
     },
-        correct: 0
-    },
     {
         round: "💍 Wedding Day",
         question: "What other big event also took place on 30th July 1966?",
