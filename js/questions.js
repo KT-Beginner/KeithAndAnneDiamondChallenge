@@ -1,12 +1,36 @@
 const questions = [
     {
         round: "💍 Wedding Day",
-        question: "Where did Keith first meet Anne?",
+        question: "What year did Keith and Anne get married?",
         answers: [
-            "At School",
-            "At Work",
-            "At a Dance",
-            "On Holiday"
+            "1965",
+            "1966",
+            "1967",
+            "1968"
+        ],
+        correct: 1
+    },
+        correct: 0
+    },
+    {
+        round: "💍 Wedding Day",
+        question: "What other big event also took place on 30th July 1966?",
+        answers: [
+            "The Beatles Release 'Love me Do'",
+            "Apollo 11 Moon Landing",
+            "FIFA World Cup Final",
+            "70 Mph speed limit introduced on UK roads"
+        ],
+        correct: 2
+    },
+    {
+        round: "💍 Wedding Day",
+        question: "Which song was at Number 1 in the UK charts on 30th July 1966?",
+        answers: [
+            "Out of Time – Chris Farlowe",
+            "Good Vibrations – The Beach Boys",
+            "You Don't Have to Say You Love Me – Dusty Springfield",
+            "Strangers in the Night – Frank Sinatra"
         ],
         correct: 0
     },
