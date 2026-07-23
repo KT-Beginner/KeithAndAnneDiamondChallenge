@@ -32,7 +32,8 @@ const questions = [
             "You Don't Have to Say You Love Me – Dusty Springfield",
             "Strangers in the Night – Frank Sinatra"
         ],
-        correct: 0
+        correct: 0,
+        audio: "audio/out-of-time-clip.mp3"
     },
     {
         round: "👨‍👩‍👧 Family",

@@ -168,6 +168,14 @@ buttons.forEach((button, index) => {
         }
 
         scoreText.textContent = `⭐ Score: ${score}`;
+        
+        // Play question audio, if one has been provided
+const audioFile = questions[currentQuestion].audio;
+
+if (audioFile) {
+    const questionAudio = new Audio(audioFile);
+    questionAudio.play();
+}
 
         // Pause before next question
 
@@ -201,7 +209,7 @@ buttons.forEach((button, index) => {
 
             }, 300);
 
-        }, 1000);
+       }, questions[currentQuestion].audio ? 15000 : 1000);
 
     });
 
