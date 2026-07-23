@@ -1407,3 +1407,48 @@ img {
     object-fit: contain !important;
     object-position: center top;
 }
+/* Diamond sparkle celebration */
+
+#feedback {
+    position: relative;
+    overflow: visible;
+}
+
+.diamond-sparkle {
+
+    position: absolute;
+
+    font-size: 1.2rem;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation: diamondSparkle 1.2s ease-out forwards;
+}
+
+@keyframes diamondSparkle {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, 8px)
+            scale(.4)
+            rotate(0deg);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(-50% + (var(--drift, 0px))),
+                -40px
+            )
+            scale(1.3)
+            rotate(180deg);
+    }
+}
