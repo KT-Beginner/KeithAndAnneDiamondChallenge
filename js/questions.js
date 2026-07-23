@@ -55,8 +55,7 @@ const questions = [
         ],
         correct: 2
     },
-   
-    { 
+{ 
     round: "📅 Guess the Year",
     question: "Which year is this?",
     image: "images/quiz/boxing-day-2006.jpg",
