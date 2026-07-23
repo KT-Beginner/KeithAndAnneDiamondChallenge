@@ -487,6 +487,8 @@ const nextSlideButton =
 const pauseSlideshowButton =
     document.getElementById("pauseSlideshow");
 
+const closeSlideshowButton =
+    document.getElementById("closeSlideshow");
 
 function displaySlideshowImage() {
     const slideshowImage =
@@ -585,7 +587,22 @@ pauseSlideshowButton.addEventListener("click", () => {
         pauseSlideshowButton.textContent = "⏸ Pause";
         startSlideshowTimer();
     }
+    
 });
+
+    closeSlideshowButton.addEventListener("click", () => {
+
+    clearInterval(slideshowTimer);
+
+    const slideshow =
+        document.getElementById("slideshow");
+
+    slideshow.classList.add("hidden");
+
+    showSlideshowEnding();
+
+});
+
 function showSlideshowEnding() {
 
     card.innerHTML = `
