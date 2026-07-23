@@ -1260,3 +1260,52 @@ img {
         transform: translateY(0);
     }
 }
+/* Scrapbook-style photo note */
+.image-caption.reveal-caption {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffdf3,
+            #f7ecd2
+        );
+
+    border: 1px solid #d8c49a;
+    border-radius: 4px;
+
+    transform: rotate(-0.6deg);
+
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.14),
+        inset 0 0 18px rgba(164, 125, 61, 0.08);
+}
+
+/* Small photograph symbol in the corner */
+.image-caption.reveal-caption::before {
+    content: "📷";
+
+    position: absolute;
+    top: 6px;
+    right: 9px;
+
+    font-size: 1rem;
+    transform: rotate(6deg);
+}
+
+/* Handwritten-style album title */
+.photo-note-title {
+    padding-right: 24px;
+
+    font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+    letter-spacing: 0.3px;
+}
+
+/* Keep the story easy to read */
+.photo-note-text {
+    font-family: Georgia, serif;
+}
