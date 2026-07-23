@@ -1522,3 +1522,8 @@ img {
 
     animation: goldSweep 2.2s ease-out;
 }
+.green-tick {
+    color: #28a745;
+    -webkit-text-fill-color: #28a745;
+    font-weight: bold;
+}
