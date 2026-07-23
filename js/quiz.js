@@ -178,6 +178,11 @@ const q = questions[currentQuestion];
 if (q.revealImageAfterAnswer && q.image) {
     questionImage.style.display = "block";
 
+    // Restart the fade-in animation
+    questionImage.classList.remove("fade-in");
+    void questionImage.offsetWidth;
+    questionImage.classList.add("fade-in");
+
     if (q.caption) {
         imageCaption.textContent = q.caption;
         imageCaption.style.display = "block";

@@ -1185,3 +1185,15 @@ img {
 .slideshow img.hidden {
     display: none;
 }
+.question-image.fade-in {
+    animation: revealPhoto 0.8s ease-in;
+}
+
+@keyframes revealPhoto {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
