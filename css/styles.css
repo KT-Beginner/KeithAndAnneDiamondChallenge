@@ -1394,3 +1394,15 @@ img {
     bottom: 2px;
     font-size: 0.9rem;
 }
+/* Prevent Polaroid photos from being cropped */
+.photo-frame {
+    overflow: visible;
+}
+
+.photo-frame .question-image {
+    width: 100%;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center top;
+}
