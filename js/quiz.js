@@ -181,7 +181,7 @@ buttons.forEach((button, index) => {
 
     score++;
     button.style.background = "green";
-    feedback.textContent = "✅ Correct!";
+    feedback.innerHTML = '<span class="correct-text">✅ Correct!</span>';
 
     showCorrectSparkles();
 
