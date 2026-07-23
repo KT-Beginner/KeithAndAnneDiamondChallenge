@@ -45,16 +45,19 @@ const questions = [
         correct: 1
     },
 {
-    round: "🏖️ Holidays",  
-    question: "What is 3rd wedding anniversary known as?",
-        answers: [
-            "Pearl",
-            "Cotton",
-            "Leather",
-            "Gold"
-        ],
-        correct: 2
-    },
+    round: "🏖️ Holidays",
+    question: "What mode of transport did Keith and Anne use in the desert?",
+    answers: [
+        "Jeep",
+        "Camel",
+        "Horse",
+        "Quad bike"
+    ],
+    correct: 1,
+    image: "images/quiz/desert-camel.jpg",
+    caption: "🐪 Keith and Anne travelling through the desert",
+    revealImageAfterAnswer: true
+},
 { 
     round: "📅 Guess the Year",
     question: "Which year is this?",

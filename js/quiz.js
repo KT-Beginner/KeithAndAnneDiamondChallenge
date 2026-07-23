@@ -117,14 +117,21 @@ function displayQuestion() {
     progress.style.width =
         (currentQuestion / questions.length) * 100 + "%";
 
-    if (q.image) {
-        questionImage.src = q.image;
-        questionImage.className = "question-image";
-        questionImage.style.display = "block";
+   if (q.image) {
+    questionImage.src = q.image;
+    questionImage.className = "question-image";
 
-        imageCaption.textContent = q.caption || "";
+    imageCaption.textContent = q.caption || "";
+
+    if (q.revealImageAfterAnswer) {
+        questionImage.style.display = "none";
+        imageCaption.style.display = "none";
+    } else {
+        questionImage.style.display = "block";
         imageCaption.style.display =
             q.caption ? "block" : "none";
+    }
+}
     } else {
         questionImage.removeAttribute("src");
         questionImage.style.display = "none";
@@ -166,7 +173,16 @@ buttons.forEach((button, index) => {
             feedback.textContent = "❌ Not quite!";
 
         }
+const q = questions[currentQuestion];
 
+if (q.revealImageAfterAnswer && q.image) {
+    questionImage.style.display = "block";
+
+    if (q.caption) {
+        imageCaption.textContent = q.caption;
+        imageCaption.style.display = "block";
+    }
+}
         scoreText.textContent = `⭐ Score: ${score}`;
         
         // Play question audio, if one has been provided
@@ -209,7 +225,11 @@ if (audioFile) {
 
             }, 300);
 
-       }, questions[currentQuestion].audio ? 15000 : 1000);
+      }, questions[currentQuestion].audio
+    ? 15000
+    : questions[currentQuestion].revealImageAfterAnswer
+        ? 5000
+        : 1000);
 
     });
 
