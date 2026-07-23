@@ -475,64 +475,117 @@ const slideshowImages = [
 ];
 
 let slideshowIndex = 0;
-let slideshowTimer;
+let slideshowTimer = null;
+let slideshowPaused = false;
+
+const previousSlideButton =
+    document.getElementById("previousSlide");
+
+const nextSlideButton =
+    document.getElementById("nextSlide");
+
+const pauseSlideshowButton =
+    document.getElementById("pauseSlideshow");
+
+
+function displaySlideshowImage() {
+    const slideshowImage =
+        document.getElementById("slideshow-image");
+
+    if (!slideshowImage) {
+        return;
+    }
+
+    slideshowImage.src =
+        slideshowImages[slideshowIndex];
+
+    slideshowImage.classList.remove("fade-out");
+}
+
+
+function startSlideshowTimer() {
+    clearInterval(slideshowTimer);
+
+    slideshowTimer = setInterval(() => {
+
+        if (slideshowPaused) {
+            return;
+        }
+
+        slideshowIndex++;
+
+        if (slideshowIndex >= slideshowImages.length) {
+            clearInterval(slideshowTimer);
+
+            const slideshow =
+                document.getElementById("slideshow");
+
+            slideshow.classList.add("hidden");
+            showSlideshowEnding();
+            return;
+        }
+
+        displaySlideshowImage();
+
+    }, 6500);
+}
+
 
 function startSlideshow() {
     const slideshow =
         document.getElementById("slideshow");
 
-    const slideshowImage =
-        document.getElementById("slideshow-image");
-
-    if (
-        !slideshow ||
-        !slideshowImage ||
-        slideshowImages.length === 0
-    ) {
+    if (!slideshow || slideshowImages.length === 0) {
         return;
     }
 
     clearInterval(slideshowTimer);
 
     slideshowIndex = 0;
+    slideshowPaused = false;
 
-    slideshowImage.classList.remove("hidden");
-    slideshowImage.classList.remove("fade-out");
-
-    slideshowImage.src =
-        slideshowImages[slideshowIndex];
+    pauseSlideshowButton.textContent = "⏸ Pause";
 
     slideshow.classList.remove("hidden");
 
-    slideshowTimer = setInterval(() => {
-
-        slideshowImage.classList.add("fade-out");
-
-        setTimeout(() => {
-
-            slideshowIndex++;
-
-            if (slideshowIndex >= slideshowImages.length) {
-
-                clearInterval(slideshowTimer);
-
-                slideshow.classList.add("hidden");
-
-                showSlideshowEnding();
-
-                return;
-            }
-
-            slideshowImage.src =
-                slideshowImages[slideshowIndex];
-
-            slideshowImage.classList.remove("fade-out");
-
-        }, 1800);
-
-    }, 6500);
+    displaySlideshowImage();
+    startSlideshowTimer();
 }
 
+
+previousSlideButton.addEventListener("click", () => {
+    slideshowIndex--;
+
+    if (slideshowIndex < 0) {
+        slideshowIndex = slideshowImages.length - 1;
+    }
+
+    displaySlideshowImage();
+});
+
+
+nextSlideButton.addEventListener("click", () => {
+    slideshowIndex++;
+
+    if (slideshowIndex >= slideshowImages.length) {
+        slideshowIndex = 0;
+    }
+
+    displaySlideshowImage();
+});
+
+
+pauseSlideshowButton.addEventListener("click", () => {
+    slideshowPaused = !slideshowPaused;
+
+    if (slideshowPaused) {
+        clearInterval(slideshowTimer);
+        pauseSlideshowButton.textContent = "▶ Play";
+    } else {
+        pauseSlideshowButton.textContent = "⏸ Pause";
+        startSlideshowTimer();
+    }
+});
 function showSlideshowEnding() {
 
     card.innerHTML = `
@@ -562,19 +615,27 @@ function showSlideshowEnding() {
 
             <div class="finish-buttons">
 
-                <button id="slideshowHome" class="start-btn">
-                    🏠 Home
-                </button>
+    <button id="watchSlideshowAgain" class="start-btn">
+        📸 Watch Slideshow Again
+    </button>
 
-                <button id="slideshowPlayAgain" class="start-btn">
-                    🔄 Play Again
-                </button>
+    <button id="slideshowHome" class="start-btn">
+        🏠 Home
+    </button>
 
-            </div>
+    <button id="slideshowPlayAgain" class="start-btn">
+        🔄 Play Again
+    </button>
+
+</div>
 
         </div>
     `;
-
+document
+    .getElementById("watchSlideshowAgain")
+    .addEventListener("click", () => {
+        startSlideshow();
+    });
     document
         .getElementById("slideshowHome")
         .addEventListener("click", () => {
