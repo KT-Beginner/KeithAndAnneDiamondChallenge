@@ -183,8 +183,21 @@ if (q.revealImageAfterAnswer && q.image) {
     void questionImage.offsetWidth;
     questionImage.classList.add("fade-in");
 
-   if (q.caption) {
-    imageCaption.textContent = q.caption;
+   if (q.photoTitle || q.photoText || q.caption) {
+
+    if (q.photoTitle || q.photoText) {
+        imageCaption.innerHTML = `
+            ${q.photoTitle
+                ? `<strong class="photo-note-title">${q.photoTitle}</strong>`
+                : ""}
+            ${q.photoText
+                ? `<span class="photo-note-text">${q.photoText}</span>`
+                : ""}
+        `;
+    } else {
+        imageCaption.textContent = q.caption;
+    }
+
     imageCaption.style.display = "block";
 
     imageCaption.classList.remove("reveal-caption");

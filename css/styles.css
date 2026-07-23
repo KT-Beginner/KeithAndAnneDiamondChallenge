@@ -1218,3 +1218,45 @@ img {
         transform: translateY(0);
     }
 }
+.image-caption.reveal-caption {
+    max-width: 520px;
+    margin: 12px auto 0;
+    padding: 12px 16px;
+
+    background: #fff8e7;
+    border: 1px solid #dbc9a3;
+    border-radius: 8px;
+
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+
+    animation: revealCaption 0.8s ease-in;
+}
+
+.photo-note-title {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #7a1838;
+    font-size: 1.05rem;
+}
+
+.photo-note-text {
+    display: block;
+
+    color: #4e4036;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+@keyframes revealCaption {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -55,7 +55,8 @@ const questions = [
     ],
     correct: 1,
     image: "images/quiz/desert-camel.jpg",
-    caption: "🐪 Keith and Anne travelling through the desert",
+    photoTitle: "🐪 Desert Adventure",
+    photoText: "Keith and Anne enjoying a memorable camel ride.",
     revealImageAfterAnswer: true
 },
 { 
