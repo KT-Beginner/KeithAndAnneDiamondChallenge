@@ -44,21 +44,137 @@ const questions = [
         ],
         correct: 1
     },
-{
-    round: "🏖️ Holidays",
-    question: "What mode of transport did Keith and Anne use in the desert?",
+    {
+        round: "🏖️ Holidays",
+    question: "Which type of transport did Keith and Anne NOT use on their Far East trip in 2013?",
     answers: [
-        "Jeep",
-        "Camel",
-        "Horse",
-        "Quad bike"
+        "Boat",
+        "Bicycle",
+        "Water buffalo",
+        "Seaplane"
+    ],
+    correct: 3,
+    image: "images/quiz/buffalo.jpg",
+    photoTitle: "🐃 Water Buffalo Taxi",
+    photoText: "Yes this one's true!",
+    revealImageAfterAnswer: true
+},    
+{
+        round: "🏖️ Holidays",
+    question: "On her birthday in 2014 in Madagascar, Anne made friends with a 'black and white ruffed'.  What kind of animal is this?",
+    answers: [
+        "Penguin",
+        "Lemur",
+        "Monkey",
+        "Badger"
     ],
     correct: 1,
-    image: "images/quiz/desert-camel.jpg",
-    photoTitle: "🐪 Desert Adventure",
-    photoText: "Keith and Anne enjoying a memorable camel ride.",
+    image: "images/quiz/lemur.jpg",
+    photoTitle: "🌿 Black-and-White Ruffed Lemur",
+    photoText: "Making a new friend in Madagascar.",
+    revealImageAfterAnswer: true
+},  
+{
+        round: "🏖️ Holidays",
+    question: "One holiday in 2017 included a visit to Marsala. Where is this?",
+    answers: [
+        "Portugal",
+        "Malta",
+        "Sicily",
+        "Croatia"
+    ],
+    correct: 2,
+    image: "images/quiz/marsala.jpg",
+    photoTitle: "🍷 Marsala, Sicily",
+    photoText: "Famous for Marsala wine - Keith in his element!",
+    revealImageAfterAnswer: true
+},  
+{
+        round: "🏖️ Holidays",
+    question: "In April 2018, Keith and Anne travelled to Japan to see the famous cherry blossoms. What are cherry blossoms called in Japanese?",
+    answers: [
+        "Bonsai",
+        "Kimono",
+        "Origami",
+        "Sakura"
+    ],
+    correct: 3,
+    image: "images/quiz/japan.jpg",
+    photoTitle: "🌸 Sakura, Japan",
+    photoText: "Hanami (cherry blossom viewing) and a traditional meal in a ryokan",
+    revealImageAfterAnswer: true
+},  
+{
+        round: "🏖️ Holidays",
+    question: "Where did Anne and Keith meet Dracula in 2019?",
+    answers: [
+        "In the garlic aisle at Morrisons",
+        "On the Transfăgărășan Highway, Romania",
+        "At the blood donation centre",
+        "At Bran Castle in Romania"
+    ],
+    correct: 3,
+    image: "images/quiz/brancastle.jpg",
+    photoTitle: "🧛 Bran Castle, Romania",
+    revealImageAfterAnswer: true
+},  
+{
+        round: "🏖️ Holidays",
+    question: "Which UK town is famously associated with Dracula?",
+    answers: [
+        "Whitby",
+        "Bath",
+        "Canterbury",
+        "York"
+    ],
+    correct: 0,
+    image: "images/quiz/whitby.jpg",
+    photoTitle: "🧛 Whitby Abbey steps",
+    photoText: "Bram Stoker stayed here in 1890 and the town influenced his novel 'Dracula'.",
+    revealImageAfterAnswer: true
+},  
+{
+        round: "🏖️ Holidays",
+    question: "A visit to the Storehouse on their trip to Dublin in March 2024 included a sample of...",
+    answers: [
+        "Potato cakes",
+        "Guinness",
+        "Irish whiskey",
+        "Soda bread"
+    ],
+    correct: 1,
+    image: "images/quiz/guinness.jpg",
+   photoTitle: "🍺 A Pint at the Guinness Storehouse",
     revealImageAfterAnswer: true
 },
+{
+        round: "🏖️ Holidays",
+    question: "Also in 2024 they visited the northernmost point you can reach by road in mainland Europe. Where was this?",
+    answers: [
+        "North Cape, Norway",
+        "Tromsø, Norway",
+        "The Arctic Circle, Finland",
+        "Svalbard, Norway"
+    ],
+    correct: 0,
+    image: "images/quiz/northcape.jpg",
+   photoTitle: "🧭 North Cape, Norway",
+    revealImageAfterAnswer: true
+},
+{
+        round: "🏖️ Holidays",
+    question: "In Uzbekistan in 2025, Keith tried a Chugurma. What is it?",
+    answers: [
+        "A type of cheese",
+        "A traditional fur hat",
+        "A long ceremonial coat",
+        "A traditional rice dish"
+    ],
+    correct: 1,
+    image: "images/quiz/chugurma.jpg",
+   photoTitle: "🎩 Trying on a Chugurma",
+    revealImageAfterAnswer: true
+},  
 { 
     round: "📅 Guess the Year",
     question: "Which year is this?",
