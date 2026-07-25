@@ -8,7 +8,25 @@ const questions = [
             "1967",
             "1968"
         ],
-        correct: 1
+        correct: 1,
+        image: "images/quiz/wedding.jpg",
+        photoTitle: "💍 Wedding Day 30th July 1966",
+        photoText: "St.Paul's Methodist Church, Dronfield.",
+        revealImageAfterAnswer: true
+    },
+    {
+        round: "💍 Wedding Day",
+        question: "How old were the Happy Couple on their wedding day?",
+        answers: [
+            "19",
+            "20",
+            "21",
+            "22"
+        ],
+        correct: 3,
+        image: "images/quiz/certificate.jpg",
+        photoTitle: "💍 Wedding certificate",
+        revealImageAfterAnswer: true
     },
     {
         round: "💍 Wedding Day",
@@ -19,7 +37,26 @@ const questions = [
             "FIFA World Cup Final",
             "70 Mph speed limit introduced on UK roads"
         ],
-        correct: 2
+        correct: 2,
+        image: "images/quiz/wembley.jpg",
+        photoTitle: "⚽🏆 England beat West Germany 4–2 after extra time",
+        photoText: "The Jules Rimet Cup was the original trophy awarded to the winner of the FIFA World Cup.",
+        revealImageAfterAnswer: true
+    },
+    {
+        round: "💍 Wedding Day",
+        question: "Who scored the winning goal for England?",
+        answers: [
+            "Bobby Charlton",
+            "Jimmy Greaves",
+            "Kevin Keegan",
+            "Geoff Hurst"
+        ],
+        correct: 3,
+        image: "images/quiz/hurst.jpg",
+        photoTitle: "⚽🏆 Geoff Hurst scored three goals in the 1966 World Cup Final",
+        photoText: "For many years, Hurst was the only player ever to score a ‘hat-trick’ in a World Cup Final. However, Kylian Mbappé equalled the feat in the 2022 World Cup Final for France.",
+        revealImageAfterAnswer: true
     },
     {
         round: "💍 Wedding Day",
@@ -32,6 +69,7 @@ const questions = [
         ],
         correct: 0,
         audio: "audio/out-of-time-clip.mp3",
+         manualNext: true,   
 
     image: "images/quiz/out-of-time.jpg",
     revealImageAfterAnswer: true,
@@ -60,8 +98,8 @@ const questions = [
     ],
     correct: 3,
     image: "images/quiz/buffalo.jpg",
-    photoTitle: "🐃 Water Buffalo Taxi",
-    photoText: "Yes this one's true! They did not travel by seaplane.",
+    photoTitle: "🐃 Water Buffalo is true!",
+    photoText: "They did not travel by seaplane.",
     revealImageAfterAnswer: true
 },    
 {
@@ -195,6 +233,26 @@ const questions = [
 },
 {
     round: "🎵 Music Round",
+    question: "Which legendary band recorded 'Lucy in the Sky with Diamonds' in 1967?",
+    answers: [
+        "The Kinks",
+        "The Beatles",
+        "The Hollies",
+        "The Who"
+    ],
+    correct: 1,
+
+    audioQuestion: "audio/lucy-intro.mp3",
+    audioAnswer: "audio/lucy-answer.mp3",
+    audioFull: "audio/lucy-full.mp3",
+
+    image: "images/quiz/lucy.jpg",
+    revealImageAfterAnswer: true,
+    photoTitle: "💎🎶 Lucy in the Sky with Diamonds",
+    photoText: "The song was written by John Lennon and Paul McCartney."
+},
+{
+ round: "🎵 Music Round",
     question: "The James Bond film Diamonds Are Forever was released in 1971. Who sang the theme song?",
     answers: [
         "Shirley Bassey",
@@ -206,11 +264,88 @@ const questions = [
 
     audioQuestion: "audio/diamonds-intro.mp3",
     audioAnswer: "audio/diamonds-answer.mp3",
+    audioFull: "audio/diamonds-full.mp3",
 
-    image: "images/diamonds.jpg",
+    image: "images/quiz/diamonds.jpg",
     revealImageAfterAnswer: true,
-    photoTitle: "💎 Diamonds Are Forever",
+    photoTitle: "💎🎤 Diamonds Are Forever",
     photoText: "The theme song was performed by Shirley Bassey."
+},
+{
+ round: "🎵 Music Round",
+    question: "'How Deep Is Your Love' by the Bee Gees featured on the soundtrack of which famous 1977 film?",
+    answers: [
+        "Grease",
+        "Footloose",
+        "Dirty Dancing",
+        "Saturday Night Fever"
+    ],
+    correct: 3,
+
+    audioQuestion: "audio/beegees-intro.mp3",
+    audioAnswer: "audio/beegees-answer.mp3",
+    audioFull: "audio/beegees-full.mp3",
+    image: "images/quiz/beegees.jpg",
+    revealImageAfterAnswer: true,
+    photoTitle: "💎🎤 How Deep Is Your Love",
+    photoText: "This became one of the Bee Gees' biggest hits."
+},
+{
+ round: "🎵 Music Round",
+    question: "This song by Huey Lewis & The News was the theme song from which 1985 blockbuster film?",
+    answers: [
+        "Ghostbusters",
+        "Top Gun",
+        "Back to the Future",
+        "The Goonies"
+    ],
+    correct: 2,
+
+    audioQuestion: "audio/poweroflove-intro.mp3",
+    audioAnswer: "audio/poweroflove-answer.mp3",
+    audioFull: "audio/poweroflove-full.mp3",
+    image: "images/quiz/poweroflove.jpg",
+    revealImageAfterAnswer: true,
+    photoTitle: "💎🍿 One of Karen's favourites!",
+    photoText: "🎬 Huey Lewis himself appears as the school audition judge who rejects the band for being 'too darn loud!'"
+},
+{
+ round: "🎵 Music Round",
+    question: "Can you name this Rihanna song from 2012?",
+    answers: [
+        "Diamonds",
+        "Like a Diamond",
+        "Diamond Heart",
+        "Diamonds are a Girl's Best Friend"
+    ],
+    correct: 0,
+
+    audioQuestion: "audio/rihanna-intro.mp3",
+    audioAnswer: "audio/rihanna-answer.mp3",
+    audioFull: "audio/rihanna-full.mp3",
+    image: "images/quiz/rihanna.jpg",
+    revealImageAfterAnswer: true,
+    photoTitle: "This song became one of Rihanna's biggest worldwide hits",
+    photoText: "💎'Diamonds' was written by Australian singer-songwriter Sia, who reportedly wrote the lyrics in just 14 minutes"
+},
+{
+ round: "🎵 Music Round",
+    question: "Taylor Swift's song 'Lover' has become a popular choice for which type of celebration?",
+    answers: [
+        "Birthday parties",
+        "Graduation ceremonies",
+        "Christmas parties",
+        "Wedding first dances"
+    ],
+    correct: 3,
+
+    audioQuestion: "audio/lover-intro.mp3",
+    audioAnswer: "audio/lover-answer.mp3",
+    audioFull: "audio/lover-full.mp3",
+    image: "images/quiz/lover.jpg",
+    revealImageAfterAnswer: true,
+    photoTitle: "💍Taylor Swift – Lover (2019)",
+    photoText: "🎬 'Lover' featured on the soundtrack of the 2022 TV series 'The Summer I Turned Pretty'"
 },
  {
      round: "❤️ Keith & Anne",

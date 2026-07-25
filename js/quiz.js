@@ -11,6 +11,9 @@ let currentQuestion = 0;
 let score = 0;
 let currentRound = "";
 
+// Keep track of the currently playing music clip
+let currentQuestionAudio = null;
+
 // Page elements
 const player = document.getElementById("playerName");
 const scoreText = document.getElementById("score");
@@ -120,9 +123,13 @@ function displayQuestion() {
         `Question ${currentQuestion + 1} of ${questions.length}`;
 
     question.textContent = q.question;
-    feedback.textContent = "";
+question.style.display = "block";
+
+feedback.textContent = "";
+feedback.style.display = "block";
     nextQuestion.style.display = "none";
     playClip.style.display = "none";
+    playClip.disabled = false;
     playClip.textContent = "▶️ Play Clip";
 
     progress.style.width =
@@ -157,11 +164,29 @@ function displayQuestion() {
 if (q.audioQuestion) {
     playClip.style.display = "inline-block";
 
-    playClip.onclick = () => {
-        const introAudio = new Audio(q.audioQuestion);
-        introAudio.play();
+    // Disable answer buttons until the clip has played once
+    buttons.forEach(btn => btn.disabled = true);
 
-        playClip.textContent = "▶️ Play Again";
+    playClip.onclick = () => {
+
+        if (currentQuestionAudio) {
+            currentQuestionAudio.pause();
+            currentQuestionAudio.currentTime = 0;
+        }
+
+        currentQuestionAudio = new Audio(q.audioQuestion);
+        currentQuestionAudio.play();
+
+        playClip.disabled = true;
+
+        currentQuestionAudio.onended = () => {
+
+    // Hide the button once the intro has finished
+    playClip.style.display = "none";
+
+    // Now allow the user to answer
+    buttons.forEach(btn => btn.disabled = false);
+};
     };
 }
    buttons.forEach((button, index) => {
@@ -192,10 +217,20 @@ buttons.forEach((button, index) => {
 
     button.addEventListener("click", () => {
 
-        // Disable all buttons
-        buttons.forEach(btn => btn.disabled = true);
+    // Stop the question music if it's still playing
+    if (currentQuestionAudio) {
+        currentQuestionAudio.pause();
+        currentQuestionAudio.currentTime = 0;
+    }
 
-        const correct = questions[currentQuestion].correct;
+    // Hide the Play Again button while the answer audio plays
+    playClip.style.display = "none";
+    playClip.disabled = true;
+
+    // Disable all buttons
+    buttons.forEach(btn => btn.disabled = true);
+
+    const correct = questions[currentQuestion].correct;
 
       if (index === correct) {
 
@@ -220,7 +255,11 @@ buttons.forEach((button, index) => {
 const q = questions[currentQuestion];
 setTimeout(() => {
 
-   if (q.revealImageAfterAnswer && q.image) {
+    // Make the answer screen more compact
+    question.style.display = "none";
+    feedback.style.display = "none";
+
+    if (q.revealImageAfterAnswer && q.image) {
 
     buttons.forEach(btn => btn.style.display = "none");
 
@@ -293,14 +332,62 @@ if (answerAudio) {
     const revealAudio = new Audio(answerAudio);
 
     revealAudio.addEventListener("ended", () => {
-        moveToNextQuestion();
+
+    if (questions[currentQuestion].audioQuestion || questions[currentQuestion].manualNext) {
+
+        if (questions[currentQuestion].audioFull) {
+
+            playClip.style.display = "inline-block";
+            playClip.disabled = false;
+            playClip.textContent = "▶️ Play Full Clip";
+
+            playClip.onclick = () => {
+
+    const fullAudio = new Audio(questions[currentQuestion].audioFull);
+
+    // Prevent moving on while the full clip is playing
+    nextQuestion.disabled = true;
+    playClip.disabled = true;
+    playClip.textContent = "🎵 Playing...";
+
+    fullAudio.addEventListener("ended", () => {
+        nextQuestion.disabled = false;
+        playClip.disabled = false;
+        playClip.textContent = "▶️ Play Full Clip";
     });
 
-    revealAudio.play().catch(() => {
-        setTimeout(moveToNextQuestion, 5000);
+    fullAudio.play().catch(() => {
+        nextQuestion.disabled = false;
+        playClip.disabled = false;
+        playClip.textContent = "▶️ Play Full Clip";
     });
+};
+        }
+
+        nextQuestion.style.display = "inline-block";
+
+    } else {
+
+        moveToNextQuestion();
+
+    }
+
+});
+
+    revealAudio.play().catch(() => {
+
+       if (questions[currentQuestion].audioQuestion || questions[currentQuestion].manualNext) {
+            nextQuestion.style.display = "inline-block";
+        } else {
+            setTimeout(moveToNextQuestion, 5000);
+        }
+
+    });
+
 } else {
-   nextQuestion.style.display = "inline-block";
+
+    nextQuestion.style.display = "inline-block";
+
 }
     });
 });
