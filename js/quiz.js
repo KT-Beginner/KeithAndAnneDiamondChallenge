@@ -21,6 +21,8 @@ const imageCaption = document.getElementById("imageCaption");
 const photoFrame = document.getElementById("photoFrame");
 const feedback = document.getElementById("feedback");
 const progress = document.getElementById("progress");
+const playClip = document.getElementById("playClip");
+const nextQuestion = document.getElementById("nextQuestion");
 
 const buttons = document.querySelectorAll(".answer");
 const correctSound = new Audio("sounds/correct.mp3");
@@ -60,7 +62,11 @@ const roundInfo = {
         photo: "images/rounds/year.jpg",
         message: "Can you remember when these special moments happened? Let's put your memory to the test!"
     },
-
+"🎵 Music Round": {
+    title: "🎵 Round 5 – Music Round",
+    photo: "images/rounds/music.jpg",
+    message: "Can you recognise these famous tunes? Listen carefully, then answer the question before the reveal!"
+},
     "❤️ Keith & Anne": {
         title: "❤️ Final Round – Keith & Anne",
         photo: "images/rounds/diamond.jpg",
@@ -115,6 +121,9 @@ function displayQuestion() {
 
     question.textContent = q.question;
     feedback.textContent = "";
+    nextQuestion.style.display = "none";
+    playClip.style.display = "none";
+    playClip.textContent = "▶️ Play Clip";
 
     progress.style.width =
         (currentQuestion / questions.length) * 100 + "%";
@@ -145,11 +154,22 @@ function displayQuestion() {
     imageCaption.textContent = "";
     imageCaption.style.display = "none";
 }
-    buttons.forEach((button, index) => {
-        button.textContent = q.answers[index];
-        button.disabled = false;
-        button.style.background = "#7a1838";
-    });
+if (q.audioQuestion) {
+    playClip.style.display = "inline-block";
+
+    playClip.onclick = () => {
+        const introAudio = new Audio(q.audioQuestion);
+        introAudio.play();
+
+        playClip.textContent = "▶️ Play Again";
+    };
+}
+   buttons.forEach((button, index) => {
+    button.textContent = q.answers[index];
+    button.disabled = false;
+    button.style.background = "#7a1838";
+    button.style.display = "block";
+});
 }
 function showCorrectSparkles() {
 
@@ -198,8 +218,11 @@ buttons.forEach((button, index) => {
     wrongSound.play();
 }
 const q = questions[currentQuestion];
+setTimeout(() => {
 
-if (q.revealImageAfterAnswer && q.image) {
+   if (q.revealImageAfterAnswer && q.image) {
+
+    buttons.forEach(btn => btn.style.display = "none");
 
     photoFrame.style.display = "block";
     questionImage.style.display = "block";
@@ -231,56 +254,55 @@ if (q.revealImageAfterAnswer && q.image) {
     imageCaption.classList.add("reveal-caption");
 }
 }
+}, 1200);
         scoreText.textContent = `⭐ Score: ${score}`;
         
         // Play question audio, if one has been provided
-const audioFile = questions[currentQuestion].audio;
+const answerAudio =
+    questions[currentQuestion].audioAnswer ||
+    questions[currentQuestion].audio;
 
-if (audioFile) {
-    const questionAudio = new Audio(audioFile);
-    questionAudio.play();
-}
+function moveToNextQuestion() {
+    card.classList.add("fade-out");
 
-        // Pause before next question
+    setTimeout(() => {
+        currentQuestion++;
 
-        setTimeout(() => {
+        if (currentQuestion < questions.length) {
+            loadQuestion();
 
-            card.classList.add("fade-out");
+            card.classList.remove("fade-out");
+            card.classList.add("fade-in");
 
             setTimeout(() => {
-
-                currentQuestion++;
-
-                if (currentQuestion < questions.length) {
-
-                    loadQuestion();
-
-                    card.classList.remove("fade-out");
-                    card.classList.add("fade-in");
-
-                    setTimeout(() => {
-                        card.classList.remove("fade-in");
-                    }, 300);
-
-                } else {
-
-    card.classList.remove("fade-out");
-    card.classList.remove("fade-in");
-
-    showFinalScreen();
-
-}
-
+                card.classList.remove("fade-in");
             }, 300);
+        } else {
+            card.classList.remove("fade-out");
+            card.classList.remove("fade-in");
+            showFinalScreen();
+        }
+    }, 300);
+}
+nextQuestion.onclick = () => {
+    nextQuestion.style.display = "none";
+    moveToNextQuestion();
+};
 
-      }, questions[currentQuestion].audio
-    ? 15000
-    : questions[currentQuestion].revealImageAfterAnswer
-        ? 5000
-        : 1000);
+if (answerAudio) {
+    const revealAudio = new Audio(answerAudio);
 
+    revealAudio.addEventListener("ended", () => {
+        moveToNextQuestion();
     });
 
+    revealAudio.play().catch(() => {
+        setTimeout(moveToNextQuestion, 5000);
+    });
+} else {
+   nextQuestion.style.display = "inline-block";
+}
+    });
 });
 
 // ==========================================

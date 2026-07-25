@@ -31,7 +31,12 @@ const questions = [
             "Strangers in the Night – Frank Sinatra"
         ],
         correct: 0,
-        audio: "audio/out-of-time-clip.mp3"
+        audio: "audio/out-of-time-clip.mp3",
+
+    image: "images/quiz/out-of-time.jpg",
+    revealImageAfterAnswer: true,
+    photoTitle: "🎵 Out of Time",
+    photoText: "Out of time - The song was written by Mick Jagger and Keith Richards. The Rolling Stones' own version was also released in 1966 on their 'Aftermath' album.",
     },
     {
         round: "👨‍👩‍👧 Family",
@@ -56,7 +61,7 @@ const questions = [
     correct: 3,
     image: "images/quiz/buffalo.jpg",
     photoTitle: "🐃 Water Buffalo Taxi",
-    photoText: "Yes this one's true!",
+    photoText: "Yes this one's true! They did not travel by seaplane.",
     revealImageAfterAnswer: true
 },    
 {
@@ -187,6 +192,25 @@ const questions = [
         "2007"
     ],
     correct: 2
+},
+{
+    round: "🎵 Music Round",
+    question: "The James Bond film Diamonds Are Forever was released in 1971. Who sang the theme song?",
+    answers: [
+        "Shirley Bassey",
+        "Lulu",
+        "Nancy Sinatra",
+        "Barbra Streisand"
+    ],
+    correct: 0,
+
+    audioQuestion: "audio/diamonds-intro.mp3",
+    audioAnswer: "audio/diamonds-answer.mp3",
+
+    image: "images/diamonds.jpg",
+    revealImageAfterAnswer: true,
+    photoTitle: "💎 Diamonds Are Forever",
+    photoText: "The theme song was performed by Shirley Bassey."
 },
  {
      round: "❤️ Keith & Anne",
