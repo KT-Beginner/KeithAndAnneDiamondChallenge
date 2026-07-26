@@ -70,6 +70,12 @@ const roundInfo = {
     photo: "images/rounds/music.jpg",
     message: "Can you recognise these famous tunes? Listen carefully, then answer the question before the reveal!"
 },
+"✅ True or False": {
+    title: "✅ Round 6 – True or False",
+    photo: "images/rounds/true-false.jpg",
+    message: "Decide whether each statement is true or false. Some are easy... others might catch you out!"
+
+},
     "❤️ Keith & Anne": {
         title: "❤️ Final Round – Keith & Anne",
         photo: "images/rounds/diamond.jpg",
@@ -141,10 +147,11 @@ feedback.style.display = "block";
 
     imageCaption.textContent = q.caption || "";
 
-    if (q.revealImageAfterAnswer) {
+   if (q.revealImageAfterAnswer && !q.revealImage) {
         photoFrame.style.display = "none";
         questionImage.style.display = "none";
-        imageCaption.style.display = "none";
+        imageCaption.style.display =
+    (q.caption && !q.showPhotoTitleAfterAnswer) ? "block" : "none";
     } else {
         photoFrame.style.display = "block";
         questionImage.style.display = "block";
@@ -189,11 +196,28 @@ if (q.audioQuestion) {
 };
     };
 }
-   buttons.forEach((button, index) => {
+  buttons.forEach((button, index) => {
+
+    if (q.type === "truefalse") {
+
+        if (index > 1) {
+            button.style.display = "none";
+            return;
+        }
+
+        button.style.display = "block";
+        button.style.width = "100%";
+
+    } else {
+
+        button.style.display = "block";
+        button.style.width = "";
+
+    }
+
     button.textContent = q.answers[index];
     button.disabled = false;
     button.style.background = "#7a1838";
-    button.style.display = "block";
 });
 }
 function showCorrectSparkles() {
@@ -259,15 +283,16 @@ setTimeout(() => {
     question.style.display = "none";
     feedback.style.display = "none";
 
-    if (q.revealImageAfterAnswer && q.image) {
+    if ((q.revealImageAfterAnswer || q.showPhotoTitleAfterAnswer) && q.image) {
 
     buttons.forEach(btn => btn.style.display = "none");
 
-    photoFrame.style.display = "block";
-    questionImage.style.display = "block";
+   photoFrame.style.display = "block";
+questionImage.style.display = "block";
+questionImage.src = q.revealImage || q.image;
 
-    // Restart the fade-in animation
-    questionImage.classList.remove("fade-in");
+// Restart the fade-in animation
+questionImage.classList.remove("fade-in");
     void questionImage.offsetWidth;
     questionImage.classList.add("fade-in");
 

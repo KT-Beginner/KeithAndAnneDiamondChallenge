@@ -9,9 +9,12 @@ const questions = [
             "1968"
         ],
         correct: 1,
+        audio: "audio/bells.mp3",
+         manualNext: true,   
+
         image: "images/quiz/wedding.jpg",
         photoTitle: "💍 Wedding Day 30th July 1966",
-        photoText: "St.Paul's Methodist Church, Dronfield.",
+        photoText: "⛪St.Paul's Methodist Church, Dronfield.",
         revealImageAfterAnswer: true
     },
     {
@@ -77,6 +80,66 @@ const questions = [
     photoText: "Out of time - The song was written by Mick Jagger and Keith Richards. The Rolling Stones' own version was also released in 1966 on their 'Aftermath' album.",
     },
     {
+    round: "👨‍👩‍👧 Family",
+    
+    question: "Karen once had a birthday cake made in the shape of a ...",
+
+    image: "images/quiz/womble.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/wombleanswer.jpg",
+   
+    answers: [
+        "Mouse",
+        "Sheep",
+        "Womble",
+        "Wombat"
+    ],
+
+    correct: 2,
+        audio: "audio/wombles.mp3",
+         manualNext: true,   
+
+     photoTitle: "Remember your a womble, you're a womble, you're a wooooooomble!",
+    photoText: "♻️ The Wombles were promoting recycling in the 1970s—decades before it became a worldwide movement!",
+},
+{
+        round: "👨‍👩‍👧 Family",
+        question: "Which church were Karen and Adam married in?",
+
+        image: "images/quiz/karenwedding.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/karenwedding2.jpg",
+
+        answers: [
+            "St Thomas à Becket Church, Ramsey",
+            "St Paul's Church, Hasland",
+            "St Michael and All Angels Church. Hathersage",
+            "St Thomas' Church, Brampton"
+        ],
+        correct: 3,
+        audio: "audio/bells.mp3",
+         manualNext: true,   
+
+        photoTitle: "💍 Wedding Day 8th July 2000",
+        photoText: "⛪St Thomas' Church, Brampton.",
+        revealImageAfterAnswer: true
+    },
+{
+     round: "👨‍👩‍👧 Family",
+    question: "Which one of these outlaws stole from the rich to give to the poor?",
+    answers: [
+        "Robin Hood",
+        "Laura Collins",
+        "Will Scarlett",
+        "Lois Collins"
+    ],
+    correct: 0,
+    image: "images/quiz/robin.jpg",
+    photoTitle: "🌳🏹 Robin Hood and his merry visitors",
+    showPhotoTitleAfterAnswer: true
+},{
         round: "👨‍👩‍👧 Family",
         question: "What year did Keith and Anne get married?",
         answers: [
@@ -87,7 +150,27 @@ const questions = [
         ],
         correct: 1
     },
+
+
     {
+        round: "🏖️ Holidays",
+    question: "Can you name the hotel?",
+    image: "images/quiz/tunisia.jpg",
+    caption:"🏖️☀️ A package holiday to Tunisia in the 1980s",
+    answers: [
+        "Tour Khalef",
+        "Marhaba Beach",
+        "El Kasar Resort",
+        "Sousse Palace"
+    ],
+    correct: 0,
+
+    revealImage: "images/quiz/hotel.jpg",
+    photoTitle: "☀️🌴 Tour Khalef Hotel, Sousse",
+    photoText: "✈️ A family holiday that started a passion for travel that continues to this day.",
+    revealImageAfterAnswer: true
+},    
+{
         round: "🏖️ Holidays",
     question: "Which type of transport did Keith and Anne NOT use on their Far East trip in 2013?",
     answers: [
@@ -101,7 +184,7 @@ const questions = [
     photoTitle: "🐃 Water Buffalo is true!",
     photoText: "They did not travel by seaplane.",
     revealImageAfterAnswer: true
-},    
+},  
 {
         round: "🏖️ Holidays",
     question: "On her birthday in 2014 in Madagascar, Anne made friends with a 'black and white ruffed'.  What kind of animal is this?",
@@ -220,6 +303,45 @@ const questions = [
 },  
 { 
     round: "📅 Guess the Year",
+    question: "Can you guess Which year this is?  Hint: It was the year the Queen opened the Channel Tunnel.",
+    image: "images/quiz/1994.jpg",
+    caption: "📸🧀 Smile Kevin - say cheese!",
+    answers: [
+        "1993",
+        "1994",
+        "1995",
+        "1996"
+    ],
+    correct: 1
+},
+{ 
+    round: "📅 Guess the Year",
+    question: "Which year did Kevin and Dawn get married? Hint: Robbie Williams went to number 1 with Millenium in this year.",
+    image: "images/quiz/kevinwedding.jpg",
+    caption: "🌴🍹 Anyone for a rum punch?",
+    answers: [
+        "1996",
+        "1997",
+        "1998",
+        "1999"
+    ],
+    correct: 2
+},
+{ 
+    round: "📅 Guess the Year",
+    question: "Which year is this?",
+    image: "images/quiz/babylois.jpg",
+    caption: "🍼🧸 The youngest member of the family arrives.",
+    answers: [
+        "2002",
+        "2003",
+        "2004",
+        "2005"
+    ],
+    correct: 1
+},
+{ 
+    round: "📅 Guess the Year",
     question: "Which year is this?",
     image: "images/quiz/boxing-day-2006.jpg",
     caption: "🎄 Boxing Day with the family",
@@ -230,6 +352,89 @@ const questions = [
         "2007"
     ],
     correct: 2
+},
+{
+    round: "📅 Guess the Year",
+    question: "What year was this school photo taken?",
+
+    image: "images/quiz/school.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/schoolanswer.jpg",
+   
+    answers: [
+        
+        "2009",
+        "2010",
+        "2011",
+        "2012"
+    ],
+
+    correct: 2,
+
+     photoTitle: "📷 Calendar girls.",
+    
+},
+{
+    round: "📅 Guess the Year",
+    question: "What year was this photo taken? Hint – it was the year of the London Olympics and the Queen's Diamond Jubilee.",
+
+    image: "images/quiz/2012.jpg",
+
+    answers: [
+        
+        "2011",
+        "2012",
+        "2013",
+        "2014"
+    ],
+
+    correct: 1,
+
+     photoText: "🥇At the 2012 London Olympics Team GB finished third in the medal table winning 65 medals (29 gold, 17 silver, and 19 bronze).",
+    
+},
+{
+    round: "📅 Guess the Year",
+    question: "What year was this day at the races?",
+
+    image: "images/quiz/races.jpg",
+    
+    answers: [
+        
+        "2012",
+        "2014",
+        "2016",
+        "2018"
+    ],
+
+    correct: 2,
+    
+    photoTitle: "🧺 Picnic at the racecourse",
+    showPhotoTitleAfterAnswer: true,
+
+     photoText: "🏇 Celebrating Keith & Anne's Golden Anniversary (50 years together)",
+    
+},
+{
+    round: "📅 Guess the Year",
+    question: "This was Boxing Day in which year? Hint: 👑 The Queen and Prince Philip had celebrated their Diamond Anniversary in November",
+
+    image: "images/quiz/facepaint.jpg",
+    
+    answers: [
+        
+        "2007",
+        "2011",
+        "2014",
+        "2018"
+    ],
+
+    correct: 0,
+    
+    photoTitle: "🐈‍⬛ Auditioning for 'Cats' the Musical",
+    showPhotoTitleAfterAnswer: true,
+    
 },
 {
     round: "🎵 Music Round",
@@ -346,6 +551,90 @@ const questions = [
     revealImageAfterAnswer: true,
     photoTitle: "💍Taylor Swift – Lover (2019)",
     photoText: "🎬 'Lover' featured on the soundtrack of the 2022 TV series 'The Summer I Turned Pretty'"
+},
+{
+    round: "✅ True or False",
+    type: "truefalse",
+
+    question: "This is Anne & Keith's wedding cake.",
+
+    image: "images/quiz/cakebw.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/cake.jpg",
+   
+    answers: [
+        "True",
+        "False"
+    ],
+
+    correct: 1,
+
+     photoTitle: "No. This cake was Karen and Adam's.",
+    photoText: "🎂Made with love for their special day!",
+},
+{
+    round: "✅ True or False",
+    type: "truefalse",
+    question: "The baby on Keith's shoulders is Karen.",
+    answers: [
+        "True",
+        "False"
+    ],
+    correct: 1,
+    image: "images/quiz/shoulders.jpg",
+    photoTitle: "👶 Keith with baby Kevin on his shoulders",
+    showPhotoTitleAfterAnswer: true
+},
+{
+    round: "✅ True or False",
+    type: "truefalse",
+    question: "Anne & Keith's car in this photo is a Hillman Imp.",
+    answers: [
+        "True",
+        "False"
+    ],
+    correct: 1,
+    image: "images/quiz/anglia.jpg",
+    photoTitle: "🚗 They did own a Hillman Imp, but this is a Ford Anglia",
+    showPhotoTitleAfterAnswer: true
+},
+{
+    round: "✅ True or False",
+    type: "truefalse",
+    question: "In 1982 Keith & Anne owned a green car.",
+
+    answers: [
+        "True",
+        "False"
+    ],
+
+    correct: 0,
+
+    image: "images/quiz/cortina.jpg",
+    revealImageAfterAnswer: true,
+
+    photoTitle: "🚗 Their dark green Ford Cortina",
+    showPhotoTitleAfterAnswer: true
+},
+
+{
+    round: "✅ True or False",
+    type: "truefalse",
+    question: "Anne & Keith visited the Isle of Man in 2019 with Sheila & Tony.",
+
+    answers: [
+        "True",
+        "False"
+    ],
+
+    correct: 1,
+
+    image: "images/quiz/man.jpg",
+    revealImageAfterAnswer: true,
+
+    photoTitle: "🏍️ Anne & Keith on the Isle of Man with Peter & Janet",
+    showPhotoTitleAfterAnswer: true
 },
  {
      round: "❤️ Keith & Anne",
