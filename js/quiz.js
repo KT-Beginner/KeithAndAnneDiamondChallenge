@@ -10,6 +10,7 @@ const playerName = localStorage.getItem("playerName") || "Guest";
 let currentQuestion = 0;
 let score = 0;
 let currentRound = "";
+let playerAnswers = [];
 
 // Keep track of the currently playing music clip
 let currentQuestionAudio = null;
@@ -240,6 +241,8 @@ function showCorrectSparkles() {
 buttons.forEach((button, index) => {
 
     button.addEventListener("click", () => {
+
+        playerAnswers[currentQuestion] = index;
 
     // Stop the question music if it's still playing
     if (currentQuestionAudio) {
@@ -539,7 +542,13 @@ function showFinalScreen() {
     <strong>The Family ❤️</strong><br><br>
     Diamond Wedding Anniversary • 2026
 </p>
+
 <div class="finish-buttons">
+
+    <button id="printResults" class="start-btn">
+    📄 Download My Results
+</button>
+
     <button id="viewSlideshow" class="start-btn">
         📸 View Slideshow
     </button>
@@ -547,11 +556,152 @@ function showFinalScreen() {
     <button id="playAgain" class="start-btn">
         🔄 Play Again
     </button>
+
 </div>
+
         </div>
     `;
 const viewSlideshowButton = document.getElementById("viewSlideshow");
 const playAgainButton = document.getElementById("playAgain");
+const printResultsButton =
+    document.getElementById("printResults");
+
+printResultsButton.addEventListener("click", () => {
+
+    let questionResults = "";
+
+    questions.forEach((q, index) => {
+
+        const selectedAnswerIndex = playerAnswers[index];
+        const correctAnswerIndex = q.correct;
+
+        const selectedAnswer =
+            selectedAnswerIndex !== undefined
+                ? q.answers[selectedAnswerIndex]
+                : "No answer";
+
+        const correctAnswer =
+            q.answers[correctAnswerIndex];
+
+        const result =
+            selectedAnswerIndex === correctAnswerIndex
+                ? "✅ Correct"
+                : "❌ Incorrect";
+
+        questionResults += `
+            <div class="question-result">
+                <h3>${index + 1}. ${q.question}</h3>
+                <p><strong>Your answer:</strong> ${selectedAnswer}</p>
+                <p><strong>Correct answer:</strong> ${correctAnswer}</p>
+                <p><strong>Result:</strong> ${result}</p>
+            </div>
+        `;
+    });
+
+    const printWindow = window.open("", "_blank");
+
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>${playerName}'s Diamond Challenge Results</title>
+
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    max-width: 800px;
+                    margin: 30px auto;
+                    padding: 30px;
+                    color: #333;
+                }
+
+                .results-sheet {
+                    border: 4px solid #d4af37;
+                    padding: 30px;
+                    border-radius: 15px;
+                }
+
+                h1 {
+                    color: #7a1838;
+                    text-align: center;
+                }
+
+                .score {
+                    text-align: center;
+                    font-size: 26px;
+                    font-weight: bold;
+                    color: #7a1838;
+                    margin: 20px 0;
+                }
+
+                .question-result {
+                    border-bottom: 1px solid #ccc;
+                    padding: 15px 0;
+                    page-break-inside: avoid;
+                }
+
+                .question-result h3 {
+                    color: #7a1838;
+                }
+
+                .footer {
+                    text-align: center;
+                    margin-top: 30px;
+                    font-style: italic;
+                }
+
+                .print-button {
+                    display: block;
+                    margin: 25px auto;
+                    padding: 12px 25px;
+                    font-size: 18px;
+                    cursor: pointer;
+                }
+
+                @media print {
+                    .print-button {
+                        display: none;
+                    }
+                }
+            </style>
+        </head>
+
+        <body>
+
+            <div class="results-sheet">
+
+                <h1>💎 Keith & Anne's Diamond Challenge 💎</h1>
+
+                <div class="score">
+                    ${playerName}<br>
+                    Score: ${score} / ${questions.length}
+                </div>
+
+                ${questionResults}
+
+                <div class="footer">
+                    ❤️ Thank you for celebrating Keith & Anne's<br>
+                    Diamond Wedding Anniversary.<br><br>
+                    With love from all the family.
+                </div>
+
+            </div>
+            
+        </body>
+        </html>
+    `);
+
+ printWindow.document.close();
+
+printWindow.onload = () => {
+    printWindow.focus();
+    printWindow.print();
+
+    printWindow.onafterprint = () => {
+        printWindow.close();
+    };
+};
+});
 
 viewSlideshowButton.addEventListener("click", () => {
     startSlideshow();

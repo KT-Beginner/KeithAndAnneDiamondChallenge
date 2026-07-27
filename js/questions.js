@@ -132,7 +132,7 @@ const questions = [
     answers: [
         "Robin Hood",
         "Laura Collins",
-        "Will Scarlett",
+        "Christopher Robin",
         "Lois Collins"
     ],
     correct: 0,
@@ -325,7 +325,9 @@ const questions = [
         "1998",
         "1999"
     ],
-    correct: 2
+    correct: 2,
+     audio: "audio/calypso.mp3",    
+         manualNext: true,   
 },
 { 
     round: "📅 Guess the Year",
@@ -392,7 +394,7 @@ const questions = [
     correct: 1,
 
      photoText: "🥇At the 2012 London Olympics Team GB finished third in the medal table winning 65 medals (29 gold, 17 silver, and 19 bronze).",
-    
+     revealImageAfterAnswer: true
 },
 {
     round: "📅 Guess the Year",
