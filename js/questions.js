@@ -104,6 +104,45 @@ const questions = [
     photoText: "♻️ The Wombles were promoting recycling in the 1970s—decades before it became a worldwide movement!",
 },
 {
+    round: "👨‍👩‍👧 Family",
+    
+    question: "What was the name of this family dog?",
+
+    image: "images/quiz/cindypup.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/cindy.jpg",
+       
+    answers: [
+        "Tigger",
+        "Trinity",
+        "Barbie",
+        "Cindy"
+    ],
+
+    correct: 3,   
+
+     photoTitle: "🦴Cindy the family dog",
+},
+{
+    round: "👨‍👩‍👧 Family",
+    question: "Look at this school photo. Can you spot where Kevin is?",
+    image: "images/quiz/schoolclass.jpg",
+
+    answers: [
+        "Front row",
+        "Back row",
+        "Second row down",
+        "Second row up"
+    ],
+
+    correct: 0,
+
+    photoTitle: "📸 Front row, second from the left",
+    showPhotoTitleAfterAnswer: true
+},
+
+{
         round: "👨‍👩‍👧 Family",
         question: "Which church were Karen and Adam married in?",
 
@@ -139,18 +178,7 @@ const questions = [
     image: "images/quiz/robin.jpg",
     photoTitle: "🌳🏹 Robin Hood and his merry visitors",
     showPhotoTitleAfterAnswer: true
-},{
-        round: "👨‍👩‍👧 Family",
-        question: "What year did Keith and Anne get married?",
-        answers: [
-            "1965",
-            "1966",
-            "1967",
-            "1968"
-        ],
-        correct: 1
-    },
-
+},
 
     {
         round: "🏖️ Holidays",
@@ -300,10 +328,28 @@ const questions = [
     image: "images/quiz/chugurma.jpg",
    photoTitle: "🎩 Trying on a Chugurma",
     revealImageAfterAnswer: true
+},
+{
+     round: "📅 Guess the Year",
+        question: "In which year did Anne & Keith celebrate their 'Crystal' wedding anniversary?",
+        answers: [
+            "1971",
+            "1976",
+            "1981",
+            "1986"
+        ],
+        correct: 2,
+        
+    image: "images/quiz/shuttle.jpg",
+    revealImageAfterAnswer: true,
+
+    photoTitle: "🚀 We have liftoff.",  
+    photoText: "Space Shuttle Columbia made the first-ever Space Shuttle flight on 12 April 1981.",
+    showPhotoTitleAfterAnswer: true
 },  
 { 
     round: "📅 Guess the Year",
-    question: "Can you guess Which year this is?  Hint: It was the year the Queen opened the Channel Tunnel.",
+    question: "Can you guess which year this is?  Hint: It was the year the Channel Tunnel opened.",
     image: "images/quiz/1994.jpg",
     caption: "📸🧀 Smile Kevin - say cheese!",
     answers: [
@@ -333,20 +379,28 @@ const questions = [
     round: "📅 Guess the Year",
     question: "Which year is this?",
     image: "images/quiz/babylois.jpg",
-    caption: "🍼🧸 The youngest member of the family arrives.",
+    caption: "🧸 The youngest member of the family arrives.",
     answers: [
         "2002",
         "2003",
         "2004",
         "2005"
     ],
-    correct: 1
+    correct: 1,
+    photoTitle: "🍼Hello Lois!",
+     showPhotoTitleAfterAnswer: true
 },
 { 
     round: "📅 Guess the Year",
     question: "Which year is this?",
     image: "images/quiz/boxing-day-2006.jpg",
     caption: "🎄 Boxing Day with the family",
+
+    
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/family2.jpg",
+   
+    
     answers: [
         "2004",
         "2005",
@@ -392,9 +446,9 @@ const questions = [
     ],
 
     correct: 1,
-
+     photoTitle: "📅 2012",
      photoText: "🥇At the 2012 London Olympics Team GB finished third in the medal table winning 65 medals (29 gold, 17 silver, and 19 bronze).",
-     revealImageAfterAnswer: true
+     showPhotoTitleAfterAnswer: true,
 },
 {
     round: "📅 Guess the Year",
@@ -551,7 +605,7 @@ const questions = [
     audioFull: "audio/lover-full.mp3",
     image: "images/quiz/lover.jpg",
     revealImageAfterAnswer: true,
-    photoTitle: "💍Taylor Swift – Lover (2019)",
+    photoTitle: "👩‍❤️‍💋‍👨Taylor Swift – Lover (2019)",
     photoText: "🎬 'Lover' featured on the soundtrack of the 2022 TV series 'The Summer I Turned Pretty'"
 },
 {
@@ -591,6 +645,23 @@ const questions = [
 {
     round: "✅ True or False",
     type: "truefalse",
+    question: "Anne & Keith celebrated their 'wood' anniversary in 1971",
+    answers: [
+        "True",
+        "False"
+    ],
+    correct: 0,
+
+    image: "images/quiz/decimal.jpg",
+    revealImageAfterAnswer: true,
+
+    photoTitle: "'Decimal Day'",
+    photoText: "🪙 Also in 1971 Britain switched to decimal currency.",
+    showPhotoTitleAfterAnswer: true
+},
+{
+    round: "✅ True or False",
+    type: "truefalse",
     question: "Anne & Keith's car in this photo is a Hillman Imp.",
     answers: [
         "True",
@@ -605,21 +676,59 @@ const questions = [
     round: "✅ True or False",
     type: "truefalse",
     question: "In 1982 Keith & Anne owned a green car.",
+    answers: [
+        "True",
+        "False"
+    ],
+correct: 0,
+
+    image: "images/quiz/cortina.jpg",
+    revealImageAfterAnswer: true,
+
+    photoTitle: "🚗 Their dark green Ford Cortina",
+     showPhotoTitleAfterAnswer: true
+},
+{
+    round: "✅ True or False",
+    type: "truefalse",
+
+    question: "Enjoying 'sundowners' in Kenya in 2016",
+
+    image: "images/quiz/sundowner.jpg",
 
     answers: [
         "True",
         "False"
     ],
 
-    correct: 0,
+    correct: 1,
 
-    image: "images/quiz/cortina.jpg",
-    revealImageAfterAnswer: true,
+    photoTitle: "🥂 What a way to spend an evening. Cheers!",
+    photoText: "🐘 No. This safari was in Zimbabwe.",
 
-    photoTitle: "🚗 Their dark green Ford Cortina",
     showPhotoTitleAfterAnswer: true
 },
+   {
+     round: "✅ True or False",
+    type: "truefalse",
 
+    question: "This was Laura's 3rd Birthday",
+
+    image: "images/quiz/laura3cake.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/laura3.jpg",
+   
+    answers: [
+        "True",
+        "False"
+    ],
+
+    correct: 0,
+        
+     photoTitle: "🎁🎈In the garden at Ramsey 4th September 2004",
+    
+},
 {
     round: "✅ True or False",
     type: "truefalse",
@@ -634,19 +743,29 @@ const questions = [
 
     image: "images/quiz/man.jpg",
     revealImageAfterAnswer: true,
-
-    photoTitle: "🏍️ Anne & Keith on the Isle of Man with Peter & Janet",
+    photoTitle: "Isle of Man 2019",
+    photoText: "🏍️ Anne & Keith on the Isle of Man with Peter & Janet",
     showPhotoTitleAfterAnswer: true
 },
  {
-     round: "❤️ Keith & Anne",
-        question: "What is 15th wedding anniversary known as?",
-        answers: [
-            "Crystal",
-            "Cotton",
-            "Leather",
-            "Gold"
-        ],
-        correct: 0
-    }
+    round: "❤️ Keith & Anne",
+    question: "❤️ On 30 July 2026, how many days had Keith & Anne been married? (You may use a calculator!)",
+  
+    image: "images/quiz/diamond.jpg",
+  
+    answers: [
+        "21,900 days",
+        "21,915 days",
+        "21,920 days",
+        "22,000 days"
+    ],
+
+    correct: 1,
+
+    photoTitle: "💎 60 wonderful years • 21,915 days • A lifetime of love, laughter and memories ❤️",
+    photoText: "That's: 60 × 365 = 21,900, Plus 15 leap days = 21,915 days!",
+    
+    showPhotoTitleAfterAnswer: true,
+        
+},
 ];

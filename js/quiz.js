@@ -31,6 +31,32 @@ const nextQuestion = document.getElementById("nextQuestion");
 const buttons = document.querySelectorAll(".answer");
 const correctSound = new Audio("sounds/correct.mp3");
 const wrongSound = new Audio("sounds/wrong.mp3");
+
+const congratulationsSound =
+    new Audio("sounds/congratulations.mp3");
+
+const cheerSound =
+    new Audio("sounds/cheer.mp3");
+
+// Unlock the final sounds on the player's first click
+document.addEventListener("click", () => {
+
+    [congratulationsSound, cheerSound].forEach(sound => {
+
+        sound.volume = 0;
+
+        sound.play().then(() => {
+            sound.pause();
+            sound.currentTime = 0;
+            sound.volume = 1;
+        }).catch(() => {
+            sound.volume = 1;
+        });
+
+    });
+
+}, { once: true });
+
 const card = document.querySelector(".card");
 
 const imageModal = document.getElementById("imageModal");
@@ -392,7 +418,13 @@ if (answerAudio) {
 };
         }
 
-        nextQuestion.style.display = "inline-block";
+        if (currentQuestion === questions.length - 1) {
+    nextQuestion.textContent = "🎉 That's All Folks!";
+} else {
+    nextQuestion.textContent = "Next Question ➜";
+}
+
+nextQuestion.style.display = "inline-block";
 
     } else {
 
@@ -413,6 +445,12 @@ if (answerAudio) {
     });
 
 } else {
+
+    if (currentQuestion === questions.length - 1) {
+        nextQuestion.textContent = "🎉 That's All Folks!";
+    } else {
+        nextQuestion.textContent = "Next Question ➜";
+    }
 
     nextQuestion.style.display = "inline-block";
 
@@ -502,6 +540,29 @@ function showFinalScreen() {
 
     launchConfetti();
 
+congratulationsSound.currentTime = 0;
+congratulationsSound.play()
+
+    .catch(error => {
+        console.error(
+            "Congratulations sound could not play:",
+            error
+        );
+    });
+
+congratulationsSound.onended = () => {
+
+    cheerSound.currentTime = 0;
+
+    cheerSound.play()
+        .catch(error => {
+            console.error(
+                "Cheer sound could not play:",
+                error
+            );
+        });
+};
+
     card.innerHTML = `
         <div class="finish-screen">
 
@@ -529,7 +590,7 @@ function showFinalScreen() {
             <p class="finish-thanks">
     ❤️ Thank you for taking part in
     <strong>Keith & Anne's Diamond Challenge</strong>
-    and helping us celebrate
+    and helping them celebrate
     <strong>60 wonderful years of marriage.</strong>
 </p>
 
@@ -539,7 +600,7 @@ function showFinalScreen() {
 
 <p class="finish-footer">
     With all our love,<br>
-    <strong>The Family ❤️</strong><br><br>
+    <strong>❤️ Kevin & Dawn ❤️</strong><br><br>
     Diamond Wedding Anniversary • 2026
 </p>
 
@@ -686,21 +747,14 @@ printResultsButton.addEventListener("click", () => {
                 </div>
 
             </div>
-            
+         <button class="print-button" onclick="window.print()">
+    🖨️ Print / Save as PDF
+</button>
         </body>
         </html>
     `);
 
- printWindow.document.close();
-
-printWindow.onload = () => {
-    printWindow.focus();
-    printWindow.print();
-
-    printWindow.onafterprint = () => {
-        printWindow.close();
-    };
-};
+  printWindow.document.close();
 });
 
 viewSlideshowButton.addEventListener("click", () => {
@@ -911,7 +965,7 @@ function showSlideshowEnding() {
 
             <p class="finish-footer">
                 With all our love,<br>
-                <strong>The Family ❤️</strong>
+                <strong>Kevin & Dawn ❤️</strong>
             </p>
 
             <div class="finish-buttons">
