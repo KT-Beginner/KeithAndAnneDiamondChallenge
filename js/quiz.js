@@ -106,7 +106,7 @@ const roundInfo = {
     "❤️ Keith & Anne": {
         title: "❤️ Final Round – Keith & Anne",
         photo: "images/rounds/diamond.jpg",
-        message: "One last celebration of an incredible 60 years of love, laughter and memories. Good luck!"
+        message: "The Anniversary Quiz train has nearly reached the station. Just a few more stops left to celebrate an incredible 60 years of love, laughter and memories. Good luck!"
     }
 
 };
@@ -134,12 +134,16 @@ continueRound.addEventListener("click", () => {
 // ==========================================
 // Load Question
 // ==========================================
-
 function loadQuestion() {
     const q = questions[currentQuestion];
 
     if (q.round !== currentRound) {
         currentRound = q.round;
+
+        // Hide the previous question's photo before showing the next round
+        photoFrame.style.display = "none";
+        questionImage.style.display = "none";
+
         showRound(currentRound);
         return;
     }
@@ -418,13 +422,21 @@ if (answerAudio) {
 };
         }
 
-        if (currentQuestion === questions.length - 1) {
-    nextQuestion.textContent = "🎉 That's All Folks!";
-} else {
-    nextQuestion.textContent = "Next Question ➜";
-}
+       if (currentQuestion === questions.length - 1) {
 
-nextQuestion.style.display = "inline-block";
+    nextQuestion.textContent = "🎉 That's All Folks!";
+
+    // Show alongside the final answer reveal
+    setTimeout(() => {
+        nextQuestion.style.display = "inline-block";
+    }, 1200);
+
+} else {
+
+    nextQuestion.textContent = "Next Question ➜";
+    nextQuestion.style.display = "inline-block";
+
+}
 
     } else {
 
@@ -538,8 +550,7 @@ function showFinalScreen() {
 
     }
 
-    launchConfetti();
-
+   
 congratulationsSound.currentTime = 0;
 congratulationsSound.play()
 
@@ -551,6 +562,8 @@ congratulationsSound.play()
     });
 
 congratulationsSound.onended = () => {
+
+    launchConfetti();
 
     cheerSound.currentTime = 0;
 
@@ -588,7 +601,7 @@ congratulationsSound.onended = () => {
             </p>
 
             <p class="finish-thanks">
-    ❤️ Thank you for taking part in
+    💎 Thank you for taking part in
     <strong>Keith & Anne's Diamond Challenge</strong>
     and helping them celebrate
     <strong>60 wonderful years of marriage.</strong>
@@ -682,10 +695,11 @@ printResultsButton.addEventListener("click", () => {
                     border-radius: 15px;
                 }
 
-                h1 {
-                    color: #7a1838;
-                    text-align: center;
-                }
+               h1 {
+    color: #7a1838;
+    text-align: center;
+    font-size: 1.8rem;
+}
 
                 .score {
                     text-align: center;
@@ -965,7 +979,7 @@ function showSlideshowEnding() {
 
             <p class="finish-footer">
                 With all our love,<br>
-                <strong>Kevin & Dawn ❤️</strong>
+                <strong>❤️ Kevin & Dawn ❤️</strong>
             </p>
 
             <div class="finish-buttons">

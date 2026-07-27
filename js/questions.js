@@ -79,6 +79,43 @@ const questions = [
     photoTitle: "🎵 Out of Time",
     photoText: "Out of time - The song was written by Mick Jagger and Keith Richards. The Rolling Stones' own version was also released in 1966 on their 'Aftermath' album.",
     },
+    { 
+    round: "👨‍👩‍👧 Family",
+    question: "What is the name of this seaside ride?",
+    image: "images/quiz/carousel.jpg",
+    
+    answers: [
+        "Helter Skelter",
+        "Waltzer",
+        "Donkey Ride",
+        "Carousel"
+    ],
+    correct: 3,
+    photoTitle: "🎠 Fun at the Fair",
+     showPhotoTitleAfterAnswer: true
+},
+{
+    round: "👨‍👩‍👧 Family",
+    
+    question: "Where was this photograph taken",
+
+    image: "images/quiz/pool.jpg",
+caption: "☀️💦Cooling off on a hot summer's day.",
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/norwood.jpg",
+   
+    answers: [
+        "Brookside Glen",
+        "Norwood Avenue",
+        "The Green",
+        "Wype Road"
+    ],
+
+    correct: 1,
+        
+     photoTitle: "🏠128 Norwood Avenue, Hasland",
+    
+},
     {
     round: "👨‍👩‍👧 Family",
     
@@ -141,6 +178,27 @@ const questions = [
     photoTitle: "📸 Front row, second from the left",
     showPhotoTitleAfterAnswer: true
 },
+{
+    round: "👨‍👩‍👧 Family",
+    
+    question: "In the 1980s Keith was Head of William Rhodes Secondary School.  Why did he make the news in 1987?",
+
+    image: "images/quiz/keithschool.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/police.jpg",
+       
+    answers: [
+        "He won a national 'Head Teacher of the Year' award",
+        "He broke the world record for the longest assembly",
+        "He was sent a kissogram by a practical joker",
+        "He appeared on Blue Peter with the school choir"
+    ],
+
+    correct: 2,   
+
+     photoTitle: "👮‍♀️Here's the newspaper clip",
+},
 
 {
         round: "👨‍👩‍👧 Family",
@@ -165,6 +223,27 @@ const questions = [
         photoText: "⛪St Thomas' Church, Brampton.",
         revealImageAfterAnswer: true
     },
+    {
+        round: "👨‍👩‍👧 Family",
+        question: "Which caption best fits this photo?",
+
+        image: "images/quiz/babylaura.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/babylaura2.jpg",
+
+        answers: [
+            "Christmas morning",
+            "Our very first grandchild",
+            "A visit to the zoo",
+            "Celebrating an Anniversary together"
+        ],
+        correct: 1,
+        
+        photoTitle: "🍼Hello Laura!",
+        photoText: "🧸 A new addition to the family",
+        revealImageAfterAnswer: true
+    },
 {
      round: "👨‍👩‍👧 Family",
     question: "Which one of these outlaws stole from the rich to give to the poor?",
@@ -178,6 +257,31 @@ const questions = [
     image: "images/quiz/robin.jpg",
     photoTitle: "🌳🏹 Robin Hood and his merry visitors",
     showPhotoTitleAfterAnswer: true
+},
+{
+    round: "👨‍👩‍👧 Family",
+    question: "You will find the Mappa Mundi in this cathedral, in which city?",
+
+    image: "images/quiz/hereford.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/hereford2.jpg",
+    
+    answers: [
+        
+        "York",
+        "Hereford",
+        "Canterbury",
+        "Ely"
+    ],
+
+    correct: 1,
+    
+    photoTitle: "🪙⭐ July 2016.",
+    showPhotoTitleAfterAnswer: true,
+
+     photoText: "🏇 One of Keith & Anne's Golden Anniversary celebrations (50 years together)",
+    
 },
 
     {
@@ -289,6 +393,42 @@ const questions = [
 },  
 {
         round: "🏖️ Holidays",
+    question: "On a tour of which region in 2022 did they visit an umbrella museum? Hint: Only a few kilometers from Switzerland.",
+     image: "images/quiz/umbrella.jpg",
+    answers: [
+        "The Greek Islands",
+        "The Balkans",
+        "The South of France",
+        "The Italian Lakes"
+    ],
+    correct: 3,
+
+    revealImage: "images/quiz/italyrain.jpg",
+    photoTitle: "☔Keith should have bought one!",
+    photoText: "🍺 Day written off.  Time for a beer.",
+    revealImageAfterAnswer: true,
+    
+},
+{
+        round: "🏖️ Holidays",
+    question: "Which lake was this on the same trip?",
+     image: "images/quiz/maggiore.jpg",
+    caption: "☀️ Never mind - The sun will come out tomorrow!",
+    answers: [
+        "Lake Orta",
+        "Lake Garda",
+        "Lake Maggiore",
+        "Lake Como"
+    ],
+    correct: 2,
+
+    revealImage: "images/quiz/pizza.jpg",
+    photoTitle: "🍕🍺Much nicer than chicken curry!",
+    revealImageAfterAnswer: true,
+    
+},
+{
+        round: "🏖️ Holidays",
     question: "A visit to the Storehouse on their trip to Dublin in March 2024 included a sample of...",
     answers: [
         "Potato cakes",
@@ -328,6 +468,21 @@ const questions = [
     image: "images/quiz/chugurma.jpg",
    photoTitle: "🎩 Trying on a Chugurma",
     revealImageAfterAnswer: true
+},
+{ 
+    round: "📅 Guess the Year",
+    question: "Which year is this?",
+    image: "images/quiz/babykevin.jpg",
+    
+    answers: [
+        "1967",
+        "1968",
+        "1969",
+        "1970"
+    ],
+    correct: 0,
+    photoTitle: "🍼Kevin aged 2 weeks",
+     showPhotoTitleAfterAnswer: true
 },
 {
      round: "📅 Guess the Year",
@@ -455,6 +610,10 @@ const questions = [
     question: "What year was this day at the races?",
 
     image: "images/quiz/races.jpg",
+caption: "🧺 Picnic at the racecourse",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/races2.jpg",
     
     answers: [
         
@@ -466,7 +625,7 @@ const questions = [
 
     correct: 2,
     
-    photoTitle: "🧺 Picnic at the racecourse",
+    photoTitle: "🪙⭐ July 2016.",
     showPhotoTitleAfterAnswer: true,
 
      photoText: "🏇 Celebrating Keith & Anne's Golden Anniversary (50 years together)",
@@ -567,7 +726,7 @@ const questions = [
     audioFull: "audio/poweroflove-full.mp3",
     image: "images/quiz/poweroflove.jpg",
     revealImageAfterAnswer: true,
-    photoTitle: "💎🍿 One of Karen's favourites!",
+    photoTitle: "💎🍿 One of Karen's favourite movies!",
     photoText: "🎬 Huey Lewis himself appears as the school audition judge who rejects the band for being 'too darn loud!'"
 },
 {
@@ -586,7 +745,7 @@ const questions = [
     audioFull: "audio/rihanna-full.mp3",
     image: "images/quiz/rihanna.jpg",
     revealImageAfterAnswer: true,
-    photoTitle: "This song became one of Rihanna's biggest worldwide hits",
+    photoTitle: "🎵This song became one of Rihanna's biggest worldwide hits",
     photoText: "💎'Diamonds' was written by Australian singer-songwriter Sia, who reportedly wrote the lyrics in just 14 minutes"
 },
 {
@@ -626,8 +785,8 @@ const questions = [
 
     correct: 1,
 
-     photoTitle: "No. This cake was Karen and Adam's.",
-    photoText: "🎂Made with love for their special day!",
+     photoTitle: "🎂No. This cake was Karen and Adam's.",
+    photoText: "❤️Made with love for their special day!",
 },
 {
     round: "✅ True or False",
@@ -703,9 +862,9 @@ correct: 0,
 
     correct: 1,
 
-    photoTitle: "🥂 What a way to spend an evening. Cheers!",
-    photoText: "🐘 No. This safari was in Zimbabwe.",
-
+    photoTitle: "🐘 No. This safari was in Zimbabwe.",
+    photoText: "🥂 What a way to spend an evening. Cheers!",
+    
     showPhotoTitleAfterAnswer: true
 },
    {
@@ -746,6 +905,48 @@ correct: 0,
     photoTitle: "Isle of Man 2019",
     photoText: "🏍️ Anne & Keith on the Isle of Man with Peter & Janet",
     showPhotoTitleAfterAnswer: true
+},
+{
+    round: "❤️ Keith & Anne",
+    question: "🚆 Which famous Swiss train is this?",
+  
+    image: "images/quiz/berninaexpress.jpg",
+  
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/berninaview.jpg",
+   
+    answers: [
+        "Eurostar",
+        "GoldenPass Express",
+        "Bernina Express",
+        "Glacier Express"
+    ],
+
+    correct: 2,
+
+    photoTitle: "🚞 Views from the Bernina Express",
+        
+},
+{
+    round: "❤️ Keith & Anne",
+    question: "🚆 Which famous Swiss train is this?",
+  
+    image: "images/quiz/glacierexpress.jpg",
+  
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/glacierview.jpg",
+   
+    answers: [
+        "Eurostar",
+        "GoldenPass Express",
+        "Bernina Express",
+        "Glacier Express"
+    ],
+
+    correct: 3,
+
+    photoTitle: "🚞 Views from the Glacier Express",
+        
 },
  {
     round: "❤️ Keith & Anne",
