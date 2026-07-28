@@ -907,6 +907,33 @@ correct: 0,
     showPhotoTitleAfterAnswer: true
 },
 {
+    round: "What Happened Next?",
+    type: "video",
+
+    question: "🎂How many puffs did it take Laura to blow out the candles?",
+
+    startImage: "images/quiz/7thbirthdaystill1.jpg",
+    video: "videos/7thbirthday1.mp4",
+    endImage: "images/quiz/7thbirthdaystill2.jpg",
+
+    revealVideo: "videos/7thbirthday2.mp4",
+    revealImage: "images/quiz/7thbithdaystill3.jpg",
+
+    photoTitle: "🎂 Three puffs",
+    photoText: "🕯️At least she wasn't blowing out Keith's candles!",
+
+    answers: [
+        "One",
+        "Two",
+        "Three",
+        "Four"
+    ],
+
+    correct: 2,
+    
+    explanation: "..."
+},
+{
     round: "❤️ Keith & Anne",
     question: "🚆 Which famous Swiss train is this?",
   

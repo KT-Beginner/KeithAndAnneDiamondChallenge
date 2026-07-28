@@ -7,7 +7,7 @@
 const playerName = localStorage.getItem("playerName") || "Guest";
 
 // Quiz state
-let currentQuestion = 0;
+let currentQuestion = 51;
 let score = 0;
 let currentRound = "";
 let playerAnswers = [];
@@ -21,12 +21,14 @@ const scoreText = document.getElementById("score");
 const questionNumber = document.getElementById("questionNumber");
 const question = document.getElementById("question");
 const questionImage = document.getElementById("questionImage");
+const questionVideo = document.getElementById("questionVideo");
 const imageCaption = document.getElementById("imageCaption");
 const photoFrame = document.getElementById("photoFrame");
 const feedback = document.getElementById("feedback");
 const progress = document.getElementById("progress");
 const playClip = document.getElementById("playClip");
 const nextQuestion = document.getElementById("nextQuestion");
+
 
 const buttons = document.querySelectorAll(".answer");
 const correctSound = new Audio("sounds/correct.mp3");
@@ -101,7 +103,11 @@ const roundInfo = {
     title: "✅ Round 6 – True or False",
     photo: "images/rounds/true-false.jpg",
     message: "Decide whether each statement is true or false. Some are easy... others might catch you out!"
-
+},
+"🎬 What Happened Next?": { 
+    title: "✅ Round 7 – What Happened Next?",
+    photo: "images/rounds/true-false.jpg",
+    message: "Watch these video clips. Can you guess what happens next?"
 },
     "❤️ Keith & Anne": {
         title: "❤️ Final Round – Keith & Anne",
@@ -169,11 +175,15 @@ feedback.style.display = "block";
     playClip.disabled = false;
     playClip.textContent = "▶️ Play Clip";
 
+    questionVideo.pause();
+    questionVideo.style.display = "none";
+    questionVideo.removeAttribute("src");
+
     progress.style.width =
         (currentQuestion / questions.length) * 100 + "%";
 
-  if (q.image) {
-    questionImage.src = q.image;
+ if (q.image || q.startImage) {
+    questionImage.src = q.image || q.startImage;
     questionImage.className = "question-image";
 
     imageCaption.textContent = q.caption || "";
@@ -198,6 +208,47 @@ feedback.style.display = "block";
 
     imageCaption.textContent = "";
     imageCaption.style.display = "none";
+}
+// ==========================================
+// Video question
+// ==========================================
+if (q.type === "video") {
+
+    photoFrame.style.display = "block";
+
+    questionImage.src = q.startImage;
+    questionImage.style.display = "block";
+
+    questionVideo.style.display = "none";
+
+    playClip.style.display = "inline-block";
+    playClip.textContent = "▶️ Play Clip";
+
+    playClip.onclick = () => {
+
+    questionVideo.src = q.video;
+    questionVideo.currentTime = 0;
+
+    playClip.disabled = true;
+
+    questionVideo.onplaying = () => {
+        questionImage.style.display = "none";
+        questionVideo.style.display = "block";
+    };
+
+    questionVideo.play();
+
+    questionVideo.onended = () => {
+
+        questionVideo.style.display = "none";
+
+        questionImage.src = q.endImage;
+        questionImage.style.display = "block";
+
+        playClip.disabled = false;
+        playClip.textContent = "▶️ Play Again";
+    };
+};
 }
 if (q.audioQuestion) {
     playClip.style.display = "inline-block";
@@ -316,6 +367,58 @@ setTimeout(() => {
     question.style.display = "none";
     feedback.style.display = "none";
 
+   if (q.type === "video" && q.revealVideo) {
+
+    buttons.forEach(btn => btn.style.display = "none");
+
+    // Do not allow moving on until the reveal video finishes
+    nextQuestion.style.display = "none";
+    nextQuestion.disabled = true;
+
+    questionVideo.src = q.revealVideo;
+    questionVideo.currentTime = 0;
+
+    questionVideo.onplaying = () => {
+        questionImage.style.display = "none";
+        questionVideo.style.display = "block";
+    };
+
+    questionVideo.onended = () => {
+
+        questionVideo.style.display = "none";
+
+        photoFrame.style.display = "block";
+        questionImage.src = q.revealImage;
+        questionImage.style.display = "block";
+
+        if (q.photoTitle || q.photoText) {
+
+    imageCaption.innerHTML = `
+        ${q.photoTitle
+            ? `<strong class="photo-note-title">${q.photoTitle}</strong>`
+            : ""}
+        ${q.photoText
+            ? `<span class="photo-note-text">${q.photoText}</span>`
+            : ""}
+    `;
+
+    imageCaption.style.display = "block";
+} else {
+    imageCaption.style.display = "none";
+}
+
+        nextQuestion.textContent =
+            currentQuestion === questions.length - 1
+                ? "🎉 That's All Folks!"
+                : "Next Question ➜";
+
+        nextQuestion.disabled = false;
+        nextQuestion.style.display = "inline-block";
+    };
+
+    questionVideo.play();
+}
+
     if ((q.revealImageAfterAnswer || q.showPhotoTitleAfterAnswer) && q.image) {
 
     buttons.forEach(btn => btn.style.display = "none");
@@ -360,6 +463,9 @@ const answerAudio =
     questions[currentQuestion].audio;
 
 function moveToNextQuestion() {
+    questionVideo.pause();
+    questionVideo.style.display = "none";
+
     card.classList.add("fade-out");
 
     setTimeout(() => {
@@ -458,14 +564,17 @@ if (answerAudio) {
 
 } else {
 
-    if (currentQuestion === questions.length - 1) {
-        nextQuestion.textContent = "🎉 That's All Folks!";
-    } else {
-        nextQuestion.textContent = "Next Question ➜";
+    // Video questions show this only after the reveal video finishes
+    if (q.type !== "video") {
+
+        if (currentQuestion === questions.length - 1) {
+            nextQuestion.textContent = "🎉 That's All Folks!";
+        } else {
+            nextQuestion.textContent = "Next Question ➜";
+        }
+
+        nextQuestion.style.display = "inline-block";
     }
-
-    nextQuestion.style.display = "inline-block";
-
 }
     });
 });
