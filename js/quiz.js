@@ -7,7 +7,7 @@
 const playerName = localStorage.getItem("playerName") || "Guest";
 
 // Quiz state
-let currentQuestion = 51;
+let currentQuestion = 0;
 let score = 0;
 let currentRound = "";
 let playerAnswers = [];
