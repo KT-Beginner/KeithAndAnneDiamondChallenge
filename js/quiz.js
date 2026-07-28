@@ -105,8 +105,8 @@ const roundInfo = {
     message: "Decide whether each statement is true or false. Some are easy... others might catch you out!"
 },
 "🎬 What Happened Next?": { 
-    title: "✅ Round 7 – What Happened Next?",
-    photo: "images/rounds/true-false.jpg",
+    title: "🎬 Round 7 – What Happened Next?",
+    photo: "images/rounds/whatnext.jpg",
     message: "Watch these video clips. Can you guess what happens next?"
 },
     "❤️ Keith & Anne": {
