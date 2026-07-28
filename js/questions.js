@@ -277,7 +277,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
 
     correct: 1,
     
-    photoTitle: "🪙⭐ July 2016.",
+    photoTitle: "🪙⭐ Hereford July 2016.",
     showPhotoTitleAfterAnswer: true,
 
      photoText: "🏇 One of Keith & Anne's Golden Anniversary celebrations (50 years together)",
@@ -588,7 +588,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
 },
 {
     round: "📅 Guess the Year",
-    question: "What year was this photo taken? Hint – it was the year of the London Olympics and the Queen's Diamond Jubilee.",
+    question: "What year was this photo taken? Hint: it was the year of the London Olympics and the Queen's Diamond Jubilee.",
 
     image: "images/quiz/2012.jpg",
 
@@ -934,6 +934,33 @@ correct: 0,
     explanation: "..."
 },
 {
+    round: "🎬 What Happened Next?",
+    type: "video",
+
+    question: "❄️Who threw the next snowball?",
+
+    startImage: "images/quiz/snowstill1.jpg",
+    video: "videos/snow1.mp4",
+    endImage: "images/quiz/snowstill2.jpg",
+
+    revealVideo: "videos/snow2.mp4",
+    revealImage: "images/quiz/snowstill3.jpg",
+
+    photoTitle: "🧤🧣 It was Lois",
+    
+
+    answers: [
+        "Adam",
+        "Karen",
+        "Laura",
+        "Lois"
+    ],
+
+    correct: 3,
+    
+    explanation: "..."
+},
+{
     round: "❤️ Keith & Anne",
     question: "🚆 Which famous Swiss train is this?",
   
@@ -979,7 +1006,7 @@ correct: 0,
     round: "❤️ Keith & Anne",
     question: "❤️ On 30 July 2026, how many days had Keith & Anne been married? (You may use a calculator!)",
   
-    image: "images/quiz/diamond.jpg",
+    image: "images/quiz/diamond2.jpg",
   
     answers: [
         "21,900 days",
