@@ -909,6 +909,7 @@ viewSlideshowButton.addEventListener("click", () => {
 });
 
 playAgainButton.addEventListener("click", () => {
+    sessionStorage.removeItem("diamondQuizUnlocked");
     window.location.href = "index.html";
 });
 }
@@ -1139,16 +1140,18 @@ document
         startSlideshow();
     });
     document
-        .getElementById("slideshowHome")
-        .addEventListener("click", () => {
-            window.location.href = "index.html";
-        });
+    .getElementById("slideshowHome")
+    .addEventListener("click", () => {
+        sessionStorage.removeItem("diamondQuizUnlocked");
+        window.location.href = "index.html";
+    });
 
     document
-        .getElementById("slideshowPlayAgain")
-        .addEventListener("click", () => {
-            window.location.href = "quiz.html";
-        });
+    .getElementById("slideshowPlayAgain")
+    .addEventListener("click", () => {
+        sessionStorage.removeItem("diamondQuizUnlocked");
+        window.location.href = "index.html";
+    });
 }
 // Start the quiz
 loadQuestion();
