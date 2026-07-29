@@ -565,6 +565,26 @@ caption: "☀️💦Cooling off on a hot summer's day.",
     correct: 2
 },
 {
+ round: "📅 Guess the Year",
+     question: "Which year is this?",
+   
+    image: "images/quiz/treadmill.jpg",
+    revealVideo: "videos/treadmill1.mp4",
+    revealImage: "images/quiz/treadmill2.jpg",
+
+    photoTitle: "🎉January 2008",
+    photoText: "🎂 Lois' 5th Birthday",
+
+     answers: [
+        "2005",
+        "2006",
+        "2007",
+        "2008"
+    ],
+    correct: 3,
+
+},
+{
     round: "📅 Guess the Year",
     question: "What year was this school photo taken?",
 
@@ -947,7 +967,7 @@ correct: 0,
     revealImage: "images/quiz/snowstill3.jpg",
 
     photoTitle: "🧤🧣 It was Lois",
-    
+    photoText: "🐣 Easter 2008 in Chesterfield",
 
     answers: [
         "Adam",
@@ -960,6 +980,27 @@ correct: 0,
     
     explanation: "..."
 },
+{
+  round: "🎬 What Happened Next?",
+     question: "What colour tea cups did Laura & Lois choose?",
+   
+    image: "images/quiz/teacups.jpg",
+    revealVideo: "videos/teacups.mp4",
+    revealImage: "images/quiz/teacups2.jpg",
+
+    photoTitle: "🐐 Pettits Animal Adventure Park 2008",
+    photoText: "☕ Mad Hatter's Tea Cups",
+
+     answers: [
+        "Pink & Yellow",
+        "Yellow & Green",
+        "Green & Pink",
+        "Both chose Pink"
+    ],
+    correct: 0,
+
+},
+
 {
     round: "❤️ Keith & Anne",
     question: "🚆 Which famous Swiss train is this?",

@@ -1527,3 +1527,50 @@ img {
     -webkit-text-fill-color: #28a745;
     font-weight: bold;
 }
+/* Password landing screen */
+
+body.quiz-locked > *:not(#passwordGate) {
+    display: none !important;
+}
+
+.password-gate {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.password-box {
+    width: 100%;
+    max-width: 440px;
+    padding: 30px;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+.password-box input {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 15px 0;
+    padding: 14px;
+    font-size: 1.1rem;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.password-box button {
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.password-message {
+    min-height: 24px;
+    margin-top: 12px;
+    color: #b00020;
+    font-weight: bold;
+}

@@ -61,6 +61,7 @@ document.addEventListener("click", () => {
 
 const card = document.querySelector(".card");
 
+
 const imageModal = document.getElementById("imageModal");
 const modalImage = document.getElementById("modalImage");
 const closeModal = document.getElementById("closeModal");
@@ -174,7 +175,7 @@ feedback.style.display = "block";
     playClip.style.display = "none";
     playClip.disabled = false;
     playClip.textContent = "▶️ Play Clip";
-
+   
     questionVideo.pause();
     questionVideo.style.display = "none";
     questionVideo.removeAttribute("src");
@@ -270,11 +271,13 @@ if (q.audioQuestion) {
 
         currentQuestionAudio.onended = () => {
 
-    // Hide the button once the intro has finished
-    playClip.style.display = "none";
+    // Allow the question clip to be played again
+playClip.style.display = "inline-block";
+playClip.disabled = false;
+playClip.textContent = "▶️ Play Again";
 
-    // Now allow the user to answer
-    buttons.forEach(btn => btn.disabled = false);
+// Now allow the user to answer
+buttons.forEach(btn => btn.disabled = false);
 };
     };
 }
@@ -367,7 +370,7 @@ setTimeout(() => {
     question.style.display = "none";
     feedback.style.display = "none";
 
-   if (q.type === "video" && q.revealVideo) {
+   if (q.revealVideo) {
 
     buttons.forEach(btn => btn.style.display = "none");
 
@@ -414,6 +417,23 @@ setTimeout(() => {
 
         nextQuestion.disabled = false;
         nextQuestion.style.display = "inline-block";
+
+        playClip.style.display = "inline-block";
+        playClip.disabled = false;
+    playClip.textContent = "▶️ Play Again";
+
+playClip.onclick = () => {
+
+    nextQuestion.style.display = "none";
+
+    questionImage.style.display = "none";
+    questionVideo.style.display = "block";
+
+    questionVideo.currentTime = 0;
+    questionVideo.play();
+
+    playClip.disabled = true;
+};
     };
 
     questionVideo.play();
