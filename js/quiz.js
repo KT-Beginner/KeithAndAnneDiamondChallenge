@@ -1,3 +1,7 @@
+// Redirect anyone who hasn't unlocked the quiz
+if (sessionStorage.getItem("diamondQuizUnlocked") !== "true") {
+    window.location.href = "index.html";
+}
 // ==========================================
 // Keith & Anne's Diamond Challenge
 // Quiz Version 2
