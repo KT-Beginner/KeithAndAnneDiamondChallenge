@@ -11,7 +11,7 @@ if (sessionStorage.getItem("diamondQuizUnlocked") !== "true") {
 const playerName = localStorage.getItem("playerName") || "Guest";
 
 // Quiz state
-let currentQuestion = 0;
+let currentQuestion = 5;
 let score = 0;
 let currentRound = "";
 let playerAnswers = [];

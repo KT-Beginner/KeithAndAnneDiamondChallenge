@@ -14,7 +14,7 @@ const questions = [
 
         image: "images/quiz/wedding.jpg",
         photoTitle: "💍 Wedding Day 30th July 1966",
-        photoText: "⛪St.Paul's Methodist Church, Dronfield.",
+        photoText: "⛪ St.Paul's Methodist Church, Dronfield.",
         revealImageAfterAnswer: true
     },
     {
@@ -42,8 +42,8 @@ const questions = [
         ],
         correct: 2,
         image: "images/quiz/wembley.jpg",
-        photoTitle: "⚽🏆 England beat West Germany 4–2 after extra time",
-        photoText: "The Jules Rimet Cup was the original trophy awarded to the winner of the FIFA World Cup.",
+        photoTitle: "⚽ England beat West Germany 4–2 after extra time",
+        photoText: "🏆 The Jules Rimet Cup was the original trophy awarded to the winner of the FIFA World Cup.",
         revealImageAfterAnswer: true
     },
     {
@@ -83,7 +83,11 @@ const questions = [
     round: "👨‍👩‍👧 Family",
     question: "What is the name of this seaside ride?",
     image: "images/quiz/carousel.jpg",
-    
+    caption: "🎠 Fun at the Fair",
+
+     revealImageAfterAnswer: true,
+    revealImage: "images/quiz/roundabout.jpg",
+
     answers: [
         "Helter Skelter",
         "Waltzer",
@@ -91,7 +95,7 @@ const questions = [
         "Carousel"
     ],
     correct: 3,
-    photoTitle: "🎠 Fun at the Fair",
+    photoTitle: "🎠 Some Traditions Never Change",
      showPhotoTitleAfterAnswer: true
 },
 {
@@ -100,7 +104,7 @@ const questions = [
     question: "Where was this photograph taken",
 
     image: "images/quiz/pool.jpg",
-caption: "☀️💦Cooling off on a hot summer's day.",
+caption: "☀️💦 Cooling off on a hot summer's day.",
     revealImageAfterAnswer: true,
     revealImage: "images/quiz/norwood.jpg",
    
@@ -113,7 +117,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
 
     correct: 1,
         
-     photoTitle: "🏠128 Norwood Avenue, Hasland",
+     photoTitle: "🏠 128 Norwood Avenue, Hasland",
     
 },
     {
@@ -197,7 +201,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
 
     correct: 2,   
 
-     photoTitle: "👮‍♀️Here's the newspaper clip",
+     photoTitle: "👮‍♀️ Here's the newspaper clip",
 },
 
 {
@@ -220,7 +224,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
          manualNext: true,   
 
         photoTitle: "💍 Wedding Day 8th July 2000",
-        photoText: "⛪St Thomas' Church, Brampton.",
+        photoText: "⛪ St Thomas' Church, Brampton.",
         revealImageAfterAnswer: true
     },
     {
@@ -240,7 +244,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
         ],
         correct: 1,
         
-        photoTitle: "🍼Hello Laura!",
+        photoTitle: "🍼 Hello Laura!",
         photoText: "🧸 A new addition to the family",
         revealImageAfterAnswer: true
     },
@@ -390,7 +394,25 @@ caption: "☀️💦Cooling off on a hot summer's day.",
     photoTitle: "🧛 Whitby Abbey steps",
     photoText: "Bram Stoker stayed here in 1890 and the town influenced his novel 'Dracula'.",
     revealImageAfterAnswer: true
-},  
+},
+  {
+        round: "🏖️ Holidays",
+    question: "Later in 2019 Keith & Anne visited the Azores.  Where are these located?",
+     image: "images/quiz/azores.jpg",
+    answers: [
+        "South Atlantic Ocean",
+        "Pacific Ocean",
+        "North Atlantic Ocean",
+        "Indian Ocean"
+    ],
+    correct: 2,
+
+    revealImage: "images/quiz/azores2.jpg",
+    photoTitle: "🍦 Ice Cream Time",
+    photoText: "🌍 The Azores are nine volcanic islands in the North Atlantic Ocean, around 900 miles west of Portugal.",
+    revealImageAfterAnswer: true,
+    
+},
 {
         round: "🏖️ Holidays",
     question: "On a tour of which region in 2022 did they visit an umbrella museum? Hint: Only a few kilometers from Switzerland.",
@@ -404,7 +426,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
     correct: 3,
 
     revealImage: "images/quiz/italyrain.jpg",
-    photoTitle: "☔Keith should have bought one!",
+    photoTitle: "☔ Keith should have bought one!",
     photoText: "🍺 Day written off.  Time for a beer.",
     revealImageAfterAnswer: true,
     
@@ -423,7 +445,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
     correct: 2,
 
     revealImage: "images/quiz/pizza.jpg",
-    photoTitle: "🍕🍺Much nicer than chicken curry!",
+    photoTitle: "🍕🍺 Much nicer than chicken curry!",
     revealImageAfterAnswer: true,
     
 },
@@ -481,7 +503,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
         "1970"
     ],
     correct: 0,
-    photoTitle: "🍼Kevin aged 2 weeks",
+    photoTitle: "🍼 Kevin aged 2 weeks",
      showPhotoTitleAfterAnswer: true
 },
 {
@@ -519,7 +541,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
     round: "📅 Guess the Year",
     question: "Which year did Kevin and Dawn get married? Hint: Robbie Williams went to number 1 with Millenium in this year.",
     image: "images/quiz/kevinwedding.jpg",
-    caption: "🌴🍹 Anyone for a rum punch?",
+    
     answers: [
         "1996",
         "1997",
@@ -527,6 +549,10 @@ caption: "☀️💦Cooling off on a hot summer's day.",
         "1999"
     ],
     correct: 2,
+    photoTitle: "🌴 Grenada 1998",
+    photoText: "🍹 Anyone for a rum punch?",
+    
+    showPhotoTitleAfterAnswer: true,
      audio: "audio/calypso.mp3",    
          manualNext: true,   
 },
@@ -542,7 +568,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
         "2005"
     ],
     correct: 1,
-    photoTitle: "🍼Hello Lois!",
+    photoTitle: "🍼 Hello Lois!",
      showPhotoTitleAfterAnswer: true
 },
 { 
@@ -572,7 +598,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
     revealVideo: "videos/treadmill1.mp4",
     revealImage: "images/quiz/treadmill2.jpg",
 
-    photoTitle: "🎉January 2008",
+    photoTitle: "🎉 January 2008",
     photoText: "🎂 Lois' 5th Birthday",
 
      answers: [
@@ -622,7 +648,7 @@ caption: "☀️💦Cooling off on a hot summer's day.",
 
     correct: 1,
      photoTitle: "📅 2012",
-     photoText: "🥇At the 2012 London Olympics Team GB finished third in the medal table winning 65 medals (29 gold, 17 silver, and 19 bronze).",
+     photoText: "🥇 At the 2012 London Olympics Team GB finished third in the medal table winning 65 medals (29 gold, 17 silver, and 19 bronze).",
      showPhotoTitleAfterAnswer: true,
 },
 {
@@ -765,8 +791,8 @@ caption: "🧺 Picnic at the racecourse",
     audioFull: "audio/rihanna-full.mp3",
     image: "images/quiz/rihanna.jpg",
     revealImageAfterAnswer: true,
-    photoTitle: "🎵This song became one of Rihanna's biggest worldwide hits",
-    photoText: "💎'Diamonds' was written by Australian singer-songwriter Sia, who reportedly wrote the lyrics in just 14 minutes"
+    photoTitle: "🎵 This song became one of Rihanna's biggest worldwide hits",
+    photoText: "💎 'Diamonds' was written by Australian singer-songwriter Sia, who reportedly wrote the lyrics in just 14 minutes"
 },
 {
  round: "🎵 Music Round",
@@ -784,7 +810,7 @@ caption: "🧺 Picnic at the racecourse",
     audioFull: "audio/lover-full.mp3",
     image: "images/quiz/lover.jpg",
     revealImageAfterAnswer: true,
-    photoTitle: "👩‍❤️‍💋‍👨Taylor Swift – Lover (2019)",
+    photoTitle: "👩‍❤️‍💋‍👨 Taylor Swift – Lover (2019)",
     photoText: "🎬 'Lover' featured on the soundtrack of the 2022 TV series 'The Summer I Turned Pretty'"
 },
 {
@@ -805,8 +831,8 @@ caption: "🧺 Picnic at the racecourse",
 
     correct: 1,
 
-     photoTitle: "🎂No. This cake was Karen and Adam's.",
-    photoText: "❤️Made with love for their special day!",
+     photoTitle: "🎂 No. This cake was Karen and Adam's.",
+    photoText: "❤️ Made with love for their special day!",
 },
 {
     round: "✅ True or False",
@@ -905,20 +931,41 @@ correct: 0,
 
     correct: 0,
         
-     photoTitle: "🎁🎈In the garden at Ramsey 4th September 2004",
+     photoTitle: "🎁🎈 In the garden at Ramsey 4th September 2004",
     
 },
 {
-    round: "✅ True or False",
+     round: "✅ True or False",
     type: "truefalse",
-    question: "Anne & Keith visited the Isle of Man in 2019 with Sheila & Tony.",
 
+    question: "This ancient site is in Peru",
+
+    image: "images/quiz/mexico.jpg",
+
+    revealImageAfterAnswer: true,
+    revealImage: "images/quiz/mexico2.jpg",
+   
     answers: [
         "True",
         "False"
     ],
 
     correct: 1,
+        
+    photoTitle: "🌵🏛️ Mexico 2015",
+    photoText: "🚤 They also took a speedboat ride through the Sumidero Canyon.",
+},
+{
+    round: "✅ True or False",
+    type: "truefalse",
+    question: "Anne & Keith visited the Isle of Man in 2019 with Peter & Janet.",
+
+    answers: [
+        "True",
+        "False"
+    ],
+
+    correct: 0,
 
     image: "images/quiz/man.jpg",
     revealImageAfterAnswer: true,
@@ -930,7 +977,7 @@ correct: 0,
     round: "🎬 What Happened Next?",
     type: "video",
 
-    question: "🎂How many puffs did it take Laura to blow out the candles?",
+    question: "🎂 How many puffs did it take Laura to blow out the candles?",
 
     startImage: "images/quiz/7thbirthdaystill1.jpg",
     video: "videos/7thbirthday1.mp4",
@@ -940,7 +987,7 @@ correct: 0,
     revealImage: "images/quiz/7thbithdaystill3.jpg",
 
     photoTitle: "🎂 Three puffs",
-    photoText: "🕯️At least she wasn't blowing out Keith's candles!",
+    photoText: "🕯️ At least she wasn't blowing out Keith's candles!",
 
     answers: [
         "One",
@@ -957,7 +1004,7 @@ correct: 0,
     round: "🎬 What Happened Next?",
     type: "video",
 
-    question: "❄️Who threw the next snowball?",
+    question: "❄️ Who threw the next snowball?",
 
     startImage: "images/quiz/snowstill1.jpg",
     video: "videos/snow1.mp4",
