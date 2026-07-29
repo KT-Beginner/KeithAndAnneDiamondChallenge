@@ -106,33 +106,51 @@
 </div>
 
 <!-- Slideshow -->
-<div id="slideshow" class="slideshow hidden">
+<div id="slideshow" class="hidden">
+    <div class="slideshow-viewer">
 
-    <img
-        id="slideshow-image"
-        src=""
-        alt="Keith & Anne Memories">
+        <img
+            id="slideshow-image"
+            src=""
+            alt="Keith and Anne family memories"
+        >
 
-    <div class="slideshow-controls">
+        <div id="slideshowControls" class="slideshow-controls">
 
-        <button id="previousSlide" type="button">
-            ⏮ Previous
-        </button>
+            <button
+                id="closeSlideshow"
+                class="slideshow-close"
+                aria-label="Close slideshow"
+            >
+                ✕
+            </button>
 
-        <button id="pauseSlideshow" type="button">
-            ⏸ Pause
-        </button>
+            <button
+                id="previousSlide"
+                class="slideshow-arrow slideshow-previous"
+                aria-label="Previous photo"
+            >
+                ❮
+            </button>
 
-        <button id="nextSlide" type="button">
-            Next ⏭
-        </button>
+            <button
+                id="nextSlide"
+                class="slideshow-arrow slideshow-next"
+                aria-label="Next photo"
+            >
+                ❯
+            </button>
 
-        <button id="closeSlideshow" type="button">
-            ✖ Close Slideshow
-        </button>
+            <button
+                id="pauseSlideshow"
+                class="slideshow-pause"
+            >
+                ⏸ Pause
+            </button>
+
+        </div>
 
     </div>
-
 </div>
 
     <script src="js/questions.js"></script>

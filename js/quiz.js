@@ -11,7 +11,7 @@ if (sessionStorage.getItem("diamondQuizUnlocked") !== "true") {
 const playerName = localStorage.getItem("playerName") || "Guest";
 
 // Quiz state
-let currentQuestion = 5;
+let currentQuestion = 59;
 let score = 0;
 let currentRound = "";
 let playerAnswers = [];
@@ -975,6 +975,40 @@ const pauseSlideshowButton =
 
 const closeSlideshowButton =
     document.getElementById("closeSlideshow");
+    const slideshow =
+    document.getElementById("slideshow");
+
+const slideshowImage =
+    document.getElementById("slideshow-image");
+
+const slideshowControls =
+    document.getElementById("slideshowControls");
+
+let slideshowControlsTimer = null;
+
+function hideSlideshowControls() {
+    slideshowControls.classList.remove("show");
+}
+
+function showSlideshowControls() {
+    slideshowControls.classList.add("show");
+
+    clearTimeout(slideshowControlsTimer);
+
+    slideshowControlsTimer = setTimeout(() => {
+        hideSlideshowControls();
+    }, 3000);
+}
+
+slideshowImage.addEventListener("click", () => {
+    if (slideshowControls.classList.contains("show")) {
+        hideSlideshowControls();
+        clearTimeout(slideshowControlsTimer);
+    } else {
+        showSlideshowControls();
+    }
+});
+
 
 function displaySlideshowImage() {
     const slideshowImage =
@@ -1035,13 +1069,16 @@ function startSlideshow() {
     pauseSlideshowButton.textContent = "⏸ Pause";
 
     slideshow.classList.remove("hidden");
+hideSlideshowControls();
 
-    displaySlideshowImage();
-    startSlideshowTimer();
+displaySlideshowImage();
+startSlideshowTimer();
 }
 
 
-previousSlideButton.addEventListener("click", () => {
+previousSlideButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+
     slideshowIndex--;
 
     if (slideshowIndex < 0) {
@@ -1049,10 +1086,12 @@ previousSlideButton.addEventListener("click", () => {
     }
 
     displaySlideshowImage();
+    showSlideshowControls();
 });
 
+nextSlideButton.addEventListener("click", (event) => {
+    event.stopPropagation();
 
-nextSlideButton.addEventListener("click", () => {
     slideshowIndex++;
 
     if (slideshowIndex >= slideshowImages.length) {
@@ -1060,8 +1099,8 @@ nextSlideButton.addEventListener("click", () => {
     }
 
     displaySlideshowImage();
+    showSlideshowControls();
 });
-
 
 pauseSlideshowButton.addEventListener("click", () => {
     slideshowPaused = !slideshowPaused;

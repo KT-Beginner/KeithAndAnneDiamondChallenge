@@ -1574,3 +1574,177 @@ body.quiz-locked > *:not(#passwordGate) {
     color: #b00020;
     font-weight: bold;
 }
+/* ==========================================
+   Full-screen final slideshow
+========================================== */
+
+#slideshow {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+#slideshow.hidden {
+    display: none;
+}
+
+.slideshow-viewer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#slideshow-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Controls are hidden until the photo is clicked */
+
+.slideshow-controls {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.5),
+            transparent 25%,
+            transparent 70%,
+            rgba(0, 0, 0, 0.55)
+        );
+}
+
+.slideshow-controls.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.slideshow-controls button {
+    position: absolute;
+    border: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.slideshow-controls button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.slideshow-controls button:active {
+    transform: scale(0.94);
+}
+
+.slideshow-close {
+    top: 18px;
+    right: 18px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.slideshow-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 54px;
+    height: 70px;
+    border-radius: 12px;
+    font-size: 38px;
+}
+
+.slideshow-arrow:active {
+    transform: translateY(-50%) scale(0.94);
+}
+
+.slideshow-previous {
+    left: 18px;
+}
+
+.slideshow-next {
+    right: 18px;
+}
+
+.slideshow-pause {
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    min-width: 120px;
+    padding: 12px 20px;
+    border-radius: 24px;
+    font-size: 17px;
+}
+
+.slideshow-pause:active {
+    transform: translateX(-50%) scale(0.94);
+}
+
+@media (max-width: 600px) {
+    .slideshow-close {
+        top: 12px;
+        right: 12px;
+    }
+
+    .slideshow-arrow {
+        width: 46px;
+        height: 62px;
+        font-size: 31px;
+    }
+
+    .slideshow-previous {
+        left: 10px;
+    }
+
+    .slideshow-next {
+        right: 10px;
+    }
+
+    .slideshow-pause {
+        bottom: 18px;
+        font-size: 16px;
+    }
+}
+#slideshow-image {
+    position: relative;
+    z-index: 1;
+}
+
+.slideshow-controls {
+    z-index: 2;
+}
+
+.slideshow-controls button {
+    z-index: 3;
+}
+/* Let only the slideshow buttons receive clicks */
+.slideshow-controls.show {
+    pointer-events: none;
+}
+
+.slideshow-controls.show button {
+    pointer-events: auto;
+}
