@@ -948,7 +948,6 @@ imageModal.addEventListener("click", (e) => {
 // Start Quiz
 // ==========================================
 
-
 // Final photo slideshow
 
 const slideshowImages = [
@@ -962,7 +961,11 @@ const slideshowImages = [
 
 let slideshowIndex = 0;
 let slideshowTimer = null;
+let slideshowControlsTimer = null;
 let slideshowPaused = false;
+let slideshowTouchStartX = 0;
+let slideshowTouchStartY = 0;
+let slideshowWasSwiped = false;
 
 const previousSlideButton =
     document.getElementById("previousSlide");
@@ -975,7 +978,8 @@ const pauseSlideshowButton =
 
 const closeSlideshowButton =
     document.getElementById("closeSlideshow");
-    const slideshow =
+
+const slideshow =
     document.getElementById("slideshow");
 
 const slideshowImage =
@@ -984,13 +988,30 @@ const slideshowImage =
 const slideshowControls =
     document.getElementById("slideshowControls");
 
-let slideshowControlsTimer = null;
+// Keep the full-screen slideshow outside the animated quiz card.
+// This allows position: fixed to work correctly on iPhones.
+if (slideshow && slideshow.parentElement !== document.body) {
+    document.body.appendChild(slideshow);
+}
+
+function slideshowIsOpen() {
+    return slideshow &&
+        !slideshow.classList.contains("hidden");
+}
 
 function hideSlideshowControls() {
+    if (!slideshowControls) {
+        return;
+    }
+
     slideshowControls.classList.remove("show");
 }
 
 function showSlideshowControls() {
+    if (!slideshowControls) {
+        return;
+    }
+
     slideshowControls.classList.add("show");
 
     clearTimeout(slideshowControlsTimer);
@@ -1000,50 +1021,90 @@ function showSlideshowControls() {
     }, 3000);
 }
 
-slideshowImage.addEventListener("click", () => {
-    if (slideshowControls.classList.contains("show")) {
-        hideSlideshowControls();
-        clearTimeout(slideshowControlsTimer);
-    } else {
-        showSlideshowControls();
-    }
-});
-
-
 function displaySlideshowImage() {
-    const slideshowImage =
-        document.getElementById("slideshow-image");
-
-    if (!slideshowImage) {
+    if (
+        !slideshowImage ||
+        slideshowImages.length === 0
+    ) {
         return;
     }
 
     slideshowImage.src =
         slideshowImages[slideshowIndex];
 
-    slideshowImage.classList.remove("fade-out");
+    slideshowImage.alt =
+        `Slideshow photograph ${slideshowIndex + 1} ` +
+        `of ${slideshowImages.length}`;
 }
 
+function stopSlideshowTimer() {
+    clearInterval(slideshowTimer);
+    slideshowTimer = null;
+}
+
+function closeSlideshow(showEnding = true) {
+    stopSlideshowTimer();
+    clearTimeout(slideshowControlsTimer);
+
+    if (slideshow) {
+        slideshow.classList.add("hidden");
+    }
+
+    document.body.classList.remove(
+        "slideshow-open"
+    );
+
+    hideSlideshowControls();
+
+    if (showEnding) {
+        showSlideshowEnding();
+    }
+}
+
+function showPreviousSlide() {
+    slideshowIndex--;
+
+    if (slideshowIndex < 0) {
+        slideshowIndex =
+            slideshowImages.length - 1;
+    }
+
+    displaySlideshowImage();
+    showSlideshowControls();
+}
+
+function showNextSlide() {
+    slideshowIndex++;
+
+    if (
+        slideshowIndex >=
+        slideshowImages.length
+    ) {
+        slideshowIndex = 0;
+    }
+
+    displaySlideshowImage();
+    showSlideshowControls();
+}
 
 function startSlideshowTimer() {
-    clearInterval(slideshowTimer);
+    stopSlideshowTimer();
 
     slideshowTimer = setInterval(() => {
-
         if (slideshowPaused) {
             return;
         }
 
         slideshowIndex++;
 
-        if (slideshowIndex >= slideshowImages.length) {
-            clearInterval(slideshowTimer);
-
-            const slideshow =
-                document.getElementById("slideshow");
-
-            slideshow.classList.add("hidden");
-            showSlideshowEnding();
+        // After the final photograph has been shown,
+        // close the slideshow and display the
+        // thank-you screen.
+        if (
+            slideshowIndex >=
+            slideshowImages.length
+        ) {
+            closeSlideshow(true);
             return;
         }
 
@@ -1052,84 +1113,205 @@ function startSlideshowTimer() {
     }, 6500);
 }
 
-
 function startSlideshow() {
-    const slideshow =
-        document.getElementById("slideshow");
-
-    if (!slideshow || slideshowImages.length === 0) {
+    if (
+        !slideshow ||
+        !slideshowImage ||
+        slideshowImages.length === 0
+    ) {
         return;
     }
 
-    clearInterval(slideshowTimer);
+    stopSlideshowTimer();
 
     slideshowIndex = 0;
     slideshowPaused = false;
 
-    pauseSlideshowButton.textContent = "⏸ Pause";
+    if (pauseSlideshowButton) {
+        pauseSlideshowButton.textContent =
+            "⏸ Pause";
+    }
 
     slideshow.classList.remove("hidden");
-hideSlideshowControls();
 
-displaySlideshowImage();
-startSlideshowTimer();
+    document.body.classList.add(
+        "slideshow-open"
+    );
+
+    hideSlideshowControls();
+    displaySlideshowImage();
+    startSlideshowTimer();
 }
 
+if (slideshowImage) {
+    slideshowImage.addEventListener(
+        "click",
+        () => {
+            if (slideshowWasSwiped) {
+                slideshowWasSwiped = false;
+                return;
+            }
 
-previousSlideButton.addEventListener("click", (event) => {
-    event.stopPropagation();
+            if (
+                slideshowControls &&
+                slideshowControls.classList
+                    .contains("show")
+            ) {
+                hideSlideshowControls();
 
-    slideshowIndex--;
+                clearTimeout(
+                    slideshowControlsTimer
+                );
+            } else {
+                showSlideshowControls();
+            }
+        }
+    );
 
-    if (slideshowIndex < 0) {
-        slideshowIndex = slideshowImages.length - 1;
+    slideshowImage.addEventListener(
+        "touchstart",
+        (event) => {
+            const touch =
+                event.changedTouches[0];
+
+            slideshowTouchStartX =
+                touch.clientX;
+
+            slideshowTouchStartY =
+                touch.clientY;
+
+            slideshowWasSwiped = false;
+        },
+        { passive: true }
+    );
+
+    slideshowImage.addEventListener(
+        "touchend",
+        (event) => {
+            const touch =
+                event.changedTouches[0];
+
+            const horizontalDistance =
+                touch.clientX -
+                slideshowTouchStartX;
+
+            const verticalDistance =
+                touch.clientY -
+                slideshowTouchStartY;
+
+            // Ignore small movements and
+            // mostly vertical gestures.
+            if (
+                Math.abs(horizontalDistance) < 45 ||
+                Math.abs(horizontalDistance) <
+                    Math.abs(verticalDistance)
+            ) {
+                return;
+            }
+
+            slideshowWasSwiped = true;
+
+            if (horizontalDistance < 0) {
+                showNextSlide();
+            } else {
+                showPreviousSlide();
+            }
+        },
+        { passive: true }
+    );
+}
+
+if (previousSlideButton) {
+    previousSlideButton.addEventListener(
+        "click",
+        (event) => {
+            event.stopPropagation();
+            showPreviousSlide();
+        }
+    );
+}
+
+if (nextSlideButton) {
+    nextSlideButton.addEventListener(
+        "click",
+        (event) => {
+            event.stopPropagation();
+            showNextSlide();
+        }
+    );
+}
+
+if (pauseSlideshowButton) {
+    pauseSlideshowButton.addEventListener(
+        "click",
+        (event) => {
+            event.stopPropagation();
+
+            slideshowPaused =
+                !slideshowPaused;
+
+            if (slideshowPaused) {
+                stopSlideshowTimer();
+
+                pauseSlideshowButton.textContent =
+                    "▶ Play";
+            } else {
+                pauseSlideshowButton.textContent =
+                    "⏸ Pause";
+
+                startSlideshowTimer();
+            }
+
+            showSlideshowControls();
+        }
+    );
+}
+
+if (closeSlideshowButton) {
+    closeSlideshowButton.addEventListener(
+        "click",
+        (event) => {
+            event.stopPropagation();
+            closeSlideshow(true);
+        }
+    );
+}
+
+// Desktop and laptop keyboard controls.
+document.addEventListener(
+    "keydown",
+    (event) => {
+        if (!slideshowIsOpen()) {
+            return;
+        }
+
+        if (event.key === "ArrowLeft") {
+            showPreviousSlide();
+
+        } else if (
+            event.key === "ArrowRight"
+        ) {
+            showNextSlide();
+
+        } else if (
+            event.key === "Escape"
+        ) {
+            closeSlideshow(true);
+
+        } else if (
+            event.key === " " ||
+            event.key === "Spacebar"
+        ) {
+            event.preventDefault();
+
+            if (pauseSlideshowButton) {
+                pauseSlideshowButton.click();
+            }
+        }
     }
-
-    displaySlideshowImage();
-    showSlideshowControls();
-});
-
-nextSlideButton.addEventListener("click", (event) => {
-    event.stopPropagation();
-
-    slideshowIndex++;
-
-    if (slideshowIndex >= slideshowImages.length) {
-        slideshowIndex = 0;
-    }
-
-    displaySlideshowImage();
-    showSlideshowControls();
-});
-
-pauseSlideshowButton.addEventListener("click", () => {
-    slideshowPaused = !slideshowPaused;
-
-    if (slideshowPaused) {
-        clearInterval(slideshowTimer);
-        pauseSlideshowButton.textContent = "▶ Play";
-    } else {
-        pauseSlideshowButton.textContent = "⏸ Pause";
-        startSlideshowTimer();
-    }
-    
-});
-
-    closeSlideshowButton.addEventListener("click", () => {
-
-    clearInterval(slideshowTimer);
-
-    const slideshow =
-        document.getElementById("slideshow");
-
-    slideshow.classList.add("hidden");
-
-    showSlideshowEnding();
-
-});
+);
 
 function showSlideshowEnding() {
-
     card.innerHTML = `
         <div class="finish-screen">
 
@@ -1140,57 +1322,96 @@ function showSlideshowEnding() {
             <p class="finish-message">
                 Thank you for celebrating
                 <strong>
-                    Keith & Anne's Diamond Wedding Anniversary
+                    Keith & Anne's Diamond Wedding
+                    Anniversary
                 </strong>.
             </p>
 
             <p class="finish-message">
-                We hope you've enjoyed looking back over
+                We hope you've enjoyed looking back
+                over
                 <strong>60 wonderful years</strong>
                 of love, laughter and family memories.
             </p>
 
             <p class="finish-footer">
                 With all our love,<br>
-                <strong>❤️ Kevin & Dawn ❤️</strong>
+                <strong>
+                    ❤️ Kevin & Dawn ❤️
+                </strong>
             </p>
 
             <div class="finish-buttons">
 
-    <button id="watchSlideshowAgain" class="start-btn">
-        📸 Watch Slideshow Again
-    </button>
+                <button
+                    id="watchSlideshowAgain"
+                    class="start-btn"
+                >
+                    📸 Watch Slideshow Again
+                </button>
 
-    <button id="slideshowHome" class="start-btn">
-        🏠 Home
-    </button>
+                <button
+                    id="slideshowHome"
+                    class="start-btn"
+                >
+                    🏠 Home
+                </button>
 
-    <button id="slideshowPlayAgain" class="start-btn">
-        🔄 Play Again
-    </button>
+                <button
+                    id="slideshowPlayAgain"
+                    class="start-btn"
+                >
+                    🔄 Play Again
+                </button>
 
-</div>
+            </div>
 
         </div>
     `;
-document
-    .getElementById("watchSlideshowAgain")
-    .addEventListener("click", () => {
-        startSlideshow();
-    });
-    document
-    .getElementById("slideshowHome")
-    .addEventListener("click", () => {
-        sessionStorage.removeItem("diamondQuizUnlocked");
-        window.location.href = "index.html";
-    });
 
     document
-    .getElementById("slideshowPlayAgain")
-    .addEventListener("click", () => {
-        sessionStorage.removeItem("diamondQuizUnlocked");
-        window.location.href = "index.html";
-    });
+        .getElementById(
+            "watchSlideshowAgain"
+        )
+        .addEventListener(
+            "click",
+            () => {
+                startSlideshow();
+            }
+        );
+
+    document
+        .getElementById(
+            "slideshowHome"
+        )
+        .addEventListener(
+            "click",
+            () => {
+                sessionStorage.removeItem(
+                    "diamondQuizUnlocked"
+                );
+
+                window.location.href =
+                    "index.html";
+            }
+        );
+
+    document
+        .getElementById(
+            "slideshowPlayAgain"
+        )
+        .addEventListener(
+            "click",
+            () => {
+                sessionStorage.removeItem(
+                    "diamondQuizUnlocked"
+                );
+
+                window.location.href =
+                    "index.html";
+            }
+        );
 }
+
 // Start the quiz
 loadQuestion();
