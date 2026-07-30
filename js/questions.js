@@ -163,7 +163,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
 
     correct: 3,   
 
-     photoTitle: "🦴Cindy the family dog",
+     photoTitle: "🦴 Cindy the family dog",
 },
 {
     round: "👨‍👩‍👧 Family",
@@ -1029,14 +1029,14 @@ correct: 0,
 },
 {
   round: "🎬 What Happened Next?",
-     question: "What colour tea cups did Laura & Lois choose?",
+     question: "What colour teacups did Laura & Lois choose?",
    
     image: "images/quiz/teacups.jpg",
     revealVideo: "videos/teacups.mp4",
     revealImage: "images/quiz/teacups2.jpg",
 
     photoTitle: "🐐 Pettits Animal Adventure Park 2008",
-    photoText: "☕ Mad Hatter's Tea Cups",
+    photoText: "☕ Mad Hatter's Teacups",
 
      answers: [
         "Pink & Yellow",
@@ -1049,7 +1049,7 @@ correct: 0,
 },
 
 {
-    round: "❤️ Keith & Anne",
+    round: "❤️ Keith and Anne in 2026",
     question: "🚆 Which famous Swiss train is this?",
   
     image: "images/quiz/berninaexpress.jpg",
@@ -1070,7 +1070,7 @@ correct: 0,
         
 },
 {
-    round: "❤️ Keith & Anne",
+    round: "❤️ Keith and Anne in 2026",
     question: "🚆 Which famous Swiss train is this?",
   
     image: "images/quiz/glacierexpress.jpg",
@@ -1091,7 +1091,7 @@ correct: 0,
         
 },
  {
-    round: "❤️ Keith & Anne",
+    round: "❤️ Keith and Anne in 2026",
     question: "❤️ On 30 July 2026, how many days had Keith & Anne been married? (You may use a calculator!)",
   
     image: "images/quiz/diamond2.jpg",

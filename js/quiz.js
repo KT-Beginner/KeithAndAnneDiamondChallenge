@@ -11,7 +11,7 @@ if (sessionStorage.getItem("diamondQuizUnlocked") !== "true") {
 const playerName = localStorage.getItem("playerName") || "Guest";
 
 // Quiz state
-let currentQuestion = 49;
+let currentQuestion = 56;
 let score = 0;
 let currentRound = "";
 let playerAnswers = [];
@@ -116,9 +116,9 @@ const roundInfo = {
     photo: "images/rounds/whatnext.jpg",
     message: "Watch these video clips. Can you guess what happens next?"
 },
-    "❤️ Keith & Anne": {
-        title: "❤️ Final Round – Keith & Anne",
-        photo: "images/rounds/diamond.jpg",
+    "❤️ Keith and Anne in 2026": {
+        title: "❤️ Final Round – Keith and Anne in 2026",
+        photo: "images/rounds/berninaexpress.jpg",
         message: "The Anniversary Quiz train has nearly reached the station. Just a few more stops left to celebrate an incredible 60 years of love, laughter and memories. Good luck!"
     }
 
@@ -470,10 +470,7 @@ questionImage.src = q.revealImage || q.image;
 
     imageCaption.style.display = "block";
 
-    imageCaption.classList.remove("reveal-caption");
-    void imageCaption.offsetWidth;
-    imageCaption.classList.add("reveal-caption");
-}
+    }
 }
 }, 1200);
         scoreText.textContent = `⭐ Score: ${score}`;
