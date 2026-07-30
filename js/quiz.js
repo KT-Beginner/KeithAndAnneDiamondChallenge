@@ -492,26 +492,16 @@ function moveToNextQuestion() {
     questionVideo.pause();
     questionVideo.style.display = "none";
 
-    card.classList.add("fade-out");
+    currentQuestion++;
 
-    setTimeout(() => {
-        currentQuestion++;
-
-        if (currentQuestion < questions.length) {
-            loadQuestion();
-
-            card.classList.remove("fade-out");
-            card.classList.add("fade-in");
-
-            setTimeout(() => {
-                card.classList.remove("fade-in");
-            }, 300);
+if (currentQuestion < questions.length) {
+    loadQuestion();
         } else {
             card.classList.remove("fade-out");
             card.classList.remove("fade-in");
             showFinalScreen();
         }
-    }, 300);
+   
 }
 nextQuestion.onclick = () => {
     nextQuestion.style.display = "none";
