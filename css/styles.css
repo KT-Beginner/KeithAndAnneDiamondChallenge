@@ -624,10 +624,11 @@ img {
     }
 
     .hero-photo {
-        width: 100%;
-        max-height: 38vh;
-        object-fit: contain;
-    }
+    width: 100%;
+    max-height: 320px;
+    height: auto;
+    object-fit: contain;
+}
 
     .question-image {
         width: 100%;
@@ -1838,5 +1839,20 @@ body.slideshow-open {
         font-size: 16px;
         transform: none;
         -webkit-transform: none;
+    }
+}
+/* Keep the start screen stable when the iPhone keyboard opens */
+@media (max-width: 600px) {
+
+    .container:focus-within,
+    .container:focus-within * {
+        transition: none !important;
+    }
+
+    .container:focus-within .title,
+    .container:focus-within .diamond,
+    .container:focus-within .title::before,
+    .container:focus-within .title::after {
+        animation: none !important;
     }
 }
