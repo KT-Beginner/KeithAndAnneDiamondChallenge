@@ -28,7 +28,7 @@ const questions = [
         ],
         correct: 3,
         image: "images/quiz/certificate.jpg",
-        photoTitle: "💍 Wedding certificate",
+        photoTitle: "💍 Wedding Certificate",
         revealImageAfterAnswer: true
     },
     {
@@ -43,7 +43,7 @@ const questions = [
         correct: 2,
         image: "images/quiz/wembley.jpg",
         photoTitle: "⚽ England beat West Germany 4–2 after extra time",
-        photoText: "🏆 The Jules Rimet Cup was the original trophy awarded to the winner of the FIFA World Cup.",
+        photoText: "🏆 The 1966 World Cup Final remains the uK's most watched television event ever. More than 30 million viewers tuned in!",
         revealImageAfterAnswer: true
     },
     {
@@ -101,7 +101,7 @@ const questions = [
 {
     round: "👨‍👩‍👧 Family",
     
-    question: "Where was this photograph taken",
+    question: "Where was this photograph taken?",
 
     image: "images/quiz/pool.jpg",
 caption: "☀️💦 Cooling off on a hot summer's day.",
@@ -206,7 +206,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
 
 {
         round: "👨‍👩‍👧 Family",
-        question: "Which church were Karen and Adam married in?",
+        question: "Which church did Karen and Adam get married in?",
 
         image: "images/quiz/karenwedding.jpg",
 
@@ -264,7 +264,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
 },
 {
     round: "👨‍👩‍👧 Family",
-    question: "You will find the Mappa Mundi in this cathedral, in which city?",
+    question: "You will find the Mappa Mundi in this Cathedral, in which city?",
 
     image: "images/quiz/hereford.jpg",
 
@@ -308,7 +308,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
 },    
 {
         round: "🏖️ Holidays",
-    question: "Which type of transport did Keith and Anne NOT use on their Far East trip in 2013?",
+    question: "Which type of transport did Anne and Keith NOT use on their Far East trip in 2013?",
     answers: [
         "Boat",
         "Bicycle",
@@ -323,7 +323,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
 },  
 {
         round: "🏖️ Holidays",
-    question: "On her birthday in 2014 in Madagascar, Anne made friends with a 'black and white ruffed'.  What kind of animal is this?",
+    question: "On her birthday in 2014 in Madagascar, Anne made friends with a 'black-and-white ruffed'.  What kind of animal is this?",
     answers: [
         "Penguin",
         "Lemur",
@@ -353,7 +353,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
 },  
 {
         round: "🏖️ Holidays",
-    question: "In April 2018, Keith and Anne travelled to Japan to see the famous cherry blossoms. What are cherry blossoms called in Japanese?",
+    question: "Keith and Anne travelled to Japan to see the famous cherry blossoms. What are cherry blossoms called in Japanese?",
     answers: [
         "Bonsai",
         "Kimono",
@@ -362,7 +362,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
     ],
     correct: 3,
     image: "images/quiz/japan.jpg",
-    photoTitle: "🌸 Sakura, Japan",
+    photoTitle: "🌸 Japan 2018",
     photoText: "Hanami (cherry blossom viewing) and a traditional meal in a ryokan",
     revealImageAfterAnswer: true
 },  
@@ -521,7 +521,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
     revealImageAfterAnswer: true,
 
     photoTitle: "🚀 We have liftoff.",  
-    photoText: "Space Shuttle Columbia made the first-ever Space Shuttle flight on 12 April 1981.",
+    photoText: "Space Shuttle Columbia made the first-ever Space Shuttle flight on 12th April 1981.",
     showPhotoTitleAfterAnswer: true
 },  
 { 
@@ -569,6 +569,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
     ],
     correct: 1,
     photoTitle: "🍼 Hello Lois!",
+    photoText: "🧸 A second grandchild arrives",
      showPhotoTitleAfterAnswer: true
 },
 { 
@@ -719,7 +720,7 @@ caption: "🧺 Picnic at the racecourse",
 },
 {
  round: "🎵 Music Round",
-    question: "The James Bond film Diamonds Are Forever was released in 1971. Who sang the theme song?",
+    question: "The James Bond film 'Diamonds Are Forever' was released in 1971. Who sang the theme song?",
     answers: [
         "Shirley Bassey",
         "Lulu",
@@ -987,7 +988,7 @@ correct: 0,
     revealImage: "images/quiz/7thbithdaystill3.jpg",
 
     photoTitle: "🎂 Three puffs",
-    photoText: "🕯️ At least she wasn't blowing out Keith's candles!",
+    photoText: "🕯️ Hooray. Third time lucky!",
 
     answers: [
         "One",
@@ -1077,12 +1078,12 @@ correct: 0,
   
         answers: [
         "Eiger",
-        "Matterhorn",
         "Jungfrau",
+        "Matterhorn",
         "Mont Blanc"
     ],
 
-    correct: 1,
+    correct: 2,
 
    photoTitle: "🏔️ The Matterhorn – climbed by train!",
     photoText: "🚂 The famous Gornergrat Railway took them to one of Switzerland's most spectacular viewpoints.",
@@ -1090,7 +1091,7 @@ correct: 0,
 },
  {
     round: "❤️ Keith and Anne in 2026",
-    question: "❤️ On 30th July 2026, how many days had Keith & Anne been married? (You may use a calculator!)",
+    question: "❤️ On 30th July 2026, how many days had Anne & Keith been married? (You may use a calculator!)",
   
     image: "images/quiz/switzerland.jpg",
   
@@ -1104,7 +1105,7 @@ correct: 0,
     correct: 1,
 
     photoTitle: "💎 60 wonderful years • 21,915 days • A lifetime of love, laughter and memories ❤️",
-    photoText: "That's: 60 × 365 = 21,900, Plus 15 leap days = 21,915 days!",
+    photoText: "That's: 60 × 365 = 21,900, plus 15 leap days = 21,915 days!",
     
     showPhotoTitleAfterAnswer: true,
         
