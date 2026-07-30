@@ -1852,3 +1852,38 @@ body.slideshow-open {
         -webkit-touch-callout: none;
     }
 }
+/* ==========================================
+   iPhone quiz repaint fix
+========================================== */
+@media (max-width: 600px) {
+
+    body > .title,
+    body > .title::before,
+    body > .title::after,
+    .diamond,
+    .card,
+    .card *,
+    .question-image,
+    #imageCaption,
+    #question,
+    #feedback,
+    #progress {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+    }
+
+    .card,
+    .question-image,
+    #photoFrame {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    .answer:hover,
+    .start-btn:hover {
+        transform: none !important;
+        box-shadow: none;
+    }
+}
