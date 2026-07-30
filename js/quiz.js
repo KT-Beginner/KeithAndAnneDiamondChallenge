@@ -892,8 +892,7 @@ printResultsButton.addEventListener("click", () => {
                 </div>
 
             </div>
-        <div class="results-buttons">
-
+        
     <div class="results-buttons">
 
     <button class="print-button" onclick="window.print()">
@@ -909,20 +908,6 @@ printResultsButton.addEventListener("click", () => {
 
 </div>
 
-    <button
-        class="return-button"
-        onclick="
-            if (window.opener && !window.opener.closed) {
-                window.close();
-            } else {
-                history.back();
-            }
-        "
-    >
-        ← Return to Quiz
-    </button>
-
-</div>
         </body>
         </html>
     `);
