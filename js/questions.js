@@ -1071,7 +1071,7 @@ correct: 0,
 },
 {
     round: "❤️ Keith and Anne in 2026",
-    question: "🚆 Which mountain did Keith & Anne 'climb' in July 2026?",
+    question: "🚆 Which mountain did Keith & Anne 'climb' on 28th July 2026?",
   
     image: "images/quiz/matterhorn.jpg",
   
@@ -1090,7 +1090,7 @@ correct: 0,
 },
  {
     round: "❤️ Keith and Anne in 2026",
-    question: "❤️ On 30 July 2026, how many days had Keith & Anne been married? (You may use a calculator!)",
+    question: "❤️ On 30th July 2026, how many days had Keith & Anne been married? (You may use a calculator!)",
   
     image: "images/quiz/switzerland.jpg",
   
