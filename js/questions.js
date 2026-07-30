@@ -43,7 +43,7 @@ const questions = [
         correct: 2,
         image: "images/quiz/wembley.jpg",
         photoTitle: "⚽ England beat West Germany 4–2 after extra time",
-        photoText: "🏆 The 1966 World Cup Final remains the uK's most watched television event ever. More than 30 million viewers tuned in!",
+        photoText: "🏆 The 1966 World Cup Final remains the UK's most watched television event ever. More than 30 million viewers tuned in!",
         revealImageAfterAnswer: true
     },
     {
@@ -281,10 +281,10 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
 
     correct: 1,
     
-    photoTitle: "🪙⭐ Hereford July 2016.",
+    photoTitle: "💛 Hereford July 2016.",
     showPhotoTitleAfterAnswer: true,
 
-     photoText: "🏇 One of Keith & Anne's Golden Anniversary celebrations (50 years together)",
+     photoText: "🍾🥂 One of Keith & Anne's Golden Anniversary celebrations (50 years together)",
     
 },
 
@@ -635,7 +635,7 @@ caption: "☀️💦 Cooling off on a hot summer's day.",
 },
 {
     round: "📅 Guess the Year",
-    question: "What year was this photo taken? Hint: it was the year of the London Olympics and the Queen's Diamond Jubilee.",
+    question: "What year was this photo taken? Hint: It was the year of the London Olympics and the Queen's Diamond Jubilee.",
 
     image: "images/quiz/2012.jpg",
 
@@ -672,7 +672,7 @@ caption: "🧺 Picnic at the racecourse",
 
     correct: 2,
     
-    photoTitle: "🪙⭐ July 2016.",
+    photoTitle: "🍾🥂 July 2016.",
     showPhotoTitleAfterAnswer: true,
 
      photoText: "🏇 Celebrating Keith & Anne's Golden Anniversary (50 years together)",
@@ -898,7 +898,7 @@ correct: 0,
     round: "✅ True or False",
     type: "truefalse",
 
-    question: "Enjoying 'sundowners' in Kenya in 2016",
+    question: "Enjoying 'Sundowners' in Kenya in 2016",
 
     image: "images/quiz/sundowner.jpg",
 
