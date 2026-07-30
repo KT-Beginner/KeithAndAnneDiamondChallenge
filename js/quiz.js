@@ -961,14 +961,10 @@ imageModal.addEventListener("click", (e) => {
 
 // Final photo slideshow
 
-const slideshowImages = [
-    "images/slideshow/slide1.jpg",
-    "images/slideshow/slide2.jpg",
-    "images/slideshow/slide3.jpg",
-    "images/slideshow/slide4.jpg",
-    "images/slideshow/slide5.jpg",
-    "images/slideshow/slide6.jpg"
-];
+const slideshowImages = Array.from(
+    { length: 77 },
+    (_, index) => `images/slideshow/slide${index + 1}.jpg`
+);
 
 let slideshowIndex = 0;
 let slideshowTimer = null;
@@ -1067,9 +1063,7 @@ function closeSlideshow(showEnding = true) {
 
     hideSlideshowControls();
 
-    if (showEnding) {
-        showSlideshowEnding();
-    }
+    // Return to the congratulations screen instead.
 }
 
 function showPreviousSlide() {
@@ -1115,13 +1109,13 @@ function startSlideshowTimer() {
             slideshowIndex >=
             slideshowImages.length
         ) {
-            closeSlideshow(true);
+           closeSlideshow(false);
             return;
         }
 
         displaySlideshowImage();
 
-    }, 6500);
+    }, 4000);
 }
 
 function startSlideshow() {
@@ -1179,38 +1173,70 @@ if (slideshowImage) {
         }
     );
 
-    // Swipe left or right anywhere on the slideshow
+    // Swipe left // Swipe left or right anywhere on the slideshow
 if (slideshow) {
-    slideshow.addEventListener("pointerdown", (event) => {
-        slideshowTouchStartX = event.clientX;
-        slideshowTouchStartY = event.clientY;
-        slideshowWasSwiped = false;
-    });
 
-    slideshow.addEventListener("pointerup", (event) => {
-        const horizontalDistance =
-            event.clientX - slideshowTouchStartX;
+    slideshow.addEventListener(
+        "touchstart",
+        (event) => {
+            if (event.touches.length !== 1) {
+                return;
+            }
 
-        const verticalDistance =
-            event.clientY - slideshowTouchStartY;
+            slideshowTouchStartX =
+                event.touches[0].clientX;
 
-        // Ignore short movements and vertical gestures
-        if (
-            Math.abs(horizontalDistance) < 45 ||
-            Math.abs(horizontalDistance) <
-                Math.abs(verticalDistance)
-        ) {
-            return;
-        }
+            slideshowTouchStartY =
+                event.touches[0].clientY;
 
-        slideshowWasSwiped = true;
+            slideshowWasSwiped = false;
+        },
+        { passive: true }
+    );
 
-        if (horizontalDistance < 0) {
-            showNextSlide();
-        } else {
-            showPreviousSlide();
-        }
-       });
+    slideshow.addEventListener(
+        "touchend",
+        (event) => {
+            if (event.changedTouches.length !== 1) {
+                return;
+            }
+
+            const touch =
+                event.changedTouches[0];
+
+            const horizontalDistance =
+                touch.clientX - slideshowTouchStartX;
+
+            const verticalDistance =
+                touch.clientY - slideshowTouchStartY;
+
+            // Ignore short movements and vertical gestures
+            if (
+                Math.abs(horizontalDistance) < 45 ||
+                Math.abs(horizontalDistance) <=
+                    Math.abs(verticalDistance)
+            ) {
+                return;
+            }
+
+            slideshowWasSwiped = true;
+
+            if (horizontalDistance < 0) {
+                showNextSlide();
+            } else {
+                showPreviousSlide();
+            }
+        },
+        { passive: true }
+    );
+
+    slideshow.addEventListener(
+        "touchcancel",
+        () => {
+            slideshowWasSwiped = false;
+        },
+        { passive: true }
+    );
 }
 
 // Close: if (slideshowImage)
@@ -1267,7 +1293,7 @@ if (closeSlideshowButton) {
         "click",
         (event) => {
             event.stopPropagation();
-            closeSlideshow(true);
+            closeSlideshow(false);
         }
     );
 }
@@ -1291,7 +1317,7 @@ document.addEventListener(
         } else if (
             event.key === "Escape"
         ) {
-            closeSlideshow(true);
+           closeSlideshow(false);
 
         } else if (
             event.key === " " ||
