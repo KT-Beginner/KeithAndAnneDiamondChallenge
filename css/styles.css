@@ -41,7 +41,7 @@ body {
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    transform: translateZ(0);
+    
 }
 
 .title{
@@ -1821,5 +1821,22 @@ body.slideshow-open {
 
     #slideshow-image {
         -webkit-user-drag: none;
+    }
+}
+/* Stop iPhone flicker while typing the player's name */
+@media (max-width: 600px) {
+
+    .container:focus-within .title,
+    .container:focus-within .diamond,
+    .container:focus-within .title::before,
+    .container:focus-within .title::after,
+    .container:focus-within .hero-photo {
+        animation: none !important;
+    }
+
+    #playerName {
+        font-size: 16px;
+        transform: none;
+        -webkit-transform: none;
     }
 }
