@@ -1887,3 +1887,100 @@ body.slideshow-open {
         box-shadow: none;
     }
 }
+/* ==========================================
+   Final compact iPhone question layout
+   Keep this at the very end of styles.css
+========================================== */
+
+@media (max-width: 600px) {
+
+    /* Reduce unused space around the main quiz card */
+    .card {
+        padding: 10px 11px 16px;
+    }
+
+    .score-panel {
+        padding: 7px 9px;
+        margin-bottom: 6px;
+    }
+
+    .progress-bar {
+        height: 12px;
+        margin: 6px 0 8px;
+    }
+
+    #questionNumber {
+        font-size: 0.92rem;
+        margin: 4px 0 6px;
+    }
+
+    #question {
+        font-size: 1.12rem;
+        line-height: 1.18;
+        margin: 7px 0 8px;
+    }
+
+    /* Make the complete Polaroid frame more compact */
+    .photo-frame {
+        width: 100%;
+        margin: 7px auto;
+        padding: 7px 7px 10px;
+    }
+
+    /*
+       Allow landscape photos to remain wide,
+       but prevent portrait photos becoming excessively tall.
+    */
+    .photo-frame .question-image,
+    .question-image {
+        width: auto !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 30svh !important;
+        margin: 0 auto !important;
+        object-fit: contain !important;
+    }
+
+    /* Compact ordinary captions */
+    #imageCaption {
+        margin: 4px 0 7px;
+        padding: 5px 6px 2px;
+        font-size: 0.78rem;
+        line-height: 1.2;
+    }
+
+    /* Compact the answer-screen photo title and story */
+    .photo-note-title {
+        margin-bottom: 3px;
+        padding-right: 18px;
+        font-size: 0.92rem;
+        line-height: 1.15;
+    }
+
+    .photo-note-text {
+        font-size: 0.78rem;
+        line-height: 1.25;
+    }
+
+    /* Keep answer buttons comfortable but closer together */
+    .answer {
+        min-height: 40px;
+        padding: 8px 9px;
+        margin: 4px 0;
+        font-size: 0.9rem;
+        line-height: 1.15;
+    }
+
+    #feedback {
+        min-height: 20px;
+        margin: 4px 0;
+    }
+
+    /*
+       Your general .card button rule adds a 25px top margin.
+       Reduce that for Play Clip and Next Question on phones.
+    */
+    .card button {
+        margin-top: 8px;
+    }
+}
