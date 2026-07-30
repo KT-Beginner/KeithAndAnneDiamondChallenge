@@ -1155,38 +1155,61 @@ if (slideshowImage) {
         }
     );
 
-    // Swipe left or right anywhere on the slideshow
+   // Swipe left or right anywhere on the slideshow
 if (slideshow) {
-    slideshow.addEventListener("pointerdown", (event) => {
-        slideshowTouchStartX = event.clientX;
-        slideshowTouchStartY = event.clientY;
-        slideshowWasSwiped = false;
-    });
 
-    slideshow.addEventListener("pointerup", (event) => {
-        const horizontalDistance =
-            event.clientX - slideshowTouchStartX;
+    slideshow.addEventListener(
+        "touchstart",
+        (event) => {
+            if (event.touches.length !== 1) {
+                return;
+            }
 
-        const verticalDistance =
-            event.clientY - slideshowTouchStartY;
+            slideshowTouchStartX =
+                event.touches[0].clientX;
 
-        // Ignore short movements and vertical gestures
-        if (
-            Math.abs(horizontalDistance) < 45 ||
-            Math.abs(horizontalDistance) <
-                Math.abs(verticalDistance)
-        ) {
-            return;
-        }
+            slideshowTouchStartY =
+                event.touches[0].clientY;
 
-        slideshowWasSwiped = true;
+            slideshowWasSwiped = false;
+        },
+        { passive: true }
+    );
 
-        if (horizontalDistance < 0) {
-            showNextSlide();
-        } else {
-            showPreviousSlide();
-        }
-       });
+    slideshow.addEventListener(
+        "touchend",
+        (event) => {
+            if (event.changedTouches.length !== 1) {
+                return;
+            }
+
+            const horizontalDistance =
+                event.changedTouches[0].clientX -
+                slideshowTouchStartX;
+
+            const verticalDistance =
+                event.changedTouches[0].clientY -
+                slideshowTouchStartY;
+
+            // Ignore short movements and vertical gestures
+            if (
+                Math.abs(horizontalDistance) < 45 ||
+                Math.abs(horizontalDistance) <=
+                    Math.abs(verticalDistance)
+            ) {
+                return;
+            }
+
+            slideshowWasSwiped = true;
+
+            if (horizontalDistance < 0) {
+                showNextSlide();
+            } else {
+                showPreviousSlide();
+            }
+        },
+        { passive: true }
+    );
 }
 
 // Close: if (slideshowImage)
