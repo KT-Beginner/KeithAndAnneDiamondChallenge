@@ -842,19 +842,33 @@ printResultsButton.addEventListener("click", () => {
                     font-style: italic;
                 }
 
-                .print-button {
-                    display: block;
-                    margin: 25px auto;
-                    padding: 12px 25px;
-                    font-size: 18px;
-                    cursor: pointer;
-                }
+               .print-button {
+    display: block;
+    margin: 25px auto;
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer;
+}
 
-                @media print {
-                    .print-button {
-                        display: none;
-                    }
-                }
+.results-buttons {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.return-button {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+@media print {
+    .print-button,
+    .return-button {
+        display: none;
+    }
+}
             </style>
         </head>
 
@@ -878,9 +892,37 @@ printResultsButton.addEventListener("click", () => {
                 </div>
 
             </div>
-         <button class="print-button" onclick="window.print()">
-    🖨️ Print / Save as PDF
-</button>
+        <div class="results-buttons">
+
+    <div class="results-buttons">
+
+    <button class="print-button" onclick="window.print()">
+        🖨️ Print / Save as PDF
+    </button>
+
+    <button
+        class="return-button"
+        onclick="window.close()"
+    >
+        ← Return to Quiz
+    </button>
+
+</div>
+
+    <button
+        class="return-button"
+        onclick="
+            if (window.opener && !window.opener.closed) {
+                window.close();
+            } else {
+                history.back();
+            }
+        "
+    >
+        ← Return to Quiz
+    </button>
+
+</div>
         </body>
         </html>
     `);
