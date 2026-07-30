@@ -1052,27 +1052,6 @@ correct: 0,
     round: "❤️ Keith and Anne in 2026",
     question: "🚆 Which famous Swiss train is this?",
   
-    image: "images/quiz/berninaexpress.jpg",
-  
-    revealImageAfterAnswer: true,
-    revealImage: "images/quiz/berninaview.jpg",
-   
-    answers: [
-        "Eurostar",
-        "GoldenPass Express",
-        "Bernina Express",
-        "Glacier Express"
-    ],
-
-    correct: 2,
-
-    photoTitle: "🚞 Views from the Bernina Express",
-        
-},
-{
-    round: "❤️ Keith and Anne in 2026",
-    question: "🚆 Which famous Swiss train is this?",
-  
     image: "images/quiz/glacierexpress.jpg",
   
     revealImageAfterAnswer: true,
@@ -1090,11 +1069,30 @@ correct: 0,
     photoTitle: "🚞 Views from the Glacier Express",
         
 },
+{
+    round: "❤️ Keith and Anne in 2026",
+    question: "🚆 Which mountain did Keith & Anne 'climb' in July 2026?",
+  
+    image: "images/quiz/matterhorn.jpg",
+  
+        answers: [
+        "Eiger",
+        "Matterhorn",
+        "Jungfrau",
+        "Mont Blanc"
+    ],
+
+    correct: 1,
+
+   photoTitle: "🏔️ The Matterhorn – climbed by train!",
+    photoText: "🚂 The famous Gornergrat Railway took them to one of Switzerland's most spectacular viewpoints.",
+     showPhotoTitleAfterAnswer: true,    
+},
  {
     round: "❤️ Keith and Anne in 2026",
     question: "❤️ On 30 July 2026, how many days had Keith & Anne been married? (You may use a calculator!)",
   
-    image: "images/quiz/diamond2.jpg",
+    image: "images/quiz/switzerland.jpg",
   
     answers: [
         "21,900 days",
