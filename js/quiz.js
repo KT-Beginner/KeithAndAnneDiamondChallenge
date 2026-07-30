@@ -1201,7 +1201,10 @@ if (slideshow) {
         } else {
             showPreviousSlide();
         }
-    });
+       });
+}
+
+// Close: if (slideshowImage)
 }
 
 if (previousSlideButton) {
