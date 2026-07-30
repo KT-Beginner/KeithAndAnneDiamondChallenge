@@ -44,20 +44,22 @@ const congratulationsSound =
 const cheerSound =
     new Audio("sounds/cheer.mp3");
 
-// Unlock the final sounds on the player's first click
+// Unlock the final sounds silently on the player's first tap
 document.addEventListener("click", () => {
 
     [congratulationsSound, cheerSound].forEach(sound => {
 
-        sound.volume = 0;
+        sound.muted = true;
 
-        sound.play().then(() => {
-            sound.pause();
-            sound.currentTime = 0;
-            sound.volume = 1;
-        }).catch(() => {
-            sound.volume = 1;
-        });
+        sound.play()
+            .then(() => {
+                sound.pause();
+                sound.currentTime = 0;
+                sound.muted = false;
+            })
+            .catch(() => {
+                sound.muted = false;
+            });
 
     });
 
@@ -1168,57 +1170,38 @@ if (slideshowImage) {
         }
     );
 
-    slideshowImage.addEventListener(
-        "touchstart",
-        (event) => {
-            const touch =
-                event.changedTouches[0];
+    // Swipe left or right anywhere on the slideshow
+if (slideshow) {
+    slideshow.addEventListener("pointerdown", (event) => {
+        slideshowTouchStartX = event.clientX;
+        slideshowTouchStartY = event.clientY;
+        slideshowWasSwiped = false;
+    });
 
-            slideshowTouchStartX =
-                touch.clientX;
+    slideshow.addEventListener("pointerup", (event) => {
+        const horizontalDistance =
+            event.clientX - slideshowTouchStartX;
 
-            slideshowTouchStartY =
-                touch.clientY;
+        const verticalDistance =
+            event.clientY - slideshowTouchStartY;
 
-            slideshowWasSwiped = false;
-        },
-        { passive: true }
-    );
+        // Ignore short movements and vertical gestures
+        if (
+            Math.abs(horizontalDistance) < 45 ||
+            Math.abs(horizontalDistance) <
+                Math.abs(verticalDistance)
+        ) {
+            return;
+        }
 
-    slideshowImage.addEventListener(
-        "touchend",
-        (event) => {
-            const touch =
-                event.changedTouches[0];
+        slideshowWasSwiped = true;
 
-            const horizontalDistance =
-                touch.clientX -
-                slideshowTouchStartX;
-
-            const verticalDistance =
-                touch.clientY -
-                slideshowTouchStartY;
-
-            // Ignore small movements and
-            // mostly vertical gestures.
-            if (
-                Math.abs(horizontalDistance) < 45 ||
-                Math.abs(horizontalDistance) <
-                    Math.abs(verticalDistance)
-            ) {
-                return;
-            }
-
-            slideshowWasSwiped = true;
-
-            if (horizontalDistance < 0) {
-                showNextSlide();
-            } else {
-                showPreviousSlide();
-            }
-        },
-        { passive: true }
-    );
+        if (horizontalDistance < 0) {
+            showNextSlide();
+        } else {
+            showPreviousSlide();
+        }
+    });
 }
 
 if (previousSlideButton) {

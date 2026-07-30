@@ -1748,3 +1748,72 @@ body.quiz-locked > *:not(#passwordGate) {
 .slideshow-controls.show button {
     pointer-events: auto;
 }
+/* ==========================================
+   Slideshow touch improvements
+========================================== */
+
+body.slideshow-open {
+    overflow: hidden;
+    touch-action: none;
+}
+
+#slideshow {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+}
+
+#slideshow-image {
+    width: 100vw;
+    height: 100dvh;
+    object-fit: contain;
+
+    /* Allow horizontal swipes */
+    touch-action: pan-y;
+
+    -webkit-user-select: none;
+    user-select: none;
+
+    -webkit-touch-callout: none;
+}
+
+.slideshow-controls {
+    pointer-events: none;
+}
+
+.slideshow-controls.show button {
+    pointer-events: auto;
+}
+/* ==========================================
+   Final mobile photo and swipe corrections
+========================================== */
+
+@media (max-width: 600px) {
+
+    .photo-frame {
+        width: 100%;
+        max-width: none;
+        margin: 10px auto;
+        padding: 8px 8px 14px;
+    }
+
+    .photo-frame .question-image,
+    .question-image {
+        width: 100%;
+        height: auto !important;
+        max-height: none !important;
+        object-fit: contain !important;
+        margin: 0 auto;
+    }
+
+    #slideshow,
+    .slideshow-viewer,
+    #slideshow-image {
+        touch-action: pan-y;
+        overscroll-behavior: none;
+    }
+
+    #slideshow-image {
+        -webkit-user-drag: none;
+    }
+}
