@@ -70,16 +70,12 @@ const card = document.querySelector(".card");
 let revealPhotoTimer = null;
 
 function startRevealPhotoFocus() {
-    if (!card || !photoFrame) {
-        return;
-    }
-
     clearTimeout(revealPhotoTimer);
 
-    card.classList.add("reveal-photo-focus");
+    questionImage.classList.add("reveal-focus");
 
     revealPhotoTimer = setTimeout(() => {
-        card.classList.remove("reveal-photo-focus");
+        questionImage.classList.remove("reveal-focus");
     }, 2500);
 }
 
@@ -182,8 +178,8 @@ function loadQuestion() {
 function displayQuestion() {
     const q = questions[currentQuestion];
 
-    clearTimeout(revealPhotoTimer);
-    card.classList.remove("reveal-photo-focus");
+   clearTimeout(revealPhotoTimer);
+questionImage.classList.remove("reveal-focus");
 
     player.textContent = `👤 ${playerName}`;
     scoreText.textContent = `⭐ Score: ${score}`;

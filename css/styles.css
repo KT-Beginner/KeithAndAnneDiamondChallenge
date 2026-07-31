@@ -2029,3 +2029,24 @@ body.slideshow-open {
             padding 0.4s ease !important;
     }
 }
+/* ==========================================
+   Temporary enlarged reveal photograph
+========================================== */
+
+.question-image {
+    transition:
+        max-height 0.4s ease,
+        transform 0.4s ease,
+        margin 0.4s ease;
+}
+
+@media (max-width: 600px) {
+
+    .question-image.reveal-focus {
+        max-height: 55svh !important;
+        transform: scale(1.04);
+        margin: 10px auto 18px;
+        object-fit: contain;
+    }
+
+}
