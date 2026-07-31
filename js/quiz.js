@@ -346,9 +346,13 @@ buttons.forEach((button, index) => {
     playClip.disabled = true;
 
     // Disable all buttons
-    buttons.forEach(btn => btn.disabled = true);
+buttons.forEach(btn => btn.disabled = true);
 
-    const correct = questions[currentQuestion].correct;
+// Make absolutely sure the Next button can't be tapped yet
+nextQuestion.style.display = "none";
+nextQuestion.disabled = true;
+
+const correct = questions[currentQuestion].correct;
 
       if (index === correct) {
 
@@ -571,7 +575,7 @@ if (answerAudio) {
 
     // Video questions show this only after the reveal video finishes
 if (q.type !== "video") {
-    showNextButton();
+    setTimeout(showNextButton, 1200);
 }
 }
     });
