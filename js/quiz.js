@@ -67,18 +67,6 @@ document.addEventListener("click", () => {
 
 const card = document.querySelector(".card");
 
-let revealPhotoTimer = null;
-
-function startRevealPhotoFocus() {
-    clearTimeout(revealPhotoTimer);
-
-    questionImage.classList.add("reveal-focus");
-
-    revealPhotoTimer = setTimeout(() => {
-        questionImage.classList.remove("reveal-focus");
-    }, 2500);
-}
-
 
 const imageModal = document.getElementById("imageModal");
 const modalImage = document.getElementById("modalImage");
@@ -178,9 +166,7 @@ function loadQuestion() {
 function displayQuestion() {
     const q = questions[currentQuestion];
 
-   clearTimeout(revealPhotoTimer);
-questionImage.classList.remove("reveal-focus");
-
+   
     player.textContent = `👤 ${playerName}`;
     scoreText.textContent = `⭐ Score: ${score}`;
 
@@ -419,7 +405,6 @@ setTimeout(() => {
         questionImage.src = q.revealImage;
         questionImage.style.display = "block";
 
-startRevealPhotoFocus();
 
         if (q.photoTitle || q.photoText) {
 
@@ -437,13 +422,7 @@ startRevealPhotoFocus();
     imageCaption.style.display = "none";
 }
 
-        nextQuestion.textContent =
-            currentQuestion === questions.length - 1
-                ? "🎉 That's All Folks!"
-                : "Next Question ➜";
-
-        nextQuestion.disabled = false;
-        nextQuestion.style.display = "inline-block";
+       showNextButton();
 
         playClip.style.display = "inline-block";
         playClip.disabled = false;
@@ -474,8 +453,6 @@ playClip.onclick = () => {
 questionImage.style.display = "block";
 questionImage.src = q.revealImage || q.image;
 
-startRevealPhotoFocus();
-
    if (q.photoTitle || q.photoText || q.caption) {
 
     if (q.photoTitle || q.photoText) {
@@ -502,6 +479,17 @@ startRevealPhotoFocus();
 const answerAudio =
     questions[currentQuestion].audioAnswer ||
     questions[currentQuestion].audio;
+
+    function showNextButton() {
+
+    nextQuestion.textContent =
+        currentQuestion === questions.length - 1
+            ? "🎉 That's All Folks!"
+            : "Next Question ➜";
+
+    nextQuestion.disabled = false;
+    nextQuestion.style.display = "inline-block";
+}
 
 function moveToNextQuestion() {
     questionVideo.pause();
@@ -559,21 +547,7 @@ if (answerAudio) {
 };
         }
 
-       if (currentQuestion === questions.length - 1) {
-
-    nextQuestion.textContent = "🎉 That's All Folks!";
-
-    // Show alongside the final answer reveal
-    setTimeout(() => {
-        nextQuestion.style.display = "inline-block";
-    }, 1200);
-
-} else {
-
-    nextQuestion.textContent = "Next Question ➜";
-    nextQuestion.style.display = "inline-block";
-
-}
+       setTimeout(showNextButton, 1200);
 
     } else {
 
@@ -596,16 +570,9 @@ if (answerAudio) {
 } else {
 
     // Video questions show this only after the reveal video finishes
-    if (q.type !== "video") {
-
-        if (currentQuestion === questions.length - 1) {
-            nextQuestion.textContent = "🎉 That's All Folks!";
-        } else {
-            nextQuestion.textContent = "Next Question ➜";
-        }
-
-        nextQuestion.style.display = "inline-block";
-    }
+if (q.type !== "video") {
+    showNextButton();
+}
 }
     });
 });
