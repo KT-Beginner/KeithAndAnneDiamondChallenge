@@ -116,9 +116,9 @@ const roundInfo = {
     photo: "images/rounds/whatnext.jpg",
     message: "Watch these video clips. Can you guess what happens next?"
 },
-    "❤️ Keith and Anne in 2026": {
-        title: "❤️ Final Round – Keith and Anne in 2026",
-        photo: "images/rounds/berninaexpress.jpg",
+    "❤️ Keith & Anne i": {
+        title: "❤️ Final Round – Keith & Anne",
+        photo: "images/rounds/diamond.jpg",
         message: "The Anniversary Quiz train has nearly reached the station. Just a few more stops left to celebrate an incredible 60 years of love, laughter and memories. Good luck!"
     }
 
@@ -166,7 +166,6 @@ function loadQuestion() {
 function displayQuestion() {
     const q = questions[currentQuestion];
 
-   
     player.textContent = `👤 ${playerName}`;
     scoreText.textContent = `⭐ Score: ${score}`;
 
@@ -346,13 +345,9 @@ buttons.forEach((button, index) => {
     playClip.disabled = true;
 
     // Disable all buttons
-buttons.forEach(btn => btn.disabled = true);
+    buttons.forEach(btn => btn.disabled = true);
 
-// Make absolutely sure the Next button can't be tapped yet
-nextQuestion.style.display = "none";
-nextQuestion.disabled = true;
-
-const correct = questions[currentQuestion].correct;
+    const correct = questions[currentQuestion].correct;
 
       if (index === correct) {
 
@@ -405,11 +400,6 @@ setTimeout(() => {
         questionImage.src = q.revealImage;
         questionImage.style.display = "block";
 
-        photoFrame.style.display = "block";
-        questionImage.src = q.revealImage;
-        questionImage.style.display = "block";
-
-
         if (q.photoTitle || q.photoText) {
 
     imageCaption.innerHTML = `
@@ -426,7 +416,13 @@ setTimeout(() => {
     imageCaption.style.display = "none";
 }
 
-       showNextButton();
+        nextQuestion.textContent =
+            currentQuestion === questions.length - 1
+                ? "🎉 That's All Folks!"
+                : "Next Question ➜";
+
+        nextQuestion.disabled = false;
+        nextQuestion.style.display = "inline-block";
 
         playClip.style.display = "inline-block";
         playClip.disabled = false;
@@ -453,7 +449,7 @@ playClip.onclick = () => {
 
     buttons.forEach(btn => btn.style.display = "none");
 
-  photoFrame.style.display = "block";
+   photoFrame.style.display = "block";
 questionImage.style.display = "block";
 questionImage.src = q.revealImage || q.image;
 
@@ -474,7 +470,10 @@ questionImage.src = q.revealImage || q.image;
 
     imageCaption.style.display = "block";
 
-    }
+    imageCaption.classList.remove("reveal-caption");
+    void imageCaption.offsetWidth;
+    imageCaption.classList.add("reveal-caption");
+}
 }
 }, 1200);
         scoreText.textContent = `⭐ Score: ${score}`;
@@ -483,17 +482,6 @@ questionImage.src = q.revealImage || q.image;
 const answerAudio =
     questions[currentQuestion].audioAnswer ||
     questions[currentQuestion].audio;
-
-    function showNextButton() {
-
-    nextQuestion.textContent =
-        currentQuestion === questions.length - 1
-            ? "🎉 That's All Folks!"
-            : "Next Question ➜";
-
-    nextQuestion.disabled = false;
-    nextQuestion.style.display = "inline-block";
-}
 
 function moveToNextQuestion() {
     questionVideo.pause();
@@ -520,48 +508,59 @@ if (answerAudio) {
 
     revealAudio.addEventListener("ended", () => {
 
-    const currentQ = questions[currentQuestion];
+    if (questions[currentQuestion].audioQuestion || questions[currentQuestion].manualNext) {
 
-    if (currentQ.audioQuestion || currentQ.manualNext) {
+        if (questions[currentQuestion].audioFull) {
 
-        if (currentQ.audioFull) {
-
-            setTimeout(() => {
-                playClip.style.display = "inline-block";
-                playClip.disabled = false;
-                playClip.textContent = "▶️ Play Full Clip";
-            }, 1200);
+            playClip.style.display = "inline-block";
+            playClip.disabled = false;
+            playClip.textContent = "▶️ Play Full Clip";
 
             playClip.onclick = () => {
 
-                const fullAudio = new Audio(currentQ.audioFull);
+    const fullAudio = new Audio(questions[currentQuestion].audioFull);
 
-                // Prevent moving on while the full clip is playing
-                nextQuestion.disabled = true;
-                playClip.disabled = true;
-                playClip.textContent = "🎵 Playing...";
+    // Prevent moving on while the full clip is playing
+    nextQuestion.disabled = true;
+    playClip.disabled = true;
+    playClip.textContent = "🎵 Playing...";
 
-                fullAudio.addEventListener("ended", () => {
-                    nextQuestion.disabled = false;
-                    playClip.disabled = false;
-                    playClip.textContent = "▶️ Play Full Clip";
-                });
+    fullAudio.addEventListener("ended", () => {
+        nextQuestion.disabled = false;
+        playClip.disabled = false;
+        playClip.textContent = "▶️ Play Full Clip";
+    });
 
-                fullAudio.play().catch(() => {
-                    nextQuestion.disabled = false;
-                    playClip.disabled = false;
-                    playClip.textContent = "▶️ Play Full Clip";
-                });
-            };
+    fullAudio.play().catch(() => {
+        nextQuestion.disabled = false;
+        playClip.disabled = false;
+        playClip.textContent = "▶️ Play Full Clip";
+    });
+};
         }
 
-        // Show both buttons at the same time
-        setTimeout(showNextButton, 1200);
+       if (currentQuestion === questions.length - 1) {
+
+    nextQuestion.textContent = "🎉 That's All Folks!";
+
+    // Show alongside the final answer reveal
+    setTimeout(() => {
+        nextQuestion.style.display = "inline-block";
+    }, 1200);
+
+} else {
+
+    nextQuestion.textContent = "Next Question ➜";
+    nextQuestion.style.display = "inline-block";
+
+}
 
     } else {
 
         moveToNextQuestion();
+
     }
+
 });
 
     revealAudio.play().catch(() => {
@@ -577,9 +576,16 @@ if (answerAudio) {
 } else {
 
     // Video questions show this only after the reveal video finishes
-if (q.type !== "video") {
-    setTimeout(showNextButton, 1200);
-}
+    if (q.type !== "video") {
+
+        if (currentQuestion === questions.length - 1) {
+            nextQuestion.textContent = "🎉 That's All Folks!";
+        } else {
+            nextQuestion.textContent = "Next Question ➜";
+        }
+
+        nextQuestion.style.display = "inline-block";
+    }
 }
     });
 });
@@ -839,33 +845,19 @@ printResultsButton.addEventListener("click", () => {
                     font-style: italic;
                 }
 
-               .print-button {
-    display: block;
-    margin: 25px auto;
-    padding: 12px 25px;
-    font-size: 18px;
-    cursor: pointer;
-}
+                .print-button {
+                    display: block;
+                    margin: 25px auto;
+                    padding: 12px 25px;
+                    font-size: 18px;
+                    cursor: pointer;
+                }
 
-.results-buttons {
-    text-align: center;
-    margin: 25px 0;
-}
-
-.return-button {
-    display: inline-block;
-    margin: 0 8px;
-    padding: 12px 25px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-@media print {
-    .print-button,
-    .return-button {
-        display: none;
-    }
-}
+                @media print {
+                    .print-button {
+                        display: none;
+                    }
+                }
             </style>
         </head>
 
@@ -889,22 +881,9 @@ printResultsButton.addEventListener("click", () => {
                 </div>
 
             </div>
-        
-    <div class="results-buttons">
-
-    <button class="print-button" onclick="window.print()">
-        🖨️ Print / Save as PDF
-    </button>
-
-    <button
-        class="return-button"
-        onclick="window.close()"
-    >
-        ← Return to Quiz
-    </button>
-
-</div>
-
+         <button class="print-button" onclick="window.print()">
+    🖨️ Print / Save as PDF
+</button>
         </body>
         </html>
     `);
@@ -958,10 +937,14 @@ imageModal.addEventListener("click", (e) => {
 
 // Final photo slideshow
 
-const slideshowImages = Array.from(
-    { length: 77 },
-    (_, index) => `images/slideshow/slide${index + 1}.jpg`
-);
+const slideshowImages = [
+    "images/slideshow/slide1.jpg",
+    "images/slideshow/slide2.jpg",
+    "images/slideshow/slide3.jpg",
+    "images/slideshow/slide4.jpg",
+    "images/slideshow/slide5.jpg",
+    "images/slideshow/slide6.jpg"
+];
 
 let slideshowIndex = 0;
 let slideshowTimer = null;
@@ -1060,7 +1043,9 @@ function closeSlideshow(showEnding = true) {
 
     hideSlideshowControls();
 
-    // Return to the congratulations screen instead.
+    if (showEnding) {
+        showSlideshowEnding();
+    }
 }
 
 function showPreviousSlide() {
@@ -1106,13 +1091,13 @@ function startSlideshowTimer() {
             slideshowIndex >=
             slideshowImages.length
         ) {
-           closeSlideshow(false);
+            closeSlideshow(true);
             return;
         }
 
         displaySlideshowImage();
 
-    }, 4000);
+    }, 6500);
 }
 
 function startSlideshow() {
@@ -1170,7 +1155,7 @@ if (slideshowImage) {
         }
     );
 
-    // Swipe left // Swipe left or right anywhere on the slideshow
+   // Swipe left or right anywhere on the slideshow
 if (slideshow) {
 
     slideshow.addEventListener(
@@ -1198,14 +1183,13 @@ if (slideshow) {
                 return;
             }
 
-            const touch =
-                event.changedTouches[0];
-
             const horizontalDistance =
-                touch.clientX - slideshowTouchStartX;
+                event.changedTouches[0].clientX -
+                slideshowTouchStartX;
 
             const verticalDistance =
-                touch.clientY - slideshowTouchStartY;
+                event.changedTouches[0].clientY -
+                slideshowTouchStartY;
 
             // Ignore short movements and vertical gestures
             if (
@@ -1223,14 +1207,6 @@ if (slideshow) {
             } else {
                 showPreviousSlide();
             }
-        },
-        { passive: true }
-    );
-
-    slideshow.addEventListener(
-        "touchcancel",
-        () => {
-            slideshowWasSwiped = false;
         },
         { passive: true }
     );
@@ -1290,7 +1266,7 @@ if (closeSlideshowButton) {
         "click",
         (event) => {
             event.stopPropagation();
-            closeSlideshow(false);
+            closeSlideshow(true);
         }
     );
 }
@@ -1314,7 +1290,7 @@ document.addEventListener(
         } else if (
             event.key === "Escape"
         ) {
-           closeSlideshow(false);
+            closeSlideshow(true);
 
         } else if (
             event.key === " " ||

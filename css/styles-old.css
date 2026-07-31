@@ -1984,37 +1984,3 @@ body.slideshow-open {
         margin-top: 8px;
     }
 }
-/* ==========================================
-   Laptop, desktop and large iPad layout
-========================================== */
-
-@media (min-width: 900px) {
-
-    .card {
-        max-width: 660px;
-        padding: 24px;
-        margin: 22px auto;
-    }
-
-    .photo-frame .question-image,
-    .question-image {
-        width: auto !important;
-        max-width: 100% !important;
-        height: auto !important;
-        max-height: 350px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        object-fit: contain !important;
-    }
-
-    .photo-frame {
-        margin-top: 12px;
-        margin-bottom: 12px;
-    }
-
-    .answer {
-        margin-top: 6px;
-        margin-bottom: 6px;
-        padding: 10px 12px;
-    }
-}
