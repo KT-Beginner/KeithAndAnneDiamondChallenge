@@ -2018,3 +2018,19 @@ body.slideshow-open {
         padding: 10px 12px;
     }
 }
+/* Make photo captions easier to read on phones */
+@media (max-width: 600px) {
+
+    .photo-note-title {
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .photo-note-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+    }
+}
