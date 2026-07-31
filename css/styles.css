@@ -2034,3 +2034,11 @@ body.slideshow-open {
         font-weight: 400;
     }
 }
+/* Hide decorative diamond on phones */
+@media (max-width: 600px) {
+
+    .photo-frame .image-caption::before {
+        display: none;
+    }
+
+}
