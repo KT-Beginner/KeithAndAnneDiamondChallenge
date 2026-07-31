@@ -67,6 +67,22 @@ document.addEventListener("click", () => {
 
 const card = document.querySelector(".card");
 
+let revealPhotoTimer = null;
+
+function startRevealPhotoFocus() {
+    if (!card || !photoFrame) {
+        return;
+    }
+
+    clearTimeout(revealPhotoTimer);
+
+    card.classList.add("reveal-photo-focus");
+
+    revealPhotoTimer = setTimeout(() => {
+        card.classList.remove("reveal-photo-focus");
+    }, 2500);
+}
+
 
 const imageModal = document.getElementById("imageModal");
 const modalImage = document.getElementById("modalImage");
@@ -165,6 +181,9 @@ function loadQuestion() {
 }
 function displayQuestion() {
     const q = questions[currentQuestion];
+
+    clearTimeout(revealPhotoTimer);
+    card.classList.remove("reveal-photo-focus");
 
     player.textContent = `👤 ${playerName}`;
     scoreText.textContent = `⭐ Score: ${score}`;
@@ -400,6 +419,12 @@ setTimeout(() => {
         questionImage.src = q.revealImage;
         questionImage.style.display = "block";
 
+        photoFrame.style.display = "block";
+        questionImage.src = q.revealImage;
+        questionImage.style.display = "block";
+
+startRevealPhotoFocus();
+
         if (q.photoTitle || q.photoText) {
 
     imageCaption.innerHTML = `
@@ -449,9 +474,11 @@ playClip.onclick = () => {
 
     buttons.forEach(btn => btn.style.display = "none");
 
-   photoFrame.style.display = "block";
+  photoFrame.style.display = "block";
 questionImage.style.display = "block";
 questionImage.src = q.revealImage || q.image;
+
+startRevealPhotoFocus();
 
    if (q.photoTitle || q.photoText || q.caption) {
 
